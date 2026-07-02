@@ -10,8 +10,8 @@
  * To capture submissions without a mail client: create a free form endpoint and
  * paste its URL into FORM_ENDPOINT below.
  */
-window.__FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/abcdwxyz"
-window.__FORM_TO = "wrfarley13@gmail.com";
+window.__FORM_ENDPOINT = ""; // <-- Paste your Formspree/Getform URL here to receive submissions.
+window.__FORM_TO = "";       // Optional mailto fallback. Leave blank to keep NO email address in the public source.
 
 function mailtoFallback(subject, data){
   const body = Object.entries(data).map(([k,v]) => `${k}: ${v}`).join('\n');
@@ -44,9 +44,11 @@ function wireForm(form){
       }finally{
         if(btn){ btn.disabled = false; btn.textContent = label; }
       }
-    } else {
+    } else if (window.__FORM_TO) {
       mailtoFallback(subject, data);
       say('Opening your email app…', false);
+    } else {
+      say("Submissions aren't live yet — please check back soon.", false);
     }
   });
 }

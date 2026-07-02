@@ -60,14 +60,19 @@ the Decide/Lavish section — see the one-liner in the project notes.
 `index.html` (join the list), `experts.html`, and `investors.html` each have a contact
 form wired up by `forms.js`.
 
-- **Default (no setup):** submissions compose an email to `__FORM_TO`
-  (`wrfarley13@gmail.com`) in the visitor's mail client — works immediately, but the
-  visitor has to hit send.
-- **Recommended:** create a free form endpoint (e.g. [Formspree](https://formspree.io))
-  that forwards to your inbox, and paste its URL into `__FORM_ENDPOINT` at the top of
-  `forms.js`. Then submissions are captured server-side with no mail client needed.
+Delivery is configured at the top of `forms.js`:
 
-Change the destination address in `forms.js` (`__FORM_TO`).
+- **Recommended — Formspree:** create a free form endpoint (e.g.
+  [Formspree](https://formspree.io)) that forwards to whatever inbox you choose, and
+  paste its URL into `__FORM_ENDPOINT`. The destination email lives **inside Formspree**,
+  so **no email address is ever exposed in the public source**. Submissions are captured
+  server-side with no mail client needed.
+- **Fallback (off by default):** set `__FORM_TO` to an address to compose a `mailto:` in
+  the visitor's client instead. Left blank so no personal email ships in the page —
+  until an endpoint is set, forms show "submissions aren't live yet."
+
+No contact email appears anywhere on the public pages; the footer/CTA links point to the
+on-page forms.
 
 ## Local preview
 
