@@ -39,6 +39,20 @@
       <p style="font-size:.72rem;color:var(--muted);margin:16px 0 0">The plan is encrypted; it decrypts in your browser only with the correct passphrase.
         Figures are illustrative placeholders pending a full financial model.</p>
     </div>
+
+    <div class="card" style="padding:22px 24px;margin-top:14px">
+      <div class="kicker">Investor? Let's connect</div>
+      <h2 class="serif" style="font-size:1.15rem;margin:.2em 0 .2em">Share your interest</h2>
+      <p style="font-size:.85rem;color:var(--ink-2);margin:0 0 14px">Don't have a passphrase? Tell us a little about you and we'll follow up — and send access if it's a fit.</p>
+      <form data-contact data-subject="Metropolis — investor interest" class="formgrid">
+        <input class="field" type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+        <input class="field" type="email" name="email" placeholder="you@email.com" aria-label="Email" required>
+        <input class="field" type="text" name="firm" placeholder="Firm / fund (optional)" aria-label="Firm or fund">
+        <textarea class="field" name="about" placeholder="A little about you and your interest" aria-label="About you"></textarea>
+        <button class="btn" type="submit" style="width:100%">Share interest</button>
+        <div data-status></div>
+      </form>
+    </div>
   </div></div>
 </div>
 
@@ -86,5 +100,6 @@ document.getElementById('gateform').addEventListener('submit', async (e) => {
   }
 });
 </script>
+<script src="forms.js"></script>
 </body>
 </html>

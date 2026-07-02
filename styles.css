@@ -36,3 +36,10 @@ footer{color:var(--muted);font-size:.74rem;border-top:1px solid var(--hair);marg
 .grid{display:grid}
 .lead{font-size:1.06rem;color:var(--ink-2)}
 .rule{height:1px;background:var(--hair)}
+/* forms */
+.formgrid{display:grid;gap:10px}
+.flabel{font-size:.76rem;font-weight:700;color:var(--ink-2);display:block;margin-bottom:4px;letter-spacing:.01em}
+.field{width:100%;font-size:.95rem;padding:.62em .85em;border:1px solid var(--hair-2);border-radius:10px;background:var(--card);color:var(--ink);font-family:inherit}
+.field:focus{outline:2px solid var(--brand-2);border-color:var(--brand-2)}
+textarea.field{min-height:92px;resize:vertical}
+[data-status]{font-size:.82rem;min-height:1.2em;color:var(--ink-2);margin-top:4px}

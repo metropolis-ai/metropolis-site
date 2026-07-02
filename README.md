@@ -55,6 +55,20 @@ the Decide/Lavish section — see the one-liner in the project notes.
 
 > Share the passphrase with investors out-of-band. Rotate it by re-running `build.js`.
 
+## Contact forms
+
+`index.html` (join the list), `experts.html`, and `investors.html` each have a contact
+form wired up by `forms.js`.
+
+- **Default (no setup):** submissions compose an email to `__FORM_TO`
+  (`wrfarley13@gmail.com`) in the visitor's mail client — works immediately, but the
+  visitor has to hit send.
+- **Recommended:** create a free form endpoint (e.g. [Formspree](https://formspree.io))
+  that forwards to your inbox, and paste its URL into `__FORM_ENDPOINT` at the top of
+  `forms.js`. Then submissions are captured server-side with no mail client needed.
+
+Change the destination address in `forms.js` (`__FORM_TO`).
+
 ## Local preview
 
 Web Crypto needs a secure context, so use `localhost` (not `file://`):
