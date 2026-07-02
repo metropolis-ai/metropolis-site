@@ -33,9 +33,9 @@ const TREE = [
       ]},
       { title: 'Config versioning / control plane', src: 'resource-control-plane.src.html' },
     ]},
-    { title: 'Planning spaces', children: [
-      { title: 'artemis — first space (job hunt)' },
-      { title: 'acme — testing / reference app' },
+    { title: 'Planning spaces', src: 'resource-planning-spaces.src.html', children: [
+      { title: 'artemis — first space (job hunt)', src: 'resource-artemis.src.html' },
+      { title: 'acme — testing / reference app', src: 'resource-acme.src.html' },
     ]},
   ]},
 ];
