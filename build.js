@@ -25,9 +25,9 @@ const TREE = [
     { title: 'ailexandria — knowledge & memory vault' },
     { title: 'polis — the planning engine', src: 'resource-polis.src.html', children: [
       { title: 'Platform architecture', children: [
-        { title: 'Platform API' },
-        { title: 'Worker' },
-        { title: 'Temporal — durable orchestration' },
+        { title: 'Platform API', src: 'resource-platform-api.src.html' },
+        { title: 'Worker', src: 'resource-worker.src.html' },
+        { title: 'Temporal — durable orchestration', src: 'resource-temporal.src.html' },
         { title: 'Generic resource abstraction', src: 'resource-resource-abstraction.src.html' },
         { title: 'UI kits / design system' },
       ]},
