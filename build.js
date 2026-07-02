@@ -23,12 +23,12 @@ const TREE = [
   { title: 'Business plan', src: 'plan.src.html' },
   { title: 'How it works', children: [
     { title: 'ailexandria — knowledge & memory vault' },
-    { title: 'polis — the planning engine', children: [
+    { title: 'polis — the planning engine', src: 'resource-polis.src.html', children: [
       { title: 'Platform architecture', children: [
         { title: 'Platform API' },
         { title: 'Worker' },
         { title: 'Temporal — durable orchestration' },
-        { title: 'Generic resource abstraction' },
+        { title: 'Generic resource abstraction', src: 'resource-resource-abstraction.src.html' },
         { title: 'UI kits / design system' },
       ]},
       { title: 'Config versioning / control plane', src: 'resource-control-plane.src.html' },
