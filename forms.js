@@ -10,7 +10,7 @@
  * To capture submissions without a mail client: create a free form endpoint and
  * paste its URL into FORM_ENDPOINT below.
  */
-window.__FORM_ENDPOINT = ""; // <-- Paste your Formspree/Getform URL here to receive submissions.
+window.__FORM_ENDPOINT = "https://formspree.io/f/xaqglbvg"; // Formspree — destination email set privately in the Formspree dashboard.
 window.__FORM_TO = "";       // Optional mailto fallback. Leave blank to keep NO email address in the public source.
 
 function mailtoFallback(subject, data){
