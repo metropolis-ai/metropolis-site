@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Business plan — Metropolis (investors)</title>
+<title>Investor materials — Metropolis</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
 <link rel="stylesheet" href="styles.css">
@@ -13,12 +13,32 @@
   .field{width:100%;font-size:1rem;padding:.7em .9em;border:1px solid var(--hair-2);border-radius:11px;background:var(--card);color:var(--ink)}
   .field:focus{outline:2px solid var(--brand-2);border-color:var(--brand-2)}
   #err{color:#b23b3a;font-size:.82rem;min-height:1.2em;margin-top:8px}
-  #planframe{width:100%;height:calc(100vh - 56px);border:0;display:block}
-  .planbar{display:flex;align-items:center;gap:12px;height:56px}
+  /* hub */
+  #hubview{height:100vh;display:flex;flex-direction:column}
+  .hubtop{display:flex;align-items:center;gap:12px;height:52px;padding:0 16px;border-bottom:1px solid var(--hair);background:var(--surface);flex:0 0 auto}
+  .hublayout{flex:1;display:flex;min-height:0}
+  .sidebar{width:280px;flex:0 0 auto;overflow-y:auto;border-right:1px solid var(--hair);background:var(--surface);padding:12px 10px}
+  .content{flex:1;min-width:0;position:relative;background:var(--plane)}
+  #docframe{width:100%;height:100%;border:0;display:block;background:var(--plane)}
+  .placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+  .navrow{display:flex;align-items:center;gap:8px;border-radius:8px;padding:.4em .55em;cursor:pointer;font-size:.86rem;color:var(--ink-2)}
+  .navrow:hover{background:var(--surface-2)}
+  .navrow[aria-selected="true"]{background:var(--brand);color:#fff}
+  .navrow[aria-selected="true"] .tag{background:rgba(255,255,255,.2);color:#fff}
+  .navrow.group{font-weight:700;color:var(--ink);cursor:default;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;padding-top:.9em}
+  .navrow.group:hover{background:transparent}
+  .tag{font-size:.6rem;font-weight:700;background:#efe9dd;color:#8a8172;border-radius:999px;padding:.15em .5em;margin-left:auto;white-space:nowrap;flex:0 0 auto}
+  .navrow>span:first-child{min-width:0}
+  .navchildren{margin-left:12px;border-left:1px solid var(--hair);padding-left:6px}
+  @media(max-width:720px){
+    .hublayout{flex-direction:column}
+    .sidebar{width:auto;max-height:38vh;border-right:0;border-bottom:1px solid var(--hair)}
+  }
 </style>
 </head>
 <body>
 
+<!-- ===== GATE ===== -->
 <div id="gateview">
   <div class="nav"><div class="wrap">
     <a class="serif brand" href="index.html" style="text-decoration:none;color:inherit">metropolis</a>
@@ -28,15 +48,15 @@
   <div class="gatewrap"><div class="gate">
     <div class="card" style="padding:26px 24px">
       <div class="kicker">For investors</div>
-      <h1 class="serif" style="font-size:1.6rem;margin:.2em 0 .2em">The Metropolis plan</h1>
-      <p style="font-size:.9rem;color:var(--ink-2);margin:0 0 18px">Enter the access passphrase to open the full business plan. Don't have one?
+      <h1 class="serif" style="font-size:1.6rem;margin:.2em 0 .2em">Investor materials</h1>
+      <p style="font-size:.9rem;color:var(--ink-2);margin:0 0 18px">Enter the access passphrase to open the business plan and the platform references. Don't have one?
         Share your interest in the form below and we'll be in touch.</p>
       <form id="gateform" autocomplete="off">
         <input id="pass" class="field" type="password" placeholder="Access passphrase" aria-label="Access passphrase" autofocus>
         <div id="err" role="alert"></div>
-        <button class="btn" type="submit" style="width:100%;margin-top:12px" id="gobtn">Open the plan</button>
+        <button class="btn" type="submit" style="width:100%;margin-top:12px" id="gobtn">Unlock</button>
       </form>
-      <p style="font-size:.72rem;color:var(--muted);margin:16px 0 0">The plan is encrypted; it decrypts in your browser only with the correct passphrase.
+      <p style="font-size:.72rem;color:var(--muted);margin:16px 0 0">Everything is encrypted; it decrypts in your browser only with the correct passphrase.
         Figures are illustrative placeholders pending a full financial model.</p>
     </div>
 
@@ -56,47 +76,103 @@
   </div></div>
 </div>
 
-<div id="planview" hidden>
-  <div class="nav"><div class="wrap planbar">
+<!-- ===== HUB (unlocked) ===== -->
+<div id="hubview" hidden>
+  <div class="hubtop">
     <a class="serif brand" href="index.html" style="text-decoration:none;color:inherit">metropolis</a>
-    <span style="font-size:.8rem;color:var(--muted)">· business plan</span>
-    <div style="margin-left:auto;display:flex;gap:12px">
-      <button class="btn btn-ghost" style="padding:.4em .8em;font-size:.8rem" onclick="location.reload()">Lock</button>
+    <span style="font-size:.8rem;color:var(--muted)">· investor materials</span>
+    <button class="btn btn-ghost" style="margin-left:auto;padding:.4em .8em;font-size:.8rem" onclick="location.reload()">Lock</button>
+  </div>
+  <div class="hublayout">
+    <nav class="sidebar" id="sidebar" aria-label="Documents"></nav>
+    <div class="content">
+      <iframe id="docframe" title="Metropolis document" hidden></iframe>
+      <div class="placeholder" id="placeholder">
+        <div>
+          <div class="serif" style="font-size:1.3rem;color:var(--ink)" id="ph-title">Select a document</div>
+          <p style="font-size:.9rem;color:var(--muted);max-width:360px;margin:.5em auto 0" id="ph-msg">Pick an item on the left to open it.</p>
+        </div>
+      </div>
     </div>
-  </div></div>
-  <iframe id="planframe" title="Metropolis business plan"></iframe>
+  </div>
 </div>
 
-<script src="plan.enc.js"></script>
+<script src="docs.enc.js"></script>
 <script>
 const b64ToBytes = b => Uint8Array.from(atob(b), c => c.charCodeAt(0));
+let PASS = null;
+const cache = {};
 
-async function decryptPlan(passphrase){
-  const enc = window.__PLAN_ENC;
-  if(!enc) throw new Error('Plan payload not loaded.');
-  const salt = b64ToBytes(enc.salt), iv = b64ToBytes(enc.iv), ct = b64ToBytes(enc.ct);
-  const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(passphrase), 'PBKDF2', false, ['deriveKey']);
-  const key = await crypto.subtle.deriveKey(
-    { name:'PBKDF2', salt, iterations: enc.iter||150000, hash:'SHA-256' },
-    baseKey, { name:'AES-GCM', length:256 }, false, ['decrypt']
-  );
-  const plain = await crypto.subtle.decrypt({ name:'AES-GCM', iv }, key, ct);
-  return new TextDecoder().decode(plain);
+async function decrypt(id){
+  if(cache[id] !== undefined) return cache[id];
+  const enc = (window.__ENC||{})[id];
+  if(!enc) throw new Error('missing '+id);
+  const salt=b64ToBytes(enc.salt), iv=b64ToBytes(enc.iv), ct=b64ToBytes(enc.ct);
+  const baseKey = await crypto.subtle.importKey('raw', new TextEncoder().encode(PASS), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:enc.iter||150000,hash:'SHA-256'}, baseKey, {name:'AES-GCM',length:256}, false, ['decrypt']);
+  const plain = await crypto.subtle.decrypt({name:'AES-GCM',iv}, key, ct);
+  const text = new TextDecoder().decode(plain);
+  cache[id] = text;
+  return text;
+}
+
+function showPlaceholder(title){
+  document.getElementById('docframe').hidden = true;
+  const ph = document.getElementById('placeholder'); ph.style.display = 'grid';
+  document.getElementById('ph-title').textContent = title;
+  document.getElementById('ph-msg').textContent = 'Draft in progress — this reference is coming soon.';
+}
+
+async function openNode(node, rowEl){
+  document.querySelectorAll('.navrow[aria-selected="true"]').forEach(r=>r.setAttribute('aria-selected','false'));
+  if(rowEl) rowEl.setAttribute('aria-selected','true');
+  if(!node.doc){ showPlaceholder(node.title); return; }
+  try{
+    const html = await decrypt(node.id);
+    document.getElementById('placeholder').style.display = 'none';
+    const f = document.getElementById('docframe'); f.hidden = false; f.srcdoc = html;
+  }catch(_){ showPlaceholder(node.title); }
+}
+
+function renderNav(nodes, container, depth){
+  nodes.forEach(node => {
+    const row = document.createElement('div');
+    const isGroup = !!node.children && !node.doc;
+    row.className = 'navrow' + (isGroup ? ' group' : '');
+    row.setAttribute('role','treeitem');
+    const label = document.createElement('span'); label.textContent = node.title; row.appendChild(label);
+    if(!isGroup && !node.doc){ const t=document.createElement('span'); t.className='tag'; t.textContent='draft'; row.appendChild(t); }
+    if(!isGroup){ row.onclick = () => openNode(node, row); }
+    container.appendChild(row);
+    if(node.children){
+      const kids = document.createElement('div'); kids.className='navchildren';
+      renderNav(node.children, kids, depth+1);
+      container.appendChild(kids);
+    }
+  });
+}
+
+function firstDocNode(nodes){
+  for(const n of nodes){ if(n.doc) return n; if(n.children){ const f=firstDocNode(n.children); if(f) return f; } }
+  return null;
 }
 
 document.getElementById('gateform').addEventListener('submit', async (e) => {
   e.preventDefault();
   const err = document.getElementById('err'), btn = document.getElementById('gobtn');
-  err.textContent = ''; btn.disabled = true; btn.textContent = 'Decrypting…';
+  err.textContent=''; btn.disabled=true; btn.textContent='Unlocking…';
   try{
-    const html = await decryptPlan(document.getElementById('pass').value);
+    PASS = document.getElementById('pass').value;
+    const nav = JSON.parse(await decrypt('nav'));   // validates the passphrase
     document.getElementById('gateview').hidden = true;
-    document.getElementById('planview').hidden = false;
-    document.getElementById('planframe').srcdoc = html;
-    document.title = 'Business plan — Metropolis';
+    document.getElementById('hubview').hidden = false;
+    document.title = 'Investor materials — Metropolis';
+    renderNav(nav, document.getElementById('sidebar'), 0);
+    const first = firstDocNode(nav);
+    if(first){ const row=[...document.querySelectorAll('.navrow')].find(r=>r.firstChild.textContent===first.title); openNode(first, row); }
   }catch(_){
-    err.textContent = 'Incorrect passphrase. Try again.';
-    btn.disabled = false; btn.textContent = 'Open the plan';
+    PASS=null; err.textContent='Incorrect passphrase. Try again.';
+    btn.disabled=false; btn.textContent='Unlock';
   }
 });
 </script>
