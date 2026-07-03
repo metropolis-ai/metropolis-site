@@ -38,6 +38,12 @@ const TREE = [
       { title: 'acme — testing / reference app', src: 'resource-acme.src.html' },
     ]},
   ]},
+  { title: 'Market research', children: [
+    { title: 'Positioning — the "million websites" answer', src: 'resource-metropolis-market-positioning.src.md' },
+    { title: 'Competition: ailexandria', src: 'resource-ailexandria-competitive-landscape.src.md' },
+    { title: 'Competition: polis', src: 'resource-polis-competitive-landscape.src.md' },
+    { title: 'Competition: artemis', src: 'resource-artemis-competitive-landscape.src.md' },
+  ]},
 ];
 
 // Load a local .env (git-ignored) so the passphrase is never typed or printed.
