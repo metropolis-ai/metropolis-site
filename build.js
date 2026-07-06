@@ -6,8 +6,12 @@
  *   (or)  node build.js "passphrase"
  *
  * Walks TREE, encrypts each node's `src` (plaintext *.src.html, NOT committed)
- * plus the nav tree itself, into a single committed `docs.enc.js`:
+ * plus the nav tree itself, into a single committed `public/docs.enc.js`:
  *     window.__ENC = { nav:{…}, n3:{…}, … }   // AES-256-GCM payloads, opaque keys
+ *
+ * Output lives in `public/` so Vite copies it verbatim into the built static
+ * site at `/docs.enc.js`; `investors.html` loads it and decrypts in-browser.
+ * The plaintext `*.src.*` inputs still live (git-ignored) at the repo root.
  *
  * The nav (titles + structure) is encrypted too, so the internal system names
  * never appear in the public source. investors.html decrypts `nav` on unlock,
@@ -83,5 +87,6 @@ function walk(nodes) {
 
 const nav = walk(TREE);
 ENC['nav'] = encrypt(Buffer.from(JSON.stringify(nav), 'utf8'));
-fs.writeFileSync('docs.enc.js', 'window.__ENC=' + JSON.stringify(ENC) + ';\n');
-console.log(`Wrote docs.enc.js (${Object.keys(ENC).length} encrypted blobs). Commit docs.enc.js; keep *.src.html local.`);
+fs.mkdirSync('public', { recursive: true });
+fs.writeFileSync('public/docs.enc.js', 'window.__ENC=' + JSON.stringify(ENC) + ';\n');
+console.log(`Wrote public/docs.enc.js (${Object.keys(ENC).length} encrypted blobs). Commit public/docs.enc.js; keep *.src.html local.`);

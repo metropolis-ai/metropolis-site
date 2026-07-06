@@ -5,3 +5,6 @@
 .env
 node_modules/
 .DS_Store
+# Build output — the static site is produced by `vite build` (deployed by CI).
+dist/
+
