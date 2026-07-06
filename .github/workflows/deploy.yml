@@ -1,0 +1,71 @@
+# Build the static site with Vite and publish it to GitHub Pages.
+#
+# This replaces the previous "deploy from branch root" (legacy) Pages build:
+# the site is now a React app composed from @polis/marketing-site-kit, so the
+# served artifact must be produced by `vite build`. The OUTPUT is still a fully
+# static site (HTML/CSS/JS + public assets incl. the encrypted docs.enc.js,
+# CNAME, and .nojekyll), served from the same custom domain (gometropolis.ai).
+#
+# ONE-TIME MANUAL STEP (a PR cannot do this): in the repo Settings →
+# Pages → "Build and deployment", set Source = "GitHub Actions". Until that flip,
+# Pages keeps serving the old branch-root build. See AGENTS.md > "Deploy".
+name: Deploy site to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a newer push cancel an in-progress deploy, but never interrupt a run midway
+# such that Pages is left half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.8.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # polis is a public https git dependency, so no SSH keys are needed. Its
+      # heavy server-only packages (prisma/temporal) are marked neverBuilt in
+      # package.json, so this install stays fast and runs no native builds.
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

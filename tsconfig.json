@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "useDefineForClassFields": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": {
+      "@polis/marketing-site-kit": ["node_modules/polis/libs/marketing-site-kit/src/index.ts"],
+      "@polis/ui-kit": ["node_modules/polis/libs/ui-kit/src/index.ts"],
+      "@polis/sdk": ["node_modules/polis/libs/sdk/src/index.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

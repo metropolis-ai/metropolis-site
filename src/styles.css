@@ -1,0 +1,9 @@
+/**
+ * Site stylesheet — pulls in the ui-kit base (Tailwind layers + token-variable
+ * defaults) from the polis git dependency. The site adds no bespoke CSS: the
+ * look comes entirely from metropolis's brand tokens applied at runtime by
+ * <ThemeProvider>. (Doc-viewer typography for the gated hub lives separately, in
+ * src/investors/doc-css.ts, because those docs render inside a sandboxed iframe
+ * that the page's stylesheet does not reach.)
+ */
+@import "../node_modules/polis/libs/ui-kit/styles/globals.css";

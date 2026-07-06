@@ -1,11 +1,18 @@
 # metropolis-site
 
 The company-level marketing site for **metropolis** — a house of AI planning-space
-verticals. Its job is narrow: pitch **investors** on the platform thesis (and host the
-business plan), and help **source expert operators** and attract employees. It is *not*
-any single city's product site.
+verticals. Its job is narrow: pitch **investors** on the platform thesis (and host
+the business plan), and help **source expert operators** and attract employees. It
+is *not* any single city's product site.
 
-Deployed as a static site on **GitHub Pages**.
+It is composed from **`@polis/marketing-site-kit`** (the reusable, brand-tokened
+polis marketing kit) and themed with metropolis's own brand tokens — a React +
+Vite app that builds to a **fully static** site, still deployed on **GitHub
+Pages** at **gometropolis.ai**.
+
+> Agents: read [`AGENTS.md`](./AGENTS.md) first — it covers the build, the polis
+> consumption path and its sharp edges, and the load-bearing investor-hub
+> encryption.
 
 ## Pages
 
@@ -13,72 +20,52 @@ Deployed as a static site on **GitHub Pages**.
 | --- | --- | --- |
 | `index.html` | public | Landing — thesis, the loop, the portfolio, CTAs |
 | `experts.html` | public | The operator role; how experts join and run a city |
-| `investors.html` | **gated** | Passphrase gate → decrypts and shows the full business plan |
+| `investors.html` | **gated** | Passphrase gate → decrypts and shows the business plan + platform references |
 
-## The gated plan
+Each is a Vite entry that mounts a React app from `src/<page>/`, composed from the
+kit's section components and wrapped in the kit's `<ThemeProvider>` with
+metropolis's brand tokens (`src/brand.ts`).
 
-GitHub Pages serves everything publicly, so the plan is **encrypted client-side**. The
-plan itself is a standalone copy of the metropolis pitch (with the Lavish-only review
-controls stripped).
+## The gated hub
 
-- `plan.src.html` — the plaintext plan. **Git-ignored; never committed.** Regenerated
-  from the metropolis pitch.
-- `plan.enc.js` — AES-256-GCM ciphertext + PBKDF2 salt/iv. This is what ships.
-- `investors.html` derives a key from the passphrase (PBKDF2-SHA256, 150k iters) and
-  decrypts in the browser (Web Crypto), rendering the plan in a sandboxed iframe.
+GitHub Pages serves everything publicly, so the investor docs are **encrypted
+client-side** (AES-256-GCM, passphrase-derived key) — the gating is unchanged by
+the migration, only re-wired behind the kit's pluggable gated-hub seam.
+
+- `*.src.md` / `*.src.html` — the plaintext docs. **Git-ignored; never committed.**
+- `build.js` — walks the doc `TREE`, encrypts each doc + the nav tree into
+  `public/docs.enc.js` (the only thing that ships). Reads the passphrase from a
+  git-ignored `.env` (`METROPOLIS_PASSPHRASE=…`).
+- `src/investors/gated-hub-source.ts` — derives the key (PBKDF2-SHA256, 150k) and
+  decrypts in the browser (Web Crypto), rendering each doc in a **sandboxed**
+  iframe. This is the kit's `GatedHubSource`, so the kit itself never learns how
+  gating works.
 
 Client-side gating is *soft* (it obscures, it isn't Fort Knox) — fine for an MVP.
+Share the passphrase with investors out-of-band; rotate it by editing `.env` and
+re-running `node build.js`.
 
-### The passphrase lives in `.env`
-
-The access passphrase is stored in a git-ignored `.env` file:
-
-```
-METROPOLIS_PASSPHRASE=…
-```
-
-`build.js` reads it automatically, so you never type or print it. To see it (e.g. to
-share with an investor): `cat .env`. To rotate it, edit `.env` (or delete it and
-re-run the generator) and rebuild.
-
-### Updating the plan or passphrase
+## Develop
 
 ```bash
-# 1. regenerate plan.src.html from the metropolis pitch (see below), then:
-node build.js            # reads the passphrase from .env
-# 2. commit the new plan.enc.js (plan.src.html and .env stay local / ignored)
-git add plan.enc.js && git commit -m "Update plan"
+pnpm install         # installs deps incl. polis (SHA-pinned git dep); see AGENTS.md for keyless-env note
+pnpm dev             # Vite dev server for all three pages
+pnpm build           # emits the static site into dist/
+node build.js        # re-encrypt the hub into public/docs.enc.js (after editing a *.src.* doc)
 ```
 
-Regenerate `plan.src.html` from the metropolis pitch (`.lavish/pitch.html`) by stripping
-the Decide/Lavish section — see the one-liner in the project notes.
+Web Crypto needs a secure context, so preview over `localhost` (Vite dev, or a
+static server on `dist/`) — not `file://`.
 
-> Share the passphrase with investors out-of-band. Rotate it by re-running `build.js`.
+## Deploy
+
+`.github/workflows/deploy.yml` builds the site and publishes `dist/` to GitHub
+Pages on every push to `main`. The custom domain (`public/CNAME`) is unchanged.
+
+> One-time: set repo **Settings → Pages → Source = "GitHub Actions"** so Pages
+> serves the built artifact instead of the old branch root. See AGENTS.md > Deploy.
 
 ## Contact forms
 
-`index.html` (join the list), `experts.html`, and `investors.html` each have a contact
-form wired up by `forms.js`.
-
-Delivery is configured at the top of `forms.js`:
-
-- **Recommended — Formspree:** create a free form endpoint (e.g.
-  [Formspree](https://formspree.io)) that forwards to whatever inbox you choose, and
-  paste its URL into `__FORM_ENDPOINT`. The destination email lives **inside Formspree**,
-  so **no email address is ever exposed in the public source**. Submissions are captured
-  server-side with no mail client needed.
-- **Fallback (off by default):** set `__FORM_TO` to an address to compose a `mailto:` in
-  the visitor's client instead. Left blank so no personal email ships in the page —
-  until an endpoint is set, forms show "submissions aren't live yet."
-
-No contact email appears anywhere on the public pages; the footer/CTA links point to the
-on-page forms.
-
-## Local preview
-
-Web Crypto needs a secure context, so use `localhost` (not `file://`):
-
-```bash
-python3 -m http.server 8791
-# open http://localhost:8791/
-```
+`src/components/contact-form.tsx` POSTs to a Formspree endpoint that forwards to a
+private inbox — so **no contact email is ever exposed in the public source**.
