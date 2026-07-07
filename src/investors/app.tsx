@@ -113,6 +113,11 @@ export function InvestorsApp(): React.JSX.Element {
                   description:
                     "Humans are heads of business units: they plan and govern while AI does the planning and, increasingly, the execution. Supervised autonomy.",
                 },
+                {
+                  title: "Cost-optimized by design",
+                  description:
+                    "Our context tooling — the knowledge vault plus structured planning — lets us run cheaper models and get the same, often better, results. Every portfolio company inherits a structurally lower AI cost base — a durable margin advantage that compounds as the portfolio grows.",
+                },
               ]}
             />
           </MarketingSection>
