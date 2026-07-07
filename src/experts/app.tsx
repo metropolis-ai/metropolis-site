@@ -36,24 +36,61 @@ export function ExpertsApp(): React.JSX.Element {
       >
         <MarketingHero
           align="left"
-          eyebrow="For experts & operators"
-          title="Run a city. Own your space."
-          subtitle="Metropolis is a platform that turns deep domain expertise into a product. We handle the engine — workflows, memory, research, execution, design. You bring the expertise, shape the product, and operate the city as its own business with real ownership."
+          eyebrow="For domain experts"
+          title="Operate a planning space you already know cold."
+          subtitle="You bring deep expertise in your domain. Metropolis gives you the platform, the tools, and a team behind you — you stay the human judgment governing the space as it runs."
         />
+
+        <MarketingSection
+          align="left"
+          eyebrow="Two ways in"
+          title="Steward a space that exists — or lead one that doesn't"
+        >
+          <FeatureGrid
+            minColumnWidth={260}
+            items={[
+              {
+                title: "Join the expert team",
+                description: (
+                  <Bullets
+                    items={[
+                      "Operate an existing planning space as its governing steward",
+                      "You bring domain judgment; the platform + team bring the engine",
+                      "Take customer expert calls, feed the platform, curate the vault",
+                    ]}
+                  />
+                ),
+              },
+              {
+                title: "Lead a new domain initiative",
+                tone: "brand",
+                description: (
+                  <Bullets
+                    items={[
+                      "Partner with us to launch a space that doesn't exist yet",
+                      "A more founder-like role: a direct line to the platform team, shaping the initial domain product from scratch",
+                      "Define the domain, the playbooks, and what the space becomes",
+                    ]}
+                  />
+                ),
+              },
+            ]}
+          />
+        </MarketingSection>
 
         <MarketingSection align="left">
           <FeatureGrid
             minColumnWidth={240}
             items={[
               {
-                title: "What you own",
+                title: "What you'd do",
                 description: (
                   <Bullets
                     items={[
-                      "The domain knowledge encoded into the vault",
-                      "The execution playbooks (what we book / do, and how)",
-                      "The city's roadmap and quality bar",
-                      "The city's P&L and growth",
+                      "Operate your planning space — human governance on top of the automation",
+                      "Take expert calls with customers when their decisions need a specialist",
+                      "Feed what you learn back into the platform and your space's domain-specific extensions",
+                      "Help curate the knowledge vault that makes the space smarter over time",
                     ]}
                   />
                 ),
@@ -63,11 +100,11 @@ export function ExpertsApp(): React.JSX.Element {
                 description: (
                   <Bullets
                     items={[
-                      "Durable, approval-gated execution",
-                      "Criteria discovery, first-party crawling, matching",
-                      "Continuous research into the knowledge vault",
-                      "A shared design system — beautiful by default",
-                      "A central team for design, growth, and platform",
+                      "The planning engine — workflows, memory, research, execution",
+                      "Domain-specific extensions built to your spec",
+                      "A platform team behind you (design, growth, engineering)",
+                      "A shared knowledge vault as your space's compounding memory",
+                      "Beautiful-by-default product surfaces",
                     ]}
                   />
                 ),
@@ -79,8 +116,9 @@ export function ExpertsApp(): React.JSX.Element {
                   <Bullets
                     items={[
                       "The person others in your field call for advice",
-                      "Travel advisors, wedding & event planners, GCs / designers, recruiters, care managers, admissions counselors, and beyond",
-                      "Excited to turn how you work into how thousands get helped",
+                      "Deep expertise in a high-stakes planning domain",
+                      "Wants to shape a product and steward it — comfortable being the expert customers talk to",
+                      "Or a builder who wants to lead a brand-new domain initiative with us",
                     ]}
                   />
                 ),
@@ -92,7 +130,7 @@ export function ExpertsApp(): React.JSX.Element {
         <MarketingSection
           align="left"
           eyebrow="How it works"
-          title="From interview to operator"
+          title="Talk → Build your space together → Operate & shape the platform"
         >
           <FeatureGrid
             minColumnWidth={200}
@@ -101,19 +139,19 @@ export function ExpertsApp(): React.JSX.Element {
                 eyebrow: "1 · Talk",
                 title: "Talk",
                 description:
-                  "We interview many experts per space to sharpen the product and find the right operator.",
+                  "We talk through your domain to sharpen the product and find the right steward for the space.",
               },
               {
-                eyebrow: "2 · Build together",
-                title: "Build together",
+                eyebrow: "2 · Build your space together",
+                title: "Build your space together",
                 description:
-                  "You encode your expertise into the vault and design the execution playbooks.",
+                  "You encode your expertise into the vault and shape the domain-specific extensions and playbooks.",
               },
               {
-                eyebrow: "3 · Launch & grow",
-                title: "Launch & grow",
+                eyebrow: "3 · Operate & shape the platform",
+                title: "Operate & shape the platform",
                 description:
-                  "We take it to market together — you operate the city and grow it.",
+                  "You govern the space as it runs — taking expert calls and feeding what you learn back into the platform.",
               },
             ]}
           />
@@ -122,12 +160,12 @@ export function ExpertsApp(): React.JSX.Element {
         <CallToAction
           tone="brand"
           eyebrow="Apply"
-          title="Think you could run a city?"
-          description="Tell us your space and why you're the best in it. We read every note."
+          title="Want to steward a planning space?"
+          description="Tell us your domain and whether you'd join the expert team or lead a new initiative. We read every note."
           actions={
             <div id="apply">
               <ContactForm
-                subject="Operating a Metropolis city"
+                subject="Stewarding a Metropolis planning space"
                 submitLabel="Share your interest →"
                 tone="onBrand"
                 twoColumn
@@ -136,13 +174,13 @@ export function ExpertsApp(): React.JSX.Element {
                   { name: "email", label: "you@email.com", type: "email", required: true },
                   {
                     name: "space",
-                    label: "Your space / domain (e.g. travel, weddings, recruiting)",
+                    label: "Your domain — and join the expert team or lead a new initiative?",
                     full: true,
                   },
                   {
                     name: "about",
                     label:
-                      "Why you're the best in your space — and what you'd want to build",
+                      "Your expertise in the domain — and what you'd want to build",
                     textarea: true,
                     full: true,
                   },
