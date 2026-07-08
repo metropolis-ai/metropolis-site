@@ -25,6 +25,8 @@ const crypto = require('crypto');
 // without a `src` render as "draft in progress" placeholders until one is added.
 const TREE = [
   { title: 'Business plan', src: 'plan.src.html' },
+  /* Resource tree hidden 2026-07-07 until these docs are re-reviewed and refreshed.
+     Restore by deleting this comment wrapper (the /* above and the */ below).
   { title: 'How it works', children: [
     { title: 'ailexandria — knowledge & memory vault', src: 'resource-ailexandria.src.html' },
     { title: 'polis — the planning engine', src: 'resource-polis.src.html', children: [
@@ -48,6 +50,7 @@ const TREE = [
     { title: 'Competition: polis', src: 'resource-polis-competitive-landscape.src.md' },
     { title: 'Competition: artemis', src: 'resource-artemis-competitive-landscape.src.md' },
   ]},
+  */
 ];
 
 // Load a local .env (git-ignored) so the passphrase is never typed or printed.
