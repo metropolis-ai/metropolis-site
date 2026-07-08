@@ -26,7 +26,7 @@ const crypto = require('crypto');
 const TREE = [
   { title: 'Business plan', src: 'plan.src.html' },
   /* Resource tree hidden 2026-07-07 until these docs are re-reviewed and refreshed.
-     Restore by deleting this comment wrapper (the /* above and the */ below).
+     Restore by deleting the comment wrapper: the opening marker above, closing marker below.
   { title: 'How it works', children: [
     { title: 'ailexandria — knowledge & memory vault', src: 'resource-ailexandria.src.html' },
     { title: 'polis — the planning engine', src: 'resource-polis.src.html', children: [
