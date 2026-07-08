@@ -33,7 +33,7 @@ client-side** (AES-256-GCM, passphrase-derived key) — the gating is unchanged 
 the migration, only re-wired behind the kit's pluggable gated-hub seam.
 
 - `*.src.md` / `*.src.html` — the plaintext docs. **Git-ignored; never committed.**
-- `build.js` — walks the doc `TREE`, encrypts each doc + the nav tree into
+- `build.cjs` — walks the doc `TREE`, encrypts each doc + the nav tree into
   `public/docs.enc.js` (the only thing that ships). Reads the passphrase from a
   git-ignored `.env` (`METROPOLIS_PASSPHRASE=…`).
 - `src/investors/gated-hub-source.ts` — derives the key (PBKDF2-SHA256, 150k) and
@@ -43,7 +43,7 @@ the migration, only re-wired behind the kit's pluggable gated-hub seam.
 
 Client-side gating is *soft* (it obscures, it isn't Fort Knox) — fine for an MVP.
 Share the passphrase with investors out-of-band; rotate it by editing `.env` and
-re-running `node build.js`.
+re-running `node build.cjs`.
 
 ## Develop
 
@@ -51,7 +51,7 @@ re-running `node build.js`.
 pnpm install         # installs deps incl. polis (SHA-pinned git dep); see AGENTS.md for keyless-env note
 pnpm dev             # Vite dev server for all three pages
 pnpm build           # emits the static site into dist/
-node build.js        # re-encrypt the hub into public/docs.enc.js (after editing a *.src.* doc)
+node build.cjs        # re-encrypt the hub into public/docs.enc.js (after editing a *.src.* doc)
 ```
 
 Web Crypto needs a secure context, so preview over `localhost` (Vite dev, or a

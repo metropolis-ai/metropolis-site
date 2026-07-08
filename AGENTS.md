@@ -75,7 +75,7 @@ the code.
 
 ## The gated investor hub (load-bearing — preserved through the migration)
 
-- The passphrase gate is **unchanged client-side AES-256-GCM**. `build.js` walks a
+- The passphrase gate is **unchanged client-side AES-256-GCM**. `build.cjs` walks a
   doc `TREE`, encrypts each node's git-ignored `*.src.*` plaintext **plus the nav
   tree** (PBKDF2-SHA256 150k, AES-GCM, tag appended) into
   **`public/docs.enc.js`** (`window.__ENC = {…}`). Without the passphrase and the
@@ -90,14 +90,14 @@ the code.
 - Doc typography lives in **`src/investors/doc-css.ts`** (`DOC_CSS`), injected into
   the iframe via `srcDoc`. The site's `styles.css` does **not** reach inside the
   sandboxed iframe — any doc typography/overflow fix goes in `DOC_CSS`.
-- `sync-doc.js` (the `/sync-to-site` skill) is unchanged: it writes
-  `resource-<slug>.src.md` at the repo root; then `node build.js` re-encrypts into
+- `sync-doc.cjs` (the `/sync-to-site` skill) is unchanged: it writes
+  `resource-<slug>.src.md` at the repo root; then `node build.cjs` re-encrypts into
   `public/docs.enc.js`.
 
 ## Working on the hub without the passphrase
 
 - To exercise the **unlocked** hub locally, build a throwaway `docs.enc.js` with a
-  **known** passphrase using build.js's exact crypto (PBKDF2 150k + AES-256-GCM,
+  **known** passphrase using build.cjs's exact crypto (PBKDF2 150k + AES-256-GCM,
   auth tag appended; nav is an array of `{id,title,doc,fmt,children}`), copy the
   built `dist/` somewhere, swap in that fixture bundle, and serve it (localhost is
   a secure context, so Web Crypto works). **Never commit a fixture bundle** — the
@@ -129,8 +129,15 @@ the code.
   keyless envs.
 - `pnpm dev` — Vite dev server (all three pages).
 - `pnpm build` — static `dist/` (what CI deploys).
-- `node build.js` (or `pnpm encrypt`) — re-encrypt the hub into
+- `node build.cjs` (or `pnpm encrypt`) — re-encrypt the hub into
   `public/docs.enc.js` (reads the passphrase from `.env`).
+- **The Node CLI helpers use the `.cjs` extension on purpose.** `package.json`
+  has `"type": "module"`, but `build.cjs` and `sync-doc.cjs` are written in
+  CommonJS (`require(...)`). The `.cjs` extension forces Node to run them as
+  CommonJS regardless of `type`. Don't rename them back to `.js` (that
+  re-breaks them with `ReferenceError: require is not defined in ES module
+  scope`); if you ever convert them to ESM `import`, only then may they be
+  `.js`/`.mjs`.
 
 ## Layout / kit conventions
 

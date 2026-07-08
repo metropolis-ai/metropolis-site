@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /*
- * build.js — encrypt the gated investor hub (nav tree + documents).
+ * build.cjs — encrypt the gated investor hub (nav tree + documents).
  *
- * Usage:  node build.js            (reads passphrase from .env)
- *   (or)  node build.js "passphrase"
+ * Usage:  node build.cjs            (reads passphrase from .env)
+ *   (or)  node build.cjs "passphrase"
  *
  * Walks TREE, encrypts each node's `src` (plaintext *.src.html, NOT committed)
  * plus the nav tree itself, into a single committed `public/docs.enc.js`:
@@ -62,7 +62,7 @@ if (fs.existsSync('.env')) {
 }
 const ITER = 150000;
 const pass = process.argv[2] || process.env.METROPOLIS_PASSPHRASE;
-if (!pass) { console.error('Provide a passphrase: node build.js "<passphrase>"  (or set it in .env)'); process.exit(1); }
+if (!pass) { console.error('Provide a passphrase: node build.cjs "<passphrase>"  (or set it in .env)'); process.exit(1); }
 
 function encrypt(buf) {
   const salt = crypto.randomBytes(16), iv = crypto.randomBytes(12);

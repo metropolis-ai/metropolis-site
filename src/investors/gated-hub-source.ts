@@ -10,7 +10,7 @@ import { mdDoc } from "./doc-css";
  * The metropolis investor hub's decrypt/auth seam — the client-side AES-GCM
  * gating from the hand-built investors.html, ported UNCHANGED behind the kit's
  * pluggable `GatedHubSource`. Nothing about the encryption weakens: the same
- * `docs.enc.js` bundle (produced by build.js, decrypted only in the browser with
+ * `docs.enc.js` bundle (produced by build.cjs, decrypted only in the browser with
  * the correct passphrase) is loaded here, and this is the ONLY place the
  * passphrase or plaintext ever exists.
  *
@@ -32,7 +32,7 @@ interface EncPayload {
   ct: string;
 }
 
-/** The nav node shape build.js encrypts — GatedHubNode plus a doc format tag. */
+/** The nav node shape build.cjs encrypts — GatedHubNode plus a doc format tag. */
 interface NavNode extends GatedHubNode {
   fmt?: "md" | "html";
   children?: NavNode[];
