@@ -11,7 +11,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "encrypt": "node build.js"
+    "encrypt": "node build.cjs"
   },
   "dependencies": {
     "polis": "git+https://github.com/wfarley16/polis.git#bff5a841b73450f73a821564f78d8dc8631e6a75",
