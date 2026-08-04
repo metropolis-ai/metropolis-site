@@ -2,7 +2,7 @@
   "name": "metropolis-site",
   "version": "0.0.0",
   "private": true,
-  "description": "metropolis marketing site — composed from @polis/marketing-site-kit and metropolis's brand tokens.",
+  "description": "metropolis marketing site — composed from @metropolis-ai/marketing-site-kit and metropolis's brand tokens.",
   "license": "UNLICENSED",
   "type": "module",
   "packageManager": "pnpm@8.8.0",
@@ -16,7 +16,7 @@
     "validate:encryption:real": "node scripts/validate-encryption.cjs --real"
   },
   "dependencies": {
-    "polis": "git+https://github.com/metropolis-ai/polis.git#bff5a841b73450f73a821564f78d8dc8631e6a75",
+    "polis": "git+https://github.com/metropolis-ai/polis.git#cc1af10130323ea3cb9a0d9b03b62e0877982661",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-progress": "^1.1.1",
     "@radix-ui/react-separator": "^1.1.1",

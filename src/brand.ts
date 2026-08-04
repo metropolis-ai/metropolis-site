@@ -1,4 +1,4 @@
-import type { BrandTokens } from "@polis/ui-kit";
+import type { BrandTokens } from "@metropolis-ai/ui-kit";
 
 /**
  * Metropolis's brand tokens — the SAME identity as the metropolis planning space

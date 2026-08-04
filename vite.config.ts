@@ -9,7 +9,7 @@ import { dirname, resolve } from "node:path";
 // public/ assets, including the untouched encrypted docs.enc.js, CNAME, and
 // .nojekyll).
 //
-// polis is consumed as SOURCE (a SHA-pinned git dependency): the @polis/*
+// polis is consumed as SOURCE (a SHA-pinned git dependency): the @metropolis-ai/*
 // aliases resolve to the checked-out lib source under node_modules/polis/libs,
 // mirroring how the acme app and the artemis planning space consume it. See
 // AGENTS.md > "Consuming polis" for why this is the current path and its edges.
@@ -22,9 +22,9 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@polis/marketing-site-kit": lib("marketing-site-kit/src/index.ts"),
-      "@polis/ui-kit": lib("ui-kit/src/index.ts"),
-      "@polis/sdk": lib("sdk/src/index.ts"),
+      "@metropolis-ai/marketing-site-kit": lib("marketing-site-kit/src/index.ts"),
+      "@metropolis-ai/ui-kit": lib("ui-kit/src/index.ts"),
+      "@metropolis-ai/sdk": lib("sdk/src/index.ts"),
     },
   },
   build: {

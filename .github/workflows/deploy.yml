@@ -1,7 +1,7 @@
 # Build the static site with Vite and publish it to GitHub Pages.
 #
 # This replaces the previous "deploy from branch root" (legacy) Pages build:
-# the site is now a React app composed from @polis/marketing-site-kit, so the
+# the site is now a React app composed from @metropolis-ai/marketing-site-kit, so the
 # served artifact must be produced by `vite build`. The OUTPUT is still a fully
 # static site (HTML/CSS/JS + public assets incl. the encrypted docs.enc.js,
 # CNAME, and .nojekyll), served from the same custom domain (gometropolis.ai).

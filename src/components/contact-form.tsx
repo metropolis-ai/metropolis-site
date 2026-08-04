@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, cn } from "@polis/ui-kit";
+import { Button, cn } from "@metropolis-ai/ui-kit";
 
 /**
  * Contact form for a backend-less static site — the React port of the old

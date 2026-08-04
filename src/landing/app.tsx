@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, ThemeProvider } from "@polis/ui-kit";
+import { Button, ThemeProvider } from "@metropolis-ai/ui-kit";
 import {
   CallToAction,
   FeatureGrid,
@@ -7,7 +7,7 @@ import {
   MarketingHero,
   MarketingSection,
   MarketingShell,
-} from "@polis/marketing-site-kit";
+} from "@metropolis-ai/marketing-site-kit";
 import { metropolisBrand } from "../brand";
 import { ContactForm } from "../components/contact-form";
 import { MetropolisMark, SiteFooter } from "../components/chrome";

@@ -6,7 +6,7 @@ on the studio thesis (behind a private materials gate), and connect with
 **domain experts** whose judgment a shared system can't invent. It is *not* a
 product site for any individual portfolio company.
 
-It is composed from **`@polis/marketing-site-kit`** (the reusable, brand-tokened
+It is composed from **`@metropolis-ai/marketing-site-kit`** (the reusable, brand-tokened
 polis marketing kit) and themed with metropolis's own brand tokens — a React +
 Vite app that builds to a **fully static** site, still deployed on **GitHub
 Pages** at **gometropolis.ai**.
