@@ -16,28 +16,28 @@ import { ContactForm } from "../components/contact-form";
 import { MetropolisMark } from "../components/chrome";
 import { createMetropolisGatedHubSource } from "./gated-hub-source";
 
-/** The "request access" aside beside the gate, for investors without a passphrase. */
+/** The request-access aside beside the gate for invited private readers. */
 function RequestAccessAside(): React.JSX.Element {
   return (
     <Card>
       <CardHeader>
         <div className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-          Investor? Let's connect
+          Private access
         </div>
         <CardTitle>Share your interest</CardTitle>
         <CardDescription>
-          Don't have a passphrase? Tell us a little about you and we'll follow up
-          — and send access if it's a fit.
+          Potential investor or trusted mentor? Tell us a little about you and
+          we’ll follow up—and share access if it is a fit.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <ContactForm
-          subject="Metropolis — investor interest"
+          subject="Metropolis — private materials interest"
           submitLabel="Share interest"
           fields={[
             { name: "name", label: "Your name", required: true },
             { name: "email", label: "you@email.com", type: "email", required: true },
-            { name: "firm", label: "Firm / fund (optional)" },
+            { name: "firm", label: "Firm / organization (optional)" },
             { name: "about", label: "A little about you and your interest", textarea: true },
           ]}
         />
@@ -76,19 +76,19 @@ export function InvestorsApp(): React.JSX.Element {
           className={unlocked ? "h-[100dvh]" : undefined}
           brandMark={
             <span>
-              metropolis <span className="text-muted-foreground">· investor materials</span>
+              metropolis <span className="text-muted-foreground">· private materials</span>
             </span>
           }
           gateAside={!unlocked ? <RequestAccessAside /> : undefined}
           copy={{
-            eyebrow: "For investors",
-            title: "Investor materials",
+            eyebrow: "Private materials",
+            title: "The Metropolis thesis",
             description:
-              "Enter the access passphrase to open the full plan, economics, and platform references. Don't have one? Share your interest in the form beside this and we'll be in touch.",
+              "Enter the access passphrase to read the private thesis and, as they are completed, deeper material on the capability, knowledge, operating, and evidence systems.",
             passphrasePlaceholder: "Access passphrase",
             unlockLabel: "Unlock",
             lockLabel: "Lock",
-            note: "Everything is encrypted; it decrypts in your browser only with the correct passphrase. Figures are illustrative placeholders pending a full financial model.",
+            note: "Everything is encrypted and decrypts in your browser only with the correct passphrase. These are working thesis materials, not a representation that a full financial model or portfolio already exists.",
             emptyTitle: "Select a document",
             emptyMessage: "Pick a document from the list to open it.",
             draftMessage: "Draft in progress — this reference is coming soon.",

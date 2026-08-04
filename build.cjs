@@ -21,10 +21,11 @@
 const fs = require('fs');
 const crypto = require('crypto');
 
-// The gated hub. `src` = a plaintext HTML file to encrypt (git-ignored). Nodes
-// without a `src` render as "draft in progress" placeholders until one is added.
+// The gated hub. `src` = a plaintext file to encrypt (git-ignored). A source is
+// required only when `required: true` is explicit; nodes without a source may
+// intentionally render as draft placeholders.
 const TREE = [
-  { title: 'Business plan', src: 'plan.src.html' },
+  { title: 'Thesis', src: 'plan.src.html', required: true },
   /* Resource tree hidden 2026-07-07 until these docs are re-reviewed and refreshed.
      Restore by deleting the comment wrapper: the opening marker above, closing marker below.
   { title: 'How it works', children: [
@@ -63,6 +64,26 @@ if (fs.existsSync('.env')) {
 const ITER = 150000;
 const pass = process.argv[2] || process.env.METROPOLIS_PASSPHRASE;
 if (!pass) { console.error('Provide a passphrase: node build.cjs "<passphrase>"  (or set it in .env)'); process.exit(1); }
+const outputPath = process.env.METROPOLIS_ENCRYPT_OUTPUT || 'public/docs.enc.js';
+
+function findMissingRequiredSources(nodes, missing = []) {
+  for (const node of nodes) {
+    if (node.required && (!node.src || !fs.existsSync(node.src))) {
+      missing.push({ title: node.title, src: node.src });
+    }
+    if (node.children) findMissingRequiredSources(node.children, missing);
+  }
+  return missing;
+}
+
+const missingRequired = findMissingRequiredSources(TREE);
+if (missingRequired.length > 0) {
+  for (const node of missingRequired) {
+    console.error(`MISSING REQUIRED SOURCE: ${node.src || '(no source configured)'} (${node.title})`);
+  }
+  console.error(`Encryption aborted before writing ${outputPath}.`);
+  process.exit(1);
+}
 
 function encrypt(buf) {
   const salt = crypto.randomBytes(16), iv = crypto.randomBytes(12);
@@ -90,6 +111,13 @@ function walk(nodes) {
 
 const nav = walk(TREE);
 ENC['nav'] = encrypt(Buffer.from(JSON.stringify(nav), 'utf8'));
-fs.mkdirSync('public', { recursive: true });
-fs.writeFileSync('public/docs.enc.js', 'window.__ENC=' + JSON.stringify(ENC) + ';\n');
-console.log(`Wrote public/docs.enc.js (${Object.keys(ENC).length} encrypted blobs). Commit public/docs.enc.js; keep *.src.html local.`);
+const outputDir = require('path').dirname(outputPath);
+const temporaryOutput = `${outputPath}.tmp-${process.pid}`;
+fs.mkdirSync(outputDir, { recursive: true });
+try {
+  fs.writeFileSync(temporaryOutput, 'window.__ENC=' + JSON.stringify(ENC) + ';\n', { flag: 'wx' });
+  fs.renameSync(temporaryOutput, outputPath);
+} finally {
+  if (fs.existsSync(temporaryOutput)) fs.unlinkSync(temporaryOutput);
+}
+console.log(`Wrote ${outputPath} (${Object.keys(ENC).length} encrypted blobs). Keep plaintext sources local.`);

@@ -17,7 +17,7 @@ import type { BrandTokens } from "@polis/ui-kit";
  */
 export const metropolisBrand: BrandTokens = {
   name: "Metropolis",
-  tagline: "one engine, many cities",
+  tagline: "one operating system, many companies",
   primary: "243 47% 34%", // deep indigo / the mother city
   fontFamily: "'Spectral', ui-serif, Georgia, 'Times New Roman', serif",
   headingFamily: "'Spectral', ui-serif, Georgia, 'Times New Roman', serif",

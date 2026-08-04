@@ -11,17 +11,6 @@ import { metropolisBrand } from "../brand";
 import { ContactForm } from "../components/contact-form";
 import { MetropolisMark, SiteFooter } from "../components/chrome";
 
-/** A bulleted list rendered inside a feature card's description slot. */
-function Bullets({ items }: { items: string[] }): React.JSX.Element {
-  return (
-    <ul className="mt-1 list-disc space-y-1.5 pl-5 leading-relaxed">
-      {items.map((it) => (
-        <li key={it}>{it}</li>
-      ))}
-    </ul>
-  );
-}
-
 export function ExpertsApp(): React.JSX.Element {
   return (
     <ThemeProvider brand={metropolisBrand}>
@@ -29,99 +18,46 @@ export function ExpertsApp(): React.JSX.Element {
         brandMark={<MetropolisMark />}
         navLinks={[
           { label: "Home", href: "index.html" },
-          { label: "Spaces", href: "index.html#spaces", variant: "muted" },
-          { label: "For investors", href: "investors.html", variant: "button" },
+          { label: "Thesis", href: "index.html#thesis", variant: "muted" },
+          {
+            label: "Private materials",
+            href: "investors.html",
+            variant: "button",
+          },
         ]}
-        footer={<SiteFooter contactHref="#apply" />}
+        footer={<SiteFooter contactHref="#contact" />}
       >
         <MarketingHero
           align="left"
-          eyebrow="For domain experts"
-          title="Operate a planning space you already know cold."
-          subtitle="You bring deep expertise in your domain. Metropolis gives you the platform, the tools, and a team behind you — you stay the human judgment governing the space as it runs."
+          eyebrow="Domain experts and future stewards"
+          title="Bring the expertise a shared system cannot invent."
+          subtitle="Metropolis is exploring how reusable business capabilities can support distinct companies. The shared operating system is only one layer; each market still requires real domain judgment, evidence, and operating knowledge."
         />
 
         <MarketingSection
           align="left"
-          eyebrow="Two ways in"
-          title="Steward a space that exists — or lead one that doesn't"
+          eyebrow="Why domain expertise matters"
+          title="Interchangeable capabilities do not make companies interchangeable."
+          lead="A company’s market, customers, regulation, workflows, integrations, and operating context remain its own. Metropolis aims to share appropriate capabilities while preserving the expertise and private knowledge that make each company valuable."
         >
           <FeatureGrid
             minColumnWidth={260}
             items={[
               {
-                title: "Join the expert team",
-                description: (
-                  <Bullets
-                    items={[
-                      "Operate an existing planning space as its governing steward",
-                      "You bring domain judgment; the platform + team bring the engine",
-                      "Take customer expert calls, feed the platform, curate the vault",
-                    ]}
-                  />
-                ),
+                title: "Challenge the thesis",
+                description:
+                  "Tell us where a supposedly reusable function breaks against the realities of your field.",
               },
               {
-                title: "Lead a new domain initiative",
-                tone: "brand",
-                description: (
-                  <Bullets
-                    items={[
-                      "Partner with us to launch a space that doesn't exist yet",
-                      "A more founder-like role: a direct line to the platform team, shaping the initial domain product from scratch",
-                      "Define the domain, the playbooks, and what the space becomes",
-                    ]}
-                  />
-                ),
-              },
-            ]}
-          />
-        </MarketingSection>
-
-        <MarketingSection align="left">
-          <FeatureGrid
-            minColumnWidth={240}
-            items={[
-              {
-                title: "What you'd do",
-                description: (
-                  <Bullets
-                    items={[
-                      "Operate your planning space — human governance on top of the automation",
-                      "Take expert calls with customers when their decisions need a specialist",
-                      "Feed what you learn back into the platform and your space's domain-specific extensions",
-                      "Help curate the knowledge vault that makes the space smarter over time",
-                    ]}
-                  />
-                ),
+                title: "Introduce a market",
+                description:
+                  "Share a costly, fragmented, or poorly served problem where better planning and operation could matter.",
               },
               {
-                title: "What the platform brings",
-                description: (
-                  <Bullets
-                    items={[
-                      "The planning engine — workflows, memory, research, execution",
-                      "Domain-specific extensions built to your spec",
-                      "A platform team behind you (design, growth, engineering)",
-                      "A shared knowledge vault as your space's compounding memory",
-                      "Beautiful-by-default product surfaces",
-                    ]}
-                  />
-                ),
-              },
-              {
-                title: "Who we're looking for",
+                title: "Explore future stewardship",
+                description:
+                  "When a real company has customers and domain needs that justify dedicated human leadership, a steward may help guide it.",
                 tone: "soft",
-                description: (
-                  <Bullets
-                    items={[
-                      "The person others in your field call for advice",
-                      "Deep expertise in a high-stakes planning domain",
-                      "Wants to shape a product and steward it — comfortable being the expert customers talk to",
-                      "Or a builder who wants to lead a brand-new domain initiative with us",
-                    ]}
-                  />
-                ),
               },
             ]}
           />
@@ -129,58 +65,40 @@ export function ExpertsApp(): React.JSX.Element {
 
         <MarketingSection
           align="left"
-          eyebrow="How it works"
-          title="Talk → Build your space together → Operate & shape the platform"
-        >
-          <FeatureGrid
-            minColumnWidth={200}
-            items={[
-              {
-                eyebrow: "1 · Talk",
-                title: "Talk",
-                description:
-                  "We talk through your domain to sharpen the product and find the right steward for the space.",
-              },
-              {
-                eyebrow: "2 · Build your space together",
-                title: "Build your space together",
-                description:
-                  "You encode your expertise into the vault and shape the domain-specific extensions and playbooks.",
-              },
-              {
-                eyebrow: "3 · Operate & shape the platform",
-                title: "Operate & shape the platform",
-                description:
-                  "You govern the space as it runs — taking expert calls and feeding what you learn back into the platform.",
-              },
-            ]}
-          />
-        </MarketingSection>
+          eyebrow="The relationship"
+          title="The system drives. Humans steer where judgment matters."
+          lead="Metropolis is not recruiting operators into existing portfolio companies today. Interest is exploratory: a way to build relationships with people whose expertise could shape research, challenge assumptions, or eventually help steward a company that earns the need."
+        />
 
         <CallToAction
           tone="brand"
-          eyebrow="Apply"
-          title="Want to steward a planning space?"
-          description="Tell us your domain and whether you'd join the expert team or lead a new initiative. We read every note."
+          eyebrow="Start a conversation"
+          title="What do you know that Metropolis should understand?"
+          description="Tell us about your domain, the operating knowledge outsiders usually miss, and how you might want to participate."
           actions={
-            <div id="apply">
+            <div id="contact">
               <ContactForm
-                subject="Stewarding a Metropolis planning space"
-                submitLabel="Share your interest →"
+                subject="Metropolis — domain expertise"
+                submitLabel="Share your perspective →"
                 tone="onBrand"
                 twoColumn
                 fields={[
                   { name: "name", label: "Your name", required: true },
-                  { name: "email", label: "you@email.com", type: "email", required: true },
                   {
-                    name: "space",
-                    label: "Your domain — and join the expert team or lead a new initiative?",
+                    name: "email",
+                    label: "you@email.com",
+                    type: "email",
+                    required: true,
+                  },
+                  {
+                    name: "domain",
+                    label: "Your domain or market",
                     full: true,
                   },
                   {
                     name: "about",
                     label:
-                      "Your expertise in the domain — and what you'd want to build",
+                      "What does your field know that a generic system would miss?",
                     textarea: true,
                     full: true,
                   },
