@@ -3,7 +3,7 @@ import * as React from "react";
 /**
  * Shared marketing chrome: the metropolis wordmark and footer, passed into the
  * kit's <MarketingShell> so the header/footer read exactly as the hand-built
- * site did ("metropolis" wordmark; "one engine, many cities" colophon).
+ * site did ("metropolis" wordmark and a concise thesis colophon).
  */
 export function MetropolisMark(): React.JSX.Element {
   return (
@@ -23,7 +23,7 @@ export function SiteFooter({
 }): React.JSX.Element {
   return (
     <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
-      <span>metropolis · one engine, many cities</span>
+      <span>metropolis · one operating system, many companies</span>
       <a href={contactHref} className="text-muted-foreground hover:text-foreground">
         get in touch
       </a>

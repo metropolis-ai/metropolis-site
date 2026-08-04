@@ -1,9 +1,10 @@
 # metropolis-site
 
-The company-level marketing site for **metropolis** — a house of AI planning-space
-verticals. Its job is narrow: pitch **investors** on the platform thesis (and host
-the business plan), and help **source expert operators** and attract employees. It
-is *not* any single city's product site.
+The company-level marketing site for **metropolis** — an AI-native venture studio
+built as an operating system. Its job is narrow: pitch **investors and mentors**
+on the studio thesis (behind a private materials gate), and connect with
+**domain experts** whose judgment a shared system can't invent. It is *not* a
+product site for any individual portfolio company.
 
 It is composed from **`@polis/marketing-site-kit`** (the reusable, brand-tokened
 polis marketing kit) and themed with metropolis's own brand tokens — a React +
@@ -18,9 +19,9 @@ Pages** at **gometropolis.ai**.
 
 | File | Access | Purpose |
 | --- | --- | --- |
-| `index.html` | public | Landing — thesis, the loop, the portfolio, CTAs |
-| `experts.html` | public | The operator role; how experts join and run a city |
-| `investors.html` | **gated** | Passphrase gate → decrypts and shows the business plan + platform references |
+| `index.html` | public | Landing — the studio thesis, shared capabilities, compounding knowledge, CTAs |
+| `experts.html` | public | For domain experts and future stewards — challenge the thesis, introduce a market, or explore stewardship |
+| `investors.html` | **gated** | Passphrase gate → decrypts and shows the private thesis (deeper materials as they're completed) |
 
 Each is a Vite entry that mounts a React app from `src/<page>/`, composed from the
 kit's section components and wrapped in the kit's `<ThemeProvider>` with

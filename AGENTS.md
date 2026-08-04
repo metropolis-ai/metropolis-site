@@ -93,6 +93,13 @@ the code.
 - `sync-doc.cjs` (the `/sync-to-site` skill) is unchanged: it writes
   `resource-<slug>.src.md` at the repo root; then `node build.cjs` re-encrypts into
   `public/docs.enc.js`.
+- `build.cjs` now fails closed for active tree nodes marked `required: true`
+  (currently `plan.src.html`): it validates every required source before opening
+  an output and writes successful bundles atomically. Set
+  `METROPOLIS_ENCRYPT_OUTPUT` to build somewhere other than the committed
+  `public/docs.enc.js`. Run `pnpm validate:encryption` for the synthetic contract
+  and `pnpm validate:encryption:real` for an in-memory round trip using the local,
+  git-ignored source and passphrase; neither validation prints private content.
 
 ## Working on the hub without the passphrase
 

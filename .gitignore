@@ -7,4 +7,8 @@ node_modules/
 .DS_Store
 # Build output — the static site is produced by `vite build` (deployed by CI).
 dist/
-
+# Local collaborative review artifacts are never part of the shipped site.
+.lavish/
+# Plaintext strategy and session records remain local; only encrypted hub output ships.
+docs/private-*.md
+docs/session-*.md
