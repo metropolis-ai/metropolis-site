@@ -6,9 +6,9 @@
 # static site (HTML/CSS/JS + public assets incl. the encrypted docs.enc.js,
 # CNAME, and .nojekyll), served from the same custom domain (gometropolis.ai).
 #
-# PREREQUISITE SECRET: this build clones the PRIVATE wfarley16/polis git
+# PREREQUISITE SECRET: this build clones the PRIVATE metropolis-ai/polis git
 # dependency, which the default GITHUB_TOKEN cannot access. A read-only SSH
-# deploy key on wfarley16/polis is provisioned; its private key is stored as the
+# deploy key on metropolis-ai/polis is provisioned; its private key is stored as the
 # Actions secret POLIS_DEPLOY_KEY. The "Configure SSH deploy key" step below
 # installs it and points git at it so pnpm can clone polis over SSH.
 #
@@ -51,9 +51,9 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      # polis is a PRIVATE git dependency (wfarley16/polis). The default
+      # polis is a PRIVATE git dependency (metropolis-ai/polis). The default
       # GITHUB_TOKEN has no access to it, and pnpm resolves the dep to the SSH
-      # form (git@github.com:wfarley16/polis.git — see pnpm-lock.yaml), so the
+      # form (git@github.com:metropolis-ai/polis.git — see pnpm-lock.yaml), so the
       # clone fails in CI. Install the read-only deploy key (POLIS_DEPLOY_KEY),
       # trust github.com, and point git at the key via GIT_SSH_COMMAND (exported
       # through $GITHUB_ENV so the install step inherits it). The insteadOf
@@ -67,7 +67,7 @@ jobs:
           printf '%s\n' "$POLIS_DEPLOY_KEY" > ~/.ssh/polis_ci
           chmod 600 ~/.ssh/polis_ci
           ssh-keyscan -t rsa,ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
-          git config --global url."git@github.com:wfarley16/polis".insteadOf "https://github.com/wfarley16/polis"
+          git config --global url."git@github.com:metropolis-ai/polis".insteadOf "https://github.com/metropolis-ai/polis"
           echo "GIT_SSH_COMMAND=ssh -i $HOME/.ssh/polis_ci -o IdentitiesOnly=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" >> "$GITHUB_ENV"
         env:
           POLIS_DEPLOY_KEY: ${{ secrets.POLIS_DEPLOY_KEY }}
@@ -85,7 +85,7 @@ jobs:
       # enablement: true makes the action set the Pages build type to "workflow"
       # via the API (needs the pages: write permission granted above), so no
       # manual Settings → Pages flip is required. If token perms ever block this,
-      # run once: gh api -X PUT repos/wfarley16/metropolis-site/pages -f build_type=workflow
+      # run once: gh api -X PUT repos/metropolis-ai/metropolis-site/pages -f build_type=workflow
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

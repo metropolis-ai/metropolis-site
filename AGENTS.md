@@ -42,7 +42,7 @@ the code.
 - **Bump polis** = change the `#<sha>` in `package.json` and re-`pnpm install`.
 - Sharp edges (all polis-side gaps; this repo works around them cleanly):
   1. **polis is a PRIVATE repo, and pnpm resolves the git dep to the SSH form**
-     (`git@github.com:wfarley16/polis.git` — see the `version:` key in
+     (`git@github.com:metropolis-ai/polis.git` — see the `version:` key in
      `pnpm-lock.yaml`), so `pnpm install` clones over SSH and fails with
      `git@github.com: Permission denied` wherever there's no SSH key / no repo
      access. Two contexts:
@@ -51,15 +51,15 @@ the code.
        private repo (e.g. a `gh`-authenticated machine):
        `GIT_CONFIG_COUNT=2 GIT_CONFIG_KEY_0=url.https://github.com/.insteadOf GIT_CONFIG_VALUE_0=git@github.com: GIT_CONFIG_KEY_1=url.https://github.com/.insteadOf GIT_CONFIG_VALUE_1=ssh://git@github.com/`.
      - **CI (GitHub Actions):** the default `GITHUB_TOKEN` has NO access to the
-       separate private `wfarley16/polis` repo, so the deploy workflow authenticates
+       separate private `metropolis-ai/polis` repo, so the deploy workflow authenticates
        the clone with a **read-only SSH deploy key on polis**, stored as the repo
        secret **`POLIS_DEPLOY_KEY`**. The "Configure SSH deploy key for private
        polis clone" step writes the key to `~/.ssh/polis_ci` (chmod 600), adds
        `github.com` to `known_hosts`, exports
        `GIT_SSH_COMMAND="ssh -i ~/.ssh/polis_ci -o IdentitiesOnly=yes …"` via
        `$GITHUB_ENV` (so the install step inherits it), and sets a **polis-scoped**
-       rewrite `url."git@github.com:wfarley16/polis".insteadOf
-       "https://github.com/wfarley16/polis"`. The scope keeps metropolis-site's own
+       rewrite `url."git@github.com:metropolis-ai/polis".insteadOf
+       "https://github.com/metropolis-ai/polis"`. The scope keeps metropolis-site's own
        `actions/checkout` (default token) untouched. **If the CI build fails at
        `pnpm install` with a polis permission/`Permission denied (publickey)`
        error, the `POLIS_DEPLOY_KEY` secret is missing or the deploy key was
@@ -117,7 +117,7 @@ the code.
   from "deploy from branch root" (legacy) to a **GitHub Actions** build+publish
   workflow (`.github/workflows/deploy.yml`): on push to `main` it runs
   `pnpm build` and publishes `dist/` to Pages.
-- **Prerequisite secret:** the build clones the private `wfarley16/polis` dep, so
+- **Prerequisite secret:** the build clones the private `metropolis-ai/polis` dep, so
   the repo must have a **`POLIS_DEPLOY_KEY`** secret — the private half of a
   read-only SSH deploy key on polis. See "Consuming polis" sharp edge #1. Without
   it the build job fails at `pnpm install` with `Permission denied (publickey)`.
@@ -126,7 +126,7 @@ the code.
   "workflow" via the API (using the `pages: write` permission), replacing the
   legacy branch-root source — no manual Settings → Pages step is required. If token
   perms ever block it, run once:
-  `gh api -X PUT repos/wfarley16/metropolis-site/pages -f build_type=workflow`.
+  `gh api -X PUT repos/metropolis-ai/metropolis-site/pages -f build_type=workflow`.
   (Alternative deploy model, if CI is undesirable: commit the built `dist/` to a
   `/docs` folder and point legacy Pages at it — messier, rebuild-on-every-edit.)
 

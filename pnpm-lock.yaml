@@ -39,8 +39,8 @@ dependencies:
     specifier: ^12.0.2
     version: 12.0.2
   polis:
-    specifier: git+https://github.com/wfarley16/polis.git#bff5a841b73450f73a821564f78d8dc8631e6a75
-    version: git@github.com+wfarley16/polis/bff5a841b73450f73a821564f78d8dc8631e6a75(@types/react-dom@18.3.7)(@types/react@18.3.31)(postcss@8.5.16)(tslib@2.8.1)
+    specifier: git+https://github.com/metropolis-ai/polis.git#bff5a841b73450f73a821564f78d8dc8631e6a75
+    version: git@github.com+metropolis-ai/polis/bff5a841b73450f73a821564f78d8dc8631e6a75(@types/react-dom@18.3.7)(@types/react@18.3.31)(postcss@8.5.16)(tslib@2.8.1)
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -4166,9 +4166,9 @@ packages:
       yargs-parser: 21.1.1
     dev: false
 
-  git@github.com+wfarley16/polis/bff5a841b73450f73a821564f78d8dc8631e6a75(@types/react-dom@18.3.7)(@types/react@18.3.31)(postcss@8.5.16)(tslib@2.8.1):
-    resolution: {commit: bff5a841b73450f73a821564f78d8dc8631e6a75, repo: git@github.com:wfarley16/polis.git, type: git}
-    id: git@github.com+wfarley16/polis/bff5a841b73450f73a821564f78d8dc8631e6a75
+  git@github.com+metropolis-ai/polis/bff5a841b73450f73a821564f78d8dc8631e6a75(@types/react-dom@18.3.7)(@types/react@18.3.31)(postcss@8.5.16)(tslib@2.8.1):
+    resolution: {commit: bff5a841b73450f73a821564f78d8dc8631e6a75, repo: git@github.com:metropolis-ai/polis.git, type: git}
+    id: git@github.com+metropolis-ai/polis/bff5a841b73450f73a821564f78d8dc8631e6a75
     name: polis
     version: 0.0.0
     dependencies:
