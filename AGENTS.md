@@ -9,7 +9,7 @@ the code.
 ## Architecture
 
 - The site is a **React + Vite multi-page app** composed from
-  **`@polis/marketing-site-kit`** (the reusable brand-tokened marketing kit) and
+  **`@metropolis-ai/marketing-site-kit`** (the reusable brand-tokened marketing kit) and
   themed with **metropolis's brand tokens** (`src/brand.ts` — deep indigo, Spectral
   serif; the same identity as `projects/metropolis/src/config`'s `metropolisBrand`).
   It is **not** hand-built HTML anymore.
@@ -32,7 +32,7 @@ the code.
 
 - polis is consumed as **SOURCE**, via a **SHA-pinned git dependency**
   (`polis` in `package.json`, `git+https://…/polis.git#<sha>`), exactly like the
-  artemis planning space. `@polis/*` resolves to the checked-out lib source under
+  artemis planning space. `@metropolis-ai/*` resolves to the checked-out lib source under
   `node_modules/polis/libs/*/src`:
   - Vite: aliases in `vite.config.ts`.
   - TypeScript: `paths` in `tsconfig.json`.
@@ -152,6 +152,7 @@ the code.
   the kit + brand tokens; the site sets almost no bespoke CSS. Field inputs in
   `contact-form.tsx` use `text-base` (16px) on purpose so iOS Safari doesn't zoom
   on focus.
-- The unlocked `GatedHub` uses the kit's own responsive hub layout (fixed-width
-  sidebar + reading pane); it does not reproduce the old ≤720px drawer. If a
-  mobile drawer is wanted, that's a kit-side enhancement.
+- The unlocked `GatedHub` uses the kit's responsive hub layout: a persistent
+  fixed-width sidebar at `md+` and a controlled off-canvas document drawer below
+  `md`. `InvestorsApp` owns `mobileNavOpen` and passes
+  `onMobileNavOpenChange`; keep that wiring when changing the hub composition.

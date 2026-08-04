@@ -3,7 +3,7 @@ import type {
   GatedHubDoc,
   GatedHubNode,
   GatedHubSource,
-} from "@polis/marketing-site-kit";
+} from "@metropolis-ai/marketing-site-kit";
 import { mdDoc } from "./doc-css";
 
 /**

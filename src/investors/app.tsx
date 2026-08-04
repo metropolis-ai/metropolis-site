@@ -6,11 +6,11 @@ import {
   CardHeader,
   CardTitle,
   ThemeProvider,
-} from "@polis/ui-kit";
+} from "@metropolis-ai/ui-kit";
 import {
   GatedHub,
   useGatedHub,
-} from "@polis/marketing-site-kit";
+} from "@metropolis-ai/marketing-site-kit";
 import { metropolisBrand } from "../brand";
 import { ContactForm } from "../components/contact-form";
 import { MetropolisMark } from "../components/chrome";
@@ -52,6 +52,7 @@ export function InvestorsApp(): React.JSX.Element {
   const controls = useGatedHub(source, {
     failureMessage: "Incorrect passphrase. Try again.",
   });
+  const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
   const unlocked = controls.status === "unlocked";
 
   return (
@@ -73,6 +74,8 @@ export function InvestorsApp(): React.JSX.Element {
       <div className={unlocked ? "" : "mx-auto w-full max-w-4xl px-6 py-4"}>
         <GatedHub
           {...controls}
+          mobileNavOpen={mobileNavOpen}
+          onMobileNavOpenChange={setMobileNavOpen}
           className={unlocked ? "h-[100dvh]" : undefined}
           brandMark={
             <span>
