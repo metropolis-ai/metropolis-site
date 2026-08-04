@@ -51,19 +51,17 @@ the code.
        private repo (e.g. a `gh`-authenticated machine):
        `GIT_CONFIG_COUNT=2 GIT_CONFIG_KEY_0=url.https://github.com/.insteadOf GIT_CONFIG_VALUE_0=git@github.com: GIT_CONFIG_KEY_1=url.https://github.com/.insteadOf GIT_CONFIG_VALUE_1=ssh://git@github.com/`.
      - **CI (GitHub Actions):** the default `GITHUB_TOKEN` has NO access to the
-       separate private `metropolis-ai/polis` repo, so the deploy workflow authenticates
-       the clone with a **read-only SSH deploy key on polis**, stored as the repo
-       secret **`POLIS_DEPLOY_KEY`**. The "Configure SSH deploy key for private
-       polis clone" step writes the key to `~/.ssh/polis_ci` (chmod 600), adds
-       `github.com` to `known_hosts`, exports
-       `GIT_SSH_COMMAND="ssh -i ~/.ssh/polis_ci -o IdentitiesOnly=yes …"` via
-       `$GITHUB_ENV` (so the install step inherits it), and sets a **polis-scoped**
-       rewrite `url."git@github.com:metropolis-ai/polis".insteadOf
-       "https://github.com/metropolis-ai/polis"`. The scope keeps metropolis-site's own
-       `actions/checkout` (default token) untouched. **If the CI build fails at
-       `pnpm install` with a polis permission/`Permission denied (publickey)`
-       error, the `POLIS_DEPLOY_KEY` secret is missing or the deploy key was
-       revoked.**
+       separate private `metropolis-ai/polis` repo. Organization policy disables
+       deploy keys, so the workflow uses the private
+       **metropolis-ai-polis-reader GitHub App**, installed only on polis with
+       read-only Contents permission. `actions/create-github-app-token@v3` mints a
+       short-lived token from repository variable **`POLIS_APP_CLIENT_ID`** and
+       secret **`POLIS_APP_PRIVATE_KEY`**, scoped to the `polis` repository. A
+       polis-only git URL rewrite sends both the lockfile's SSH URL and the package
+       spec's HTTPS URL through authenticated HTTPS; metropolis-site's own
+       `actions/checkout` stays on its default token. If install fails with
+       `Repository not found`, verify the App remains installed on polis and both
+       credential settings are present.
   2. **polis ships a heavy server-only dependency tree** (temporal/nestjs/prisma)
      that this marketing site never imports. `package.json`'s
      `pnpm.neverBuiltDependencies` skips their build scripts (no `prisma generate`,
@@ -117,10 +115,12 @@ the code.
   from "deploy from branch root" (legacy) to a **GitHub Actions** build+publish
   workflow (`.github/workflows/deploy.yml`): on push to `main` it runs
   `pnpm build` and publishes `dist/` to Pages.
-- **Prerequisite secret:** the build clones the private `metropolis-ai/polis` dep, so
-  the repo must have a **`POLIS_DEPLOY_KEY`** secret — the private half of a
-  read-only SSH deploy key on polis. See "Consuming polis" sharp edge #1. Without
-  it the build job fails at `pnpm install` with `Permission denied (publickey)`.
+- **Prerequisite GitHub App:** the build clones the private
+  `metropolis-ai/polis` dependency using the read-only
+  `metropolis-ai-polis-reader` App. The repository must have
+  **`POLIS_APP_CLIENT_ID`** as an Actions variable and
+  **`POLIS_APP_PRIVATE_KEY`** as an Actions secret. See "Consuming polis" sharp
+  edge #1.
 - **Pages source flip is automated.** The workflow's `actions/configure-pages@v5`
   step runs with `enablement: true`, which sets the repo's Pages build type to
   "workflow" via the API (using the `pages: write` permission), replacing the

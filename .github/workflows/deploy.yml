@@ -6,11 +6,11 @@
 # static site (HTML/CSS/JS + public assets incl. the encrypted docs.enc.js,
 # CNAME, and .nojekyll), served from the same custom domain (gometropolis.ai).
 #
-# PREREQUISITE SECRET: this build clones the PRIVATE metropolis-ai/polis git
-# dependency, which the default GITHUB_TOKEN cannot access. A read-only SSH
-# deploy key on metropolis-ai/polis is provisioned; its private key is stored as the
-# Actions secret POLIS_DEPLOY_KEY. The "Configure SSH deploy key" step below
-# installs it and points git at it so pnpm can clone polis over SSH.
+# PREREQUISITE APP: this build clones the PRIVATE metropolis-ai/polis git
+# dependency, which the default GITHUB_TOKEN cannot access. The private
+# metropolis-ai-polis-reader GitHub App is installed only on polis with read-only
+# Contents permission. Its Client ID is stored in POLIS_APP_CLIENT_ID and its
+# private key in POLIS_APP_PRIVATE_KEY.
 #
 # The repo's Pages source is switched to "GitHub Actions" automatically by the
 # "Configure Pages" step (enablement: true) — no manual Settings → Pages flip is
@@ -54,23 +54,26 @@ jobs:
       # polis is a PRIVATE git dependency (metropolis-ai/polis). The default
       # GITHUB_TOKEN has no access to it, and pnpm resolves the dep to the SSH
       # form (git@github.com:metropolis-ai/polis.git — see pnpm-lock.yaml), so the
-      # clone fails in CI. Install the read-only deploy key (POLIS_DEPLOY_KEY),
-      # trust github.com, and point git at the key via GIT_SSH_COMMAND (exported
-      # through $GITHUB_ENV so the install step inherits it). The insteadOf
-      # rewrite is scoped to the polis repo path only, so any https form of the
-      # dep also goes over the key — and metropolis-site's own actions/checkout
-      # (a different repo, over the default token) is left untouched.
-      - name: Configure SSH deploy key for private polis clone
+      # clone fails in CI. Mint a short-lived installation token from the
+      # read-only GitHub App, scoped to polis only, then rewrite only the polis
+      # SSH/HTTPS URL forms to authenticated HTTPS. metropolis-site's own
+      # actions/checkout remains on the default token.
+      - name: Create read-only Polis installation token
+        id: polis-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.POLIS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.POLIS_APP_PRIVATE_KEY }}
+          owner: metropolis-ai
+          repositories: polis
+          permission-contents: read
+
+      - name: Configure GitHub App authentication for private Polis clone
         run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          printf '%s\n' "$POLIS_DEPLOY_KEY" > ~/.ssh/polis_ci
-          chmod 600 ~/.ssh/polis_ci
-          ssh-keyscan -t rsa,ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
-          git config --global url."git@github.com:metropolis-ai/polis".insteadOf "https://github.com/metropolis-ai/polis"
-          echo "GIT_SSH_COMMAND=ssh -i $HOME/.ssh/polis_ci -o IdentitiesOnly=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" >> "$GITHUB_ENV"
+          git config --global --add url."https://x-access-token:${POLIS_APP_TOKEN}@github.com/metropolis-ai/polis".insteadOf "git@github.com:metropolis-ai/polis"
+          git config --global --add url."https://x-access-token:${POLIS_APP_TOKEN}@github.com/metropolis-ai/polis".insteadOf "https://github.com/metropolis-ai/polis"
         env:
-          POLIS_DEPLOY_KEY: ${{ secrets.POLIS_DEPLOY_KEY }}
+          POLIS_APP_TOKEN: ${{ steps.polis-token.outputs.token }}
 
       # Its heavy server-only packages (prisma/temporal) are marked neverBuilt in
       # package.json, so this install stays fast and runs no native builds.
