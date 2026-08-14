@@ -115,7 +115,8 @@ export function LandingApp(): React.JSX.Element {
         <HighlightBanner eyebrow="The operating model" tone="brand">
           <b>The founder leads. AI-native teams execute.</b> Metropolis connects
           specialized agents, governed workflows, and institutional knowledge
-          so one founder can lead more company—not merely complete more tasks.
+          so one founder can lead more of an institution—not merely complete
+          more tasks.
         </HighlightBanner>
 
         <MarketingSection
