@@ -19,7 +19,9 @@ the code.
   Section content is composed from kit components (`MarketingShell`,
   `MarketingHero`, `HighlightBanner`, `MarketingSection`, `FeatureGrid`,
   `CallToAction`, `GatedHub`). The kit carries zero domain copy — all copy lives
-  here in `app.tsx`.
+  here in `app.tsx`. Public-facing copy should track the institutional frame,
+  message hierarchy, and language guardrails in `docs/positioning.md` — the
+  source of truth for how Metropolis describes itself.
 - **Static output is preserved.** `pnpm build` (`vite build`) emits a fully static
   `dist/` (HTML/CSS/JS + everything in `public/`). `public/` holds the committed
   static assets served verbatim: `docs.enc.js` (the encrypted hub bundle), `CNAME`
