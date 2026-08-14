@@ -61,12 +61,17 @@ export function InvestorsApp(): React.JSX.Element {
         <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
             <MetropolisMark />
-            <a
-              href="index.html"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              ← Home
-            </a>
+            <nav className="flex items-center gap-4 text-sm font-medium text-muted-foreground">
+              <a href="index.html" className="hover:text-foreground">
+                Home
+              </a>
+              <a href="how-it-works.html" className="hover:text-foreground">
+                How it works
+              </a>
+              <a href="experts.html" className="hidden hover:text-foreground sm:inline">
+                Work with us
+              </a>
+            </nav>
           </div>
         </header>
       ) : null}

@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 
 // Vite build for the metropolis marketing site: a static multi-page app
-// (landing + experts + gated investor hub) served from GitHub Pages at
+// (landing + how it works + experts + gated investor hub) served from GitHub Pages at
 // gometropolis.ai. "vite build" emits a fully static dist/ (HTML/CSS/JS plus the
 // public/ assets, including the untouched encrypted docs.enc.js, CNAME, and
 // .nojekyll).
@@ -33,6 +33,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(here, "index.html"),
+        howItWorks: resolve(here, "how-it-works.html"),
         experts: resolve(here, "experts.html"),
         investors: resolve(here, "investors.html"),
       },

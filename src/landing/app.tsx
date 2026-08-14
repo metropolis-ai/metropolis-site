@@ -19,7 +19,7 @@ export function LandingApp(): React.JSX.Element {
         brandMark={<MetropolisMark />}
         navLinks={[
           { label: "Thesis", href: "#thesis", variant: "muted" },
-          { label: "How it works", href: "#capabilities", variant: "muted" },
+          { label: "How it works", href: "how-it-works.html", variant: "muted" },
           { label: "Work with us", href: "experts.html" },
           {
             label: "Private materials",
@@ -36,7 +36,7 @@ export function LandingApp(): React.JSX.Element {
           subtitle={
             <>
               Metropolis is building a venture studio as an operating system: a
-              solo founder steers specialized agents, business capabilities,
+              solo founder leads specialized agents, business capabilities,
               knowledge, and governed workflows across a future portfolio of
               independently valuable companies.
             </>
@@ -113,48 +113,28 @@ export function LandingApp(): React.JSX.Element {
         </MarketingSection>
 
         <HighlightBanner eyebrow="The operating model" tone="brand">
-          <b>The operating system drives. The founder steers.</b> Strategy,
-          domain judgment, and consequential approvals remain human; the system
-          is being built to perform and coordinate the work.
+          <b>The founder leads. AI-native teams execute.</b> Metropolis connects
+          specialized agents, governed workflows, and institutional knowledge
+          so one founder can lead more of an institution—not merely complete
+          more tasks.
         </HighlightBanner>
 
         <MarketingSection
-          id="capabilities"
           align="left"
-          eyebrow="Interchangeable parts"
-          title="Automate business functions—not synthetic job titles."
-          lead="A business analyst, finance lead, or operator is a historical bundle of separable work. Metropolis decomposes those roles into narrow capabilities that specialized agents can perform, evaluate, improve, and compose through governed workflows."
+          eyebrow="How it works"
+          title="Build the organization around the work—not inherited job titles."
+          lead="Metropolis decomposes business functions into explicit responsibilities, workflows, knowledge, tools, evaluations, permissions, and human decision gates. The result is an institution designed for AI from the beginning."
         >
-          <FeatureGrid
-            minColumnWidth={260}
-            items={[
-              {
-                eyebrow: "Understand",
-                title: "Research and analyze",
-                description:
-                  "Research a market, assemble evidence, produce a business plan, or challenge its assumptions.",
-              },
-              {
-                eyebrow: "Decide",
-                title: "Model and recommend",
-                description:
-                  "Construct financial scenarios, reconcile statements, and prepare consequential decisions for review.",
-              },
-              {
-                eyebrow: "Operate",
-                title: "Execute and observe",
-                description:
-                  "Run bounded workflows, monitor operating thresholds, preserve governance, and feed outcomes back into what happens next.",
-              },
-            ]}
-          />
+          <Button asChild variant="outline">
+            <a href="how-it-works.html">Explore the operating model →</a>
+          </Button>
         </MarketingSection>
 
         <MarketingSection
           align="left"
           eyebrow="One operating system · many companies"
-          title="Build the bottom of the iceberg once—then keep expanding it."
-          lead="The visible AI product is only the tip. Dependable outcomes require workflows, memory, evaluation, permissions, integrations, exception handling, feedback, and accumulated operating knowledge beneath it. Metropolis is testing how much of that lower layer can be shared."
+          title="Build the company-building machinery once—then keep improving it."
+          lead="Portfolio companies remain distinct, but appropriate agents, workflows, infrastructure, evaluation methods, and operating knowledge can give each one a more capable starting point. Metropolis is testing how much of that foundation can be shared without flattening what makes each company valuable."
         >
           <div className="mx-auto max-w-5xl">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -199,30 +179,6 @@ export function LandingApp(): React.JSX.Element {
 
         <MarketingSection
           align="left"
-          eyebrow="Compounding knowledge"
-          title="Knowledge should improve through use—not be rediscovered from scratch."
-          lead="Agents can maintain operating knowledge assembled from cases, books, lectures, research, prior practice, decisions, and observed outcomes. The advantage is the maintained synthesis and its connection to executable capabilities."
-        >
-          <FeatureGrid
-            minColumnWidth={300}
-            items={[
-              {
-                title: "Shared capability knowledge",
-                description:
-                  "Methods, workflows, evaluations, and infrastructure improve what appropriate companies across the portfolio can do.",
-              },
-              {
-                title: "Company-private knowledge",
-                description:
-                  "Customer, financial, strategic, and domain context improves one company without leaking into another.",
-                tone: "soft",
-              },
-            ]}
-          />
-        </MarketingSection>
-
-        <MarketingSection
-          align="left"
           eyebrow="Starting inside Metropolis"
           title="The studio is the first proof environment."
           lead="The founder currently uses AI agents and structured workflows to plan and deliver Metropolis’s software work. The broader studio operating system, portfolio-wide reuse, and differentiated economics remain the thesis—not claims of completed capability today."
@@ -237,6 +193,13 @@ export function LandingApp(): React.JSX.Element {
             minColumnWidth={280}
             items={[
               {
+                eyebrow: "The operating model",
+                title: "See how Metropolis works →",
+                description:
+                  "Follow the hierarchy, workflow, knowledge, and founder-decision systems from strategic direction to reviewed delivery.",
+                href: "how-it-works.html",
+              },
+              {
                 eyebrow: "Potential investors and trusted mentors",
                 title: "Private materials →",
                 description:
@@ -244,10 +207,10 @@ export function LandingApp(): React.JSX.Element {
                 href: "investors.html",
               },
               {
-                eyebrow: "Domain experts and future stewards",
+                eyebrow: "Domain experts and future leaders",
                 title: "Share what you know →",
                 description:
-                  "Challenge the thesis, introduce a domain, or explore future stewardship when a real company earns it.",
+                  "Challenge the thesis, introduce a domain, or explore future leadership when a real company earns it.",
                 href: "experts.html",
               },
             ]}
