@@ -54,6 +54,32 @@ export function LandingApp(): React.JSX.Element {
         />
 
         <MarketingSection
+          align="left"
+          eyebrow="Why Metropolis"
+          title="When I don’t know something, I build a system to figure it out."
+          lead="Metropolis began while I was exploring ideas for AI-native startups. The ideas differed, but each required much of the same machinery: specialized agents and infrastructure for researching markets, making plans, building products, and operating companies. I didn’t know which individual startup was worth building, so I began building the system that could find out."
+        >
+          <FeatureGrid
+            minColumnWidth={300}
+            items={[
+              {
+                eyebrow: "The experience",
+                title: "Hard workflows can become systems.",
+                description:
+                  "Before Metropolis, I spent more than five years building Amazon FSx at AWS. For three of those years, I led a team I founded to automate the service’s expansion across AWS Regions, Availability Zones, and cells—work that reinforced my conviction that even extraordinarily difficult human workflows can be understood, encoded, and automated.",
+              },
+              {
+                eyebrow: "The conviction",
+                title: "A company is what it knows and how it operates.",
+                description:
+                  "AI has moved the boundary of what can be automated. I believe much of a modern company’s durable value lives in its data and schemas, its workflow definitions, and the knowledge its team has accumulated by operating it. Metropolis is being built to make those assets explicit, executable, and able to improve through use.",
+                tone: "soft",
+              },
+            ]}
+          />
+        </MarketingSection>
+
+        <MarketingSection
           id="thesis"
           align="left"
           eyebrow="From studio to system"
