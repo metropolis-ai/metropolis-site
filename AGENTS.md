@@ -13,8 +13,8 @@ the code.
   themed with **metropolis's brand tokens** (`src/brand.ts` — deep indigo, Spectral
   serif; the same identity as `projects/metropolis/src/config`'s `metropolisBrand`).
   It is **not** hand-built HTML anymore.
-- Three page entries at the repo root (URLs unchanged): `index.html` (landing),
-  `experts.html`, `investors.html`. Each mounts a React root from
+- Four page entries at the repo root: `index.html` (landing),
+  `how-it-works.html`, `experts.html`, `investors.html`. Each mounts a React root from
   `src/<page>/main.tsx` → `app.tsx`, wrapped in the kit's `<ThemeProvider brand>`.
   Section content is composed from kit components (`MarketingShell`,
   `MarketingHero`, `HighlightBanner`, `MarketingSection`, `FeatureGrid`,

@@ -18,7 +18,7 @@ export function ExpertsApp(): React.JSX.Element {
         brandMark={<MetropolisMark />}
         navLinks={[
           { label: "Home", href: "index.html" },
-          { label: "Thesis", href: "index.html#thesis", variant: "muted" },
+          { label: "How it works", href: "how-it-works.html", variant: "muted" },
           {
             label: "Private materials",
             href: "investors.html",
@@ -29,7 +29,7 @@ export function ExpertsApp(): React.JSX.Element {
       >
         <MarketingHero
           align="left"
-          eyebrow="Domain experts and future stewards"
+          eyebrow="Domain experts and future leaders"
           title="Bring the expertise a shared system cannot invent."
           subtitle="Metropolis is exploring how reusable business capabilities can support distinct companies. The shared operating system is only one layer; each market still requires real domain judgment, evidence, and operating knowledge."
         />
@@ -54,9 +54,9 @@ export function ExpertsApp(): React.JSX.Element {
                   "Share a costly, fragmented, or poorly served problem where better planning and operation could matter.",
               },
               {
-                title: "Explore future stewardship",
+                title: "Explore future leadership",
                 description:
-                  "When a real company has customers and domain needs that justify dedicated human leadership, a steward may help guide it.",
+                  "When a real company has customers and domain needs that justify dedicated human leadership, the right person may help guide it.",
                 tone: "soft",
               },
             ]}
@@ -66,8 +66,8 @@ export function ExpertsApp(): React.JSX.Element {
         <MarketingSection
           align="left"
           eyebrow="The relationship"
-          title="The system drives. Humans steer where judgment matters."
-          lead="Metropolis is not recruiting operators into existing portfolio companies today. Interest is exploratory: a way to build relationships with people whose expertise could shape research, challenge assumptions, or eventually help steward a company that earns the need."
+          title="AI-native teams execute. People lead where judgment matters."
+          lead="Metropolis is not recruiting operators into existing portfolio companies today. Interest is exploratory: a way to build relationships with people whose expertise could shape research, challenge assumptions, or eventually help lead a company that earns the need."
         />
 
         <CallToAction

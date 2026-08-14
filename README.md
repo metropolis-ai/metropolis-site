@@ -19,8 +19,9 @@ Pages** at **gometropolis.ai**.
 
 | File | Access | Purpose |
 | --- | --- | --- |
-| `index.html` | public | Landing — the studio thesis, shared capabilities, compounding knowledge, CTAs |
-| `experts.html` | public | For domain experts and future stewards — challenge the thesis, introduce a market, or explore stewardship |
+| `index.html` | public | Landing — the studio thesis, founder story, present proof, and ways in |
+| `how-it-works.html` | public | The operating model, founder governance, capability design, and future direction |
+| `experts.html` | public | For domain experts and future leaders — challenge the thesis, introduce a market, or share expertise |
 | `investors.html` | **gated** | Passphrase gate → decrypts and shows the private thesis (deeper materials as they're completed) |
 
 Each is a Vite entry that mounts a React app from `src/<page>/`, composed from the
@@ -50,7 +51,7 @@ re-running `node build.cjs`.
 
 ```bash
 pnpm install         # installs deps incl. polis (SHA-pinned git dep); see AGENTS.md for keyless-env note
-pnpm dev             # Vite dev server for all three pages
+pnpm dev             # Vite dev server for all four pages
 pnpm build           # emits the static site into dist/
 node build.cjs        # re-encrypt the hub into public/docs.enc.js (after editing a *.src.* doc)
 ```

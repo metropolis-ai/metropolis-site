@@ -114,7 +114,7 @@ The public narrative primarily serves:
 
 - Potential investors and trusted mentors evaluating the thesis, founder, and
   long-term institutional ambition.
-- Domain experts and possible future company stewards who may contribute
+- Domain experts and possible future company leaders who may contribute
   judgment the shared system cannot invent.
 - Potential collaborators who understand that Metropolis is early and want to
   help test or extend the thesis.
