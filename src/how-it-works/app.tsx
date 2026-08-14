@@ -193,7 +193,11 @@ export function HowItWorksApp(): React.JSX.Element {
               <Button asChild variant="secondary">
                 <a href="index.html">Return home</a>
               </Button>
-              <Button asChild variant="outline">
+              <Button
+                asChild
+                variant="outline"
+                className="border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              >
                 <a href="experts.html">Share your expertise</a>
               </Button>
             </>
