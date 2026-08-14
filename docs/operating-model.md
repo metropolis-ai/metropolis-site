@@ -73,14 +73,16 @@ Access remains bounded. Shared methods and infrastructure can compound across
 the studio while sensitive company, customer, financial, and strategic context
 stays within the business that owns it.
 
-## The founder steers; the system drives
+## The founder leads; the system executes
 
 Metropolis is designed to execute without continuous supervision, but not
 without governance.
 
-The founder sets direction, allocates attention and resources, defines the
-quality bar, and remains responsible for consequential decisions. Between
-those moments, the system coordinates and performs the work.
+The founder sets strategy, chooses where to act, allocates attention and
+resources, maintains a view of the institution, defines the quality bar, and
+remains responsible for consequential decisions. The system translates that
+direction into coordinated work and returns results that inform what happens
+next.
 
 Two gates remain explicitly human:
 
@@ -91,9 +93,9 @@ Two gates remain explicitly human:
    strategic decisions, and sensitive or irreversible actions return to the
    founder for judgment.
 
-The purpose of autonomy is not to remove responsibility. It is to concentrate
-human attention where judgment has the highest value, while allowing the work
-between those decisions to continue.
+The purpose of autonomy is not to remove leadership or responsibility. It is to
+concentrate human attention where strategy and judgment have the highest value,
+while allowing the work between those decisions to continue.
 
 ## How work moves
 

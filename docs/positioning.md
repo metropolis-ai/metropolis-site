@@ -210,7 +210,7 @@ Prefer:
 - Company-building institution
 - Build thesis
 - Shared or reusable business capabilities
-- The operating system drives; the founder steers
+- The founder leads; the system executes
 - Independently valuable portfolio companies
 - Data, schemas, workflows, and accumulated knowledge
 
