@@ -136,7 +136,7 @@ the code.
 
 - `pnpm install` — installs deps incl. polis (git dep). See sharp edge #1 for
   keyless envs.
-- `pnpm dev` — Vite dev server (all three pages).
+- `pnpm dev` — Vite dev server (all four pages).
 - `pnpm build` — static `dist/` (what CI deploys).
 - `node build.cjs` (or `pnpm encrypt`) — re-encrypt the hub into
   `public/docs.enc.js` (reads the passphrase from `.env`).

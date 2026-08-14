@@ -168,15 +168,26 @@ real.
 
 ### Public homepage
 
-The homepage should carry the shortest complete version of the argument:
+The homepage should carry the shortest complete version of the argument—what,
+why, present proof, portfolio thesis, and ways in:
 
 1. The institutional idea.
 2. The personal origin: “when I don't know something, I build a system to
    figure it out.”
-3. The build thesis and reusable company-building machinery.
+3. A brief pointer to the build thesis, linking to the How It Works page for
+   the reusable company-building machinery in depth.
 4. The founder's relevant operating experience.
 5. Honest evidence of what has been built so far.
 6. Paths to the private materials and expert conversation.
+
+### How It Works page
+
+This page carries the operating model in full depth: the agent hierarchy,
+governed workflows, bounded shared knowledge, capability decomposition, the
+founder's decision gates, and the sequencing of what comes next. It states
+plainly that engineering is the proven working team, product and planning are
+beginning to emerge, other business functions remain future direction, and a
+financial model waits for a real finance capability to own it.
 
 ### Experts page
 
