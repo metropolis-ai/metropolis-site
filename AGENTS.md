@@ -37,6 +37,20 @@ the code.
   docs (`build.cjs`'s `TREE`); public pages describe them functionally instead
   (e.g. "knowledge," "planning," "execution"), matching every existing page's
   convention.
+- **Grounding external/market claims.** For claims about the outside world
+  the thesis argues from (moats, vertical AI economics, the studio model,
+  build-vs-buy) — as opposed to claims about what Metropolis itself has
+  shipped, covered by the bullet above — start from `docs/research-base.md`
+  before re-researching. It cites eight verified external sources against the
+  three thesis claims in `docs/positioning.md`, including the strongest
+  counter-argument to the thesis (counter-positioning theory says reusable
+  shared machinery is not a durable moat) written down deliberately rather
+  than avoided. The same sources are landed as `reference` nodes in the
+  `metropolis` ailexandria namespace (ids prefixed `source-`, tagged
+  `thesis-evidence`, linked to `metropolis-vision-north-star`) — query them
+  with `python3 ~/.ailexandria/cli.py query "<topic>" -n metropolis --json -k
+  8` instead of re-fetching URLs. Extend the file and vault entries as new
+  evidence is found rather than starting a parallel list.
 - **Static output is preserved.** `pnpm build` (`vite build`) emits a fully static
   `dist/` (HTML/CSS/JS + everything in `public/`). `public/` holds the committed
   static assets served verbatim: `docs.enc.js` (the encrypted hub bundle), `CNAME`
