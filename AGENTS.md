@@ -22,6 +22,21 @@ the code.
   here in `app.tsx`. Public-facing copy should track the institutional frame,
   message hierarchy, and language guardrails in `docs/positioning.md` — the
   source of truth for how Metropolis describes itself.
+- **Grounding architecture/capability claims.** Before publishing a copy claim
+  about what the studio's system can actually do (a workflow, a shipped
+  engine, an execution capability), check it against real evidence rather than
+  writing from the operating-model docs alone: query the `metropolis`
+  ailexandria namespace (`python3 ~/.ailexandria/cli.py query "<topic>" -n
+  metropolis --json -k 8`, or the `recall` skill) for the underlying design
+  notes and shipped PRs, and check the Metropolis planning-space board (`metro`
+  skill) for the work item's real status. Public copy should state plainly
+  what is shipped vs. still the direction of travel — see
+  `docs/positioning.md`'s "Separate present evidence from future ambition."
+  Internal component codenames (e.g. the workflow engine, the knowledge vault)
+  are named explicitly only in the gated investor hub's `resource-*.src.*`
+  docs (`build.cjs`'s `TREE`); public pages describe them functionally instead
+  (e.g. "knowledge," "planning," "execution"), matching every existing page's
+  convention.
 - **Static output is preserved.** `pnpm build` (`vite build`) emits a fully static
   `dist/` (HTML/CSS/JS + everything in `public/`). `public/` holds the committed
   static assets served verbatim: `docs.enc.js` (the encrypted hub bundle), `CNAME`

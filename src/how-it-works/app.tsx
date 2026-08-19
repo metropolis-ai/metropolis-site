@@ -82,6 +82,46 @@ export function HowItWorksApp(): React.JSX.Element {
         </MarketingSection>
 
         <MarketingSection
+          id="components"
+          align="left"
+          eyebrow="What it is built from"
+          title="Knowledge, planning, execution, and portfolio companies are one system at different scopes."
+          lead="Broken into components, the studio has four moving parts. Each is real today in some working form; none is finished. The gap between what exists and what remains is stated plainly rather than smoothed over."
+        >
+          <FeatureGrid
+            minColumnWidth={260}
+            items={[
+              {
+                eyebrow: "Knowledge",
+                title: "A shared base that grounds every decision",
+                description:
+                  "Research, decisions, methods, and plans accumulate in a common base that specialists retrieve from before they act. New knowledge enters through a human-reviewed proposal—merge, split, or supersede—never silently, and never outside the boundary of the business that owns it.",
+              },
+              {
+                eyebrow: "Planning",
+                title: "Explicit workflows, not one-shot prompts",
+                description:
+                  "Work moves through config-driven workflow graphs with defined inputs, outputs, and review gates. One of the first was built to read the studio's own code and produce a grounded account of what each part does and how it connects—the studio explaining itself to itself, with any correction routed through the same human gate as every other change.",
+                tone: "brand",
+              },
+              {
+                eyebrow: "Execution",
+                title: "A local fleet today; a hosted layer next",
+                description:
+                  "Vetted, founder-approved work is carried out by an agent fleet running today. Viewing any session live, seeing aggregate activity across everything in flight, and removing dependence on one machine is the direction of travel—not yet built.",
+              },
+              {
+                eyebrow: "Portfolio companies",
+                title: "The same machinery at a narrower scope",
+                description:
+                  "A portfolio company runs this system for one business instead of the whole studio—the same knowledge discipline, the same planning workflows, the same execution model. Each keeps its own market, product, and private context. None operates publicly yet.",
+                tone: "soft",
+              },
+            ]}
+          />
+        </MarketingSection>
+
+        <MarketingSection
           align="left"
           eyebrow="Interchangeable parts"
           title="Start with the work—not the job title."
