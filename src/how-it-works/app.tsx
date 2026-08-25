@@ -8,7 +8,7 @@ import {
   MarketingShell,
 } from "@metropolis-ai/marketing-site-kit";
 import { metropolisBrand } from "../brand";
-import { MetropolisMark, SiteFooter } from "../components/chrome";
+import { MetropolisMark, SiteFooter, SiteNav } from "../components/chrome";
 
 /**
  * How It Works — deliberately FIVE sections plus hero and CTA.
@@ -29,12 +29,12 @@ export function HowItWorksApp(): React.JSX.Element {
     <ThemeProvider brand={metropolisBrand}>
       <MarketingShell
         brandMark={<MetropolisMark />}
-        navLinks={[
+        actions={<SiteNav links={[
           { label: "Home", href: "index.html" },
           { label: "Consulting", href: "consulting.html", variant: "muted" },
           { label: "Experts", href: "experts.html" },
           { label: "Private materials", href: "investors.html", variant: "button" },
-        ]}
+        ]} />}
         footer={<SiteFooter />}
       >
         <MarketingHero

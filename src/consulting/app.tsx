@@ -10,14 +10,14 @@ import {
 } from "@metropolis-ai/marketing-site-kit";
 import { metropolisBrand } from "../brand";
 import { ContactForm } from "../components/contact-form";
-import { MetropolisMark, SiteFooter } from "../components/chrome";
+import { MetropolisMark, SiteFooter, SiteNav } from "../components/chrome";
 
 export function ConsultingApp(): React.JSX.Element {
   return (
     <ThemeProvider brand={metropolisBrand}>
       <MarketingShell
         brandMark={<MetropolisMark />}
-        navLinks={[
+        actions={<SiteNav links={[
           { label: "Home", href: "index.html" },
           { label: "How it works", href: "how-it-works.html", variant: "muted" },
           { label: "Experts", href: "experts.html" },
@@ -26,7 +26,7 @@ export function ConsultingApp(): React.JSX.Element {
             href: "investors.html",
             variant: "button",
           },
-        ]}
+        ]} />}
         footer={<SiteFooter contactHref="#contact" />}
       >
         <MarketingHero
