@@ -17,6 +17,12 @@ Short form: **Metropolis is an AI-native company-building institution.**
 not merely make software for startups or collect unrelated experiments. Its
 productive activity is repeatedly turning theses into operating companies.
 
+Since 2026-08-25 that machinery also serves outside companies through a
+consulting practice. This does not change what Metropolis is — the studio
+remains the frame and the proof environment — but consulting is a present-tense
+activity, not a hypothetical extension, and it is the fastest available test of
+whether the machinery holds up against companies Metropolis did not build.
+
 ## The origin
 
 Metropolis began while I was exploring ideas for AI-native startups. The ideas
@@ -160,9 +166,17 @@ workflows can be encoded and operated as systems.
 ### 6. Separate present evidence from future ambition
 
 Show what exists and is used inside Metropolis today. Describe portfolio-wide
-reuse, differentiated economics, outside consulting, investment, and
-acquisition as hypotheses or possible institutional extensions until they are
-real.
+reuse, differentiated economics, investment, and acquisition as hypotheses or
+possible institutional extensions until they are real.
+
+**Consulting is now an exception, because it became real (2026-08-25).**
+Metropolis takes outside engagements today: AI transformation and scalability
+work built on the platform, and custom AI-native builds. It may be described in
+the present tense. What must still be separated is *which capability* is
+proven: AI-native software delivery and the governance around it has real
+operating history; other business functions are earlier, and consulting copy
+should say so rather than implying the whole operating model is available for
+hire. Investment, acquisition, and fund management remain future-tense.
 
 ## Page roles
 
@@ -178,7 +192,9 @@ why, present proof, portfolio thesis, and ways in:
    the reusable company-building machinery in depth.
 4. The founder's relevant operating experience.
 5. Honest evidence of what has been built so far.
-6. Paths to the private materials and expert conversation.
+6. The two ways Metropolis works: the studio building its own portfolio, and
+   the consulting practice applying the same machinery for other companies.
+7. Paths to consulting, the private materials, and expert conversation.
 
 ### How It Works page
 
@@ -189,17 +205,56 @@ plainly that engineering is the proven working team, product and planning are
 beginning to emerge, other business functions remain future direction, and a
 financial model waits for a real finance capability to own it.
 
+### Consulting page
+
+The consulting page describes present-tense outside engagements: running a
+customer's function on the platform as governed agent workflows, or building a
+custom AI-native system. It should stay honest about which capabilities have
+operating history behind them (software delivery and its governance) versus
+which are earlier, state that the customer keeps ownership and their private
+context stays bounded, and never imply Metropolis is a general-purpose
+consultancy. The credibility argument is that the studio is its own first
+customer, so the machinery is not a product invented for clients.
+
 ### Experts page
 
 The experts page should explain why reusable systems do not eliminate domain
 expertise. Shared capabilities provide leverage; real markets still require
 human judgment, evidence, and operating knowledge.
 
+Note the two senses of "experts," which are easy to conflate and must not be:
+a16z's *platform of experts* is an in-house operating team shared across a
+portfolio — the thing Metropolis argues is better implemented as agents over a
+compounding knowledge base (see "The lineage" on How It Works). The experts
+this page addresses are outside domain specialists Metropolis wants to engage,
+largely as *inputs*: to build knowledge, inform models, and supply judgment the
+system cannot invent. The first is a delivery mechanism; the second is a
+source. Copy should never suggest agents replace the second.
+
 ### Public investor gate
 
 The gate should state the thesis plainly, identify the private materials as
 working documents, and avoid implying that a complete fund, portfolio, or
 financial model already exists.
+
+### The two blogs
+
+There are two, for two audiences, and they are deliberately not the same
+stream.
+
+- **Public blog** (`content/blog/*.md`, rendered to static pages by
+  `scripts/build-blog.mjs`). Written for prospective consulting clients. Its
+  job is demonstrated craft: how a function is decomposed, how workflows are
+  governed and evaluated, what makes AI work fail in practice. Safe for
+  competitors and prospects to read.
+- **Investor blog** (behind the passphrase gate, in `build.cjs`'s `TREE`).
+  Written for investors and trusted advisors. Its value is candour —
+  strategy, what is early, what was got wrong, what the evidence does and does
+  not yet support.
+
+A post belongs to exactly one of these. Moving investor-blog candour onto the
+public blog damages the consulting argument; moving public-blog marketing tone
+into the investor blog destroys the reason that channel is trusted.
 
 ### Private materials
 
@@ -209,9 +264,11 @@ possible long-term shape of the institution. That shape may eventually include:
 
 - A build arm that creates and operates new portfolio companies.
 - An advisory arm that applies mature capabilities to outside organizations.
+  **This one has started** — see the consulting practice, live since
+  2026-08-25. Its scope is narrower than the eventual arm described here.
 - An investment arm that buys or invests in companies that can be transformed.
 
-These are directions, not present-tense claims.
+Except where noted, these are directions, not present-tense claims.
 
 ## Language guardrails
 
@@ -243,8 +300,10 @@ Avoid:
 
 - Presenting future portfolio companies as if they already operate.
 - Claiming proven portfolio-wide economics before they have been demonstrated.
-- Implying a current consulting, investment, acquisition, or fund-management
-  business.
+- Implying a current investment, acquisition, or fund-management business.
+  (Consulting is now real and may be stated in the present tense — see message
+  hierarchy item 6 — but not to the point of implying every business function
+  is available for hire.)
 - Describing the architecture itself as the moat.
 - Making the founder story a résumé detached from the thesis.
 - Generic “AI venture studio” language that could describe any company.

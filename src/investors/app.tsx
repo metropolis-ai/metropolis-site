@@ -65,11 +65,14 @@ export function InvestorsApp(): React.JSX.Element {
               <a href="index.html" className="hover:text-foreground">
                 Home
               </a>
-              <a href="how-it-works.html" className="hover:text-foreground">
+              <a href="how-it-works.html" className="hidden hover:text-foreground sm:inline">
                 How it works
               </a>
+              <a href="consulting.html" className="hover:text-foreground">
+                Consulting
+              </a>
               <a href="experts.html" className="hidden hover:text-foreground sm:inline">
-                Work with us
+                Experts
               </a>
             </nav>
           </div>
@@ -92,7 +95,7 @@ export function InvestorsApp(): React.JSX.Element {
             eyebrow: "Private materials",
             title: "The Metropolis thesis",
             description:
-              "Enter the access passphrase to read the private thesis and, as they are completed, deeper material on the capability, knowledge, operating, and evidence systems.",
+              "Enter the access passphrase to read the private thesis, an ongoing blog on what is being built and why, and—as they are completed—deeper material on the capability, knowledge, operating, and evidence systems.",
             passphrasePlaceholder: "Access passphrase",
             unlockLabel: "Unlock",
             lockLabel: "Lock",

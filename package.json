@@ -7,8 +7,9 @@
   "type": "module",
   "packageManager": "pnpm@8.8.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node scripts/build-blog.mjs && vite",
+    "build": "node scripts/build-blog.mjs && vite build",
+    "blog": "node scripts/build-blog.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "encrypt": "node build.cjs",

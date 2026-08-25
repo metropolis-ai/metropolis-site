@@ -24,8 +24,27 @@ const crypto = require('crypto');
 // The gated hub. `src` = a plaintext file to encrypt (git-ignored). A source is
 // required only when `required: true` is explicit; nodes without a source may
 // intentionally render as draft placeholders.
+//
+// THE BLOG LIVES BEHIND THE GATE, not on a public page. Posts are written for
+// investors and trusted advisors, so they get the same passphrase gate as every
+// other private doc — there is no public blog surface and no RSS.
+//
+// To publish a post:
+//   1. Write the plaintext as `resource-post-<slug>.src.md` at the repo root
+//      (git-ignored by the `*.src.md` rule), either by hand or via
+//      `node sync-doc.cjs <vault-node.md> --slug post-<slug>` to pull it from an
+//      ailexandria node. Note sync-doc.cjs hardcodes the `resource-` prefix.
+//   2. Add a node to the `Blog` children below, NEWEST FIRST:
+//        { title: '2026-08-25 — Why the studio is the first customer',
+//          src: 'resource-post-why-the-studio-is-the-first-customer.src.md' }
+//   3. Run `node build.cjs` to re-encrypt `public/docs.enc.js`, and commit it.
+// A child with no `src` renders as a "draft" placeholder rather than failing, so
+// the section can carry a coming-soon row before the first post exists.
 const TREE = [
   { title: 'Thesis', src: 'plan.src.html', required: true },
+  { title: 'Blog', children: [
+    { title: 'First post — coming soon' },
+  ]},
   /* Resource tree hidden 2026-07-07 until these docs are re-reviewed and refreshed.
      Restore by deleting the comment wrapper: the opening marker above, closing marker below.
   { title: 'How it works', children: [

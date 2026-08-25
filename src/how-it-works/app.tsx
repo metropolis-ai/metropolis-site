@@ -18,8 +18,8 @@ export function HowItWorksApp(): React.JSX.Element {
         brandMark={<MetropolisMark />}
         navLinks={[
           { label: "Home", href: "index.html" },
-          { label: "Operating model", href: "#operating-model", variant: "muted" },
-          { label: "Work with us", href: "experts.html" },
+          { label: "Consulting", href: "consulting.html", variant: "muted" },
+          { label: "Experts", href: "experts.html" },
           { label: "Private materials", href: "investors.html", variant: "button" },
         ]}
         footer={<SiteFooter />}
@@ -35,6 +35,57 @@ export function HowItWorksApp(): React.JSX.Element {
             </Button>
           }
         />
+
+        <MarketingSection
+          id="lineage"
+          align="left"
+          eyebrow="Where this comes from"
+          title="An evolution of the platform-VC thesis, for the AI generation."
+          lead="Metropolis did not invent the idea that a shared platform can make a portfolio of companies more valuable. a16z made that argument and built a firm around it. Three of its ideas are worth taking seriously—and each one changes shape when the platform can be operated by software rather than staffed by people."
+        >
+          <FeatureGrid
+            minColumnWidth={300}
+            items={[
+              {
+                eyebrow: "Investment thesis → build thesis",
+                title: "Stop picking the winners. Build them.",
+                description:
+                  "A venture firm starts from an investment thesis: form a view about where value will be created, then find and fund the teams creating it. Metropolis starts from a build thesis and commits its own resources to building there. The reason this is now plausible is that the cost of creating software has collapsed—a16z's own 2026 analysis argues the binding constraint has moved from cost-of-creation to diffusion across an organization. A studio organized to be that diffusion is a different instrument than one organized to fund it.",
+              },
+              {
+                eyebrow: "Eating the world → composing the company",
+                title: "Software stopped arriving from outside the company.",
+                description:
+                  "Andreessen's 2011 argument was that software companies would disrupt every industry from the outside in. That happened—but the company doing the disrupting still ran on people, meetings, and handoffs. The AI-generation sequel is that software no longer only builds the product a company sells; governed agent workflows can perform and coordinate the functions of the company itself. The thing being eaten next is the org chart.",
+                tone: "brand",
+              },
+              {
+                eyebrow: "A platform of experts → agents on a knowledge graph",
+                title: "The shared advantage becomes software that compounds.",
+                description:
+                  "a16z's structural innovation as a firm was an in-house platform—talent, recruiting, marketing, business development—shared across the portfolio, giving founders an advantage capital alone could not. That platform is staffed by people, so it scales by hiring and its knowledge lives in individual heads. Metropolis implements the same idea as agents operating on an explicit, connected knowledge base: methods, decisions, evidence, and lessons that accumulate through use instead of walking out the door.",
+              },
+            ]}
+          />
+        </MarketingSection>
+
+        <MarketingSection
+          align="left"
+          eyebrow="Where domain experts fit"
+          title="The platform does not replace the expert. It is how the expert scales."
+          lead="Reusable machinery is leverage, not judgment. Real markets still require people who know what outsiders miss—which is precisely why Metropolis wants them. The difference from a staffed platform is what happens to that judgment afterward: it is captured as explicit knowledge the system retrieves from, evaluates against, and improves, rather than remaining tacit in the person who supplied it."
+        >
+          <HighlightBanner eyebrow="The honest objection" tone="muted">
+            <b>Reusable machinery is not, by itself, a moat.</b> A
+            well-capitalized competitor can copy shared agent infrastructure
+            and governed workflows without harming itself, which is the test a
+            durable advantage has to pass. If Metropolis earns one, it will not
+            be the scaffolding—it will be the accumulated, company-specific
+            domain knowledge and operating history built on top of it, and the
+            evidence that it works. That is a claim still being tested, stated
+            here as a claim.
+          </HighlightBanner>
+        </MarketingSection>
 
         <MarketingSection
           align="left"

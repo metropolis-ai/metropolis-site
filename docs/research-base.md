@@ -51,6 +51,48 @@ sourced without him.
 
 ---
 
+## Lineage sources — the ideas the thesis positions itself against
+
+These are **not evidence for the three claims** and should not be counted as
+such. They are the prior arguments Metropolis says it is an evolution of, cited
+so the public "lineage" copy (homepage banner, How It Works § "Where this comes
+from") describes them accurately instead of from memory. Their job is framing;
+the claims still have to be carried by the evidence below.
+
+**Marc Andreessen, ["Why Software Is Eating the
+World"](https://a16z.com/why-software-is-eating-the-world/), The Wall Street
+Journal, 2011-08-20** (a16z hosts the reprint). Verified by direct fetch:
+author, venue, and date confirmed. The thesis in its own words — "Software is
+eating the world" — with the operative prediction being that "many more
+industries [will] be disrupted by software, with new world-beating Silicon
+Valley companies doing the disruption."
+
+Relevance, stated precisely so the copy does not overreach: Andreessen's
+argument is about software companies disrupting industries **from the
+outside**. It says nothing about the internal operation of the disrupting
+company, which in 2011 still ran on people, meetings, and handoffs. Metropolis's
+"evolution" claim is therefore a genuine extension rather than a restatement:
+the next thing software composes is the company itself. Note this is a framing
+claim, not an evidenced one — no source here demonstrates that agent-run
+business functions outperform human ones at scale.
+
+**a16z's platform model.** The firm's second structural idea — an in-house
+operating platform (talent, recruiting, marketing, business development) shared
+across the portfolio as a differentiator beyond capital — is described in the
+public copy as the thing Metropolis reimplements as agents over a compounding
+knowledge base. **Status: not separately sourced here.** It is widely known and
+uncontroversial, but if public copy ever makes a specific factual claim about
+how a16z's platform is staffed, sized, or performs, that claim needs its own
+verified source first. Today's copy stays at the level of the general model.
+
+**A caution that applies to all lineage copy.** Positioning against a
+well-known thesis borrows credibility cheaply. Every lineage claim on the site
+should still answer "and what is the reason to believe the evolution works?"
+from the evidence sections below — the counter-positioning section in
+particular, which is the reason the shared machinery cannot be called the moat.
+
+---
+
 ## Claim 1 — the machinery of company-building can be reused
 
 ### Support
@@ -243,6 +285,9 @@ ids, all linked to `metropolis-vision-north-star` and tagged
 - `source-bvp-atlas-future-of-ai-is-vertical`
 - `source-a16z-notes-on-ai-apps-2026`
 - `source-stanford-codex-defensible-moats-vertical-ai`
+- `source-andreessen-software-eating-the-world` — a LINEAGE source (see
+  "Lineage sources" above), tagged `thesis-lineage` rather than
+  `thesis-evidence` so it is not retrieved as if it evidenced a claim.
 - `source-mckee-linkedin-counter-positioning-unverified` — captured as a
   flagged lead, not a settled source; see "The seed source" above. Re-run
   `capture` for this id once the real LinkedIn URL is found, replacing the
