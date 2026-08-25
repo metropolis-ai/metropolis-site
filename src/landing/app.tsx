@@ -84,7 +84,7 @@ export function LandingApp(): React.JSX.Element {
           align="left"
           eyebrow="From studio to system"
           title="Company-building capabilities should not be recreated from zero."
-          lead="Venture studios began by sharing human expertise, services, capital, and playbooks. AI-native studios give smaller teams more leverage. Metropolis takes the next step: implement the functions of the studio itself as software."
+          lead="Venture studios began by sharing human expertise, services, capital, and playbooks. AI-native studios give smaller teams more leverage. Metropolis takes the next step: implement the functions of the studio itself as software, so a founder can lead more of an institution rather than merely complete more tasks."
         >
           <FeatureGrid
             minColumnWidth={250}
@@ -110,72 +110,7 @@ export function LandingApp(): React.JSX.Element {
               },
             ]}
           />
-        </MarketingSection>
 
-        <HighlightBanner eyebrow="The lineage" tone="muted">
-          <b>An evolution of the platform-VC idea, for the AI generation.</b>{" "}
-          a16z argued in 2011 that software would eat the world, then built an
-          in-house platform of experts to give its portfolio an advantage its
-          capital alone could not. Metropolis takes both ideas a step further:
-          software that composes the company itself, and a platform of experts
-          implemented as agents operating on knowledge that compounds with
-          use.{" "}
-          <a href="how-it-works.html" className="font-semibold underline">
-            Read the full argument →
-          </a>
-        </HighlightBanner>
-
-        <HighlightBanner eyebrow="The operating model" tone="brand">
-          <b>The founder leads. AI-native teams execute.</b> Metropolis connects
-          specialized agents, governed workflows, and institutional knowledge
-          so one founder can lead more of an institution—not merely complete
-          more tasks.
-        </HighlightBanner>
-
-        <MarketingSection
-          align="left"
-          eyebrow="How it works"
-          title="Build the organization around the work—not inherited job titles."
-          lead="Metropolis decomposes business functions into explicit responsibilities, workflows, knowledge, tools, evaluations, permissions, and human decision gates. The result is an institution designed for AI from the beginning."
-        >
-          <Button asChild variant="outline">
-            <a href="how-it-works.html">Explore the operating model →</a>
-          </Button>
-        </MarketingSection>
-
-        <MarketingSection
-          align="left"
-          eyebrow="Two ways Metropolis works"
-          title="A studio that builds its own companies—and a consulting practice that builds for others."
-          lead="The same machinery serves both. The studio is where it is proven; consulting is where it meets companies we did not build, which is the fastest way to find out where it genuinely holds up."
-        >
-          <FeatureGrid
-            minColumnWidth={300}
-            items={[
-              {
-                eyebrow: "The studio",
-                title: "Build and operate our own portfolio",
-                description:
-                  "Identify where AI changes what is worth building, then plan, build, and operate companies using shared agents, infrastructure, knowledge, and governed workflows. The first portfolio company is in build now.",
-                tone: "brand",
-              },
-              {
-                eyebrow: "Consulting",
-                title: "AI transformation, scalability, and custom builds →",
-                description:
-                  "Engagements with companies we did not found: re-express a function that will not scale as governed agent workflows on the platform, or have an AI-native system built directly. Open now.",
-                href: "consulting.html",
-              },
-            ]}
-          />
-        </MarketingSection>
-
-        <MarketingSection
-          align="left"
-          eyebrow="One operating system · many companies"
-          title="Build the company-building machinery once—then keep improving it."
-          lead="Portfolio companies stay distinct, but they inherit the machinery instead of rebuilding it: agents, workflows, infrastructure, evaluation, operating knowledge, and the business systems every company needs. What is shared is the foundation—never the market, product, or private context that makes a company valuable."
-        >
           <div className="mx-auto max-w-5xl">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               {["Company A", "Company B", "Company C"].map((company) => (
@@ -216,12 +151,51 @@ export function LandingApp(): React.JSX.Element {
               private context stays its own.
             </p>
           </div>
+          <HighlightBanner eyebrow="The lineage" tone="muted">
+            <b>An evolution of the platform-VC idea, for the AI generation.</b>{" "}
+            a16z argued in 2011 that software would eat the world, then built an
+            in-house platform of experts to give its portfolio an advantage its
+            capital alone could not. Metropolis takes both ideas a step further:
+            software that composes the company itself, and a platform of experts
+            implemented as agents operating on knowledge that compounds with
+            use.{" "}
+            <a href="how-it-works.html" className="font-semibold underline">
+              Read the full argument →
+            </a>
+          </HighlightBanner>
         </MarketingSection>
 
         <MarketingSection
           align="left"
-          eyebrow="Starting inside Metropolis"
-          title="The studio is its own first customer."
+          eyebrow="Two ways Metropolis works"
+          title="A studio that builds its own companies—and a consulting practice that builds for others."
+          lead="The same machinery serves both. The studio is where it is proven; consulting is where it meets companies we did not build, which is the fastest way to find out where it genuinely holds up."
+        >
+          <FeatureGrid
+            minColumnWidth={300}
+            items={[
+              {
+                eyebrow: "The studio",
+                title: "Build and operate our own portfolio",
+                description:
+                  "Identify where AI changes what is worth building, then plan, build, and operate companies using shared agents, infrastructure, knowledge, and governed workflows. The first portfolio company is in build now.",
+                tone: "brand",
+              },
+              {
+                eyebrow: "Consulting",
+                title: "AI transformation, scalability, and custom builds →",
+                description:
+                  "Engagements with companies we did not found: re-express a function that will not scale as governed agent workflows on the platform, or have an AI-native system built directly. Open now.",
+                href: "consulting.html",
+              },
+            ]}
+          />
+        </MarketingSection>
+
+        <MarketingSection
+          align="left"
+          eyebrow="Evidence so far"
+          title="Metropolis is built by Metropolis."
           lead="Engineering is the first working team: agents plan, build, review, and deliver Metropolis’s own software under founder governance. The shared business systems are being proven against the first portfolio company now, and consulting takes the same machinery to companies Metropolis did not build."
         />
 
