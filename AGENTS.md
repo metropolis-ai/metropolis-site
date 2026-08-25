@@ -124,10 +124,15 @@ runs last in the build and moves each `dist/<page>.html` to
 - **Careful with blanket find-and-replace here.** Some `"blog.html"` strings are
   output FILE PATHS in `build-blog.mjs`, not links; rewriting those breaks the
   build. Same for the page entries in `vite.config.ts`, which are build inputs.
-- The redirect stubs are `noindex` and carry a canonical link to the new URL.
-  Nobody was sent an `.html` link, but the site had been live for weeks and
-  search engines had indexed those paths. Remove the stubs once the old URLs
-  stop showing up.
+- **Do not leave anything at the old `<page>.html` path.** The first version of
+  this left a meta-refresh stub there, which broke the most valuable URL form:
+  Pages matches `consulting.html` BEFORE it considers the `consulting/`
+  directory, so `/consulting` — extensionless and slash-less, the form people
+  type and paste — served a page titled "Moved", and Slack/iMessage/LinkedIn
+  previews unfurled as "Moved" instead of the real title. With the old path
+  absent, Pages falls through to the directory and redirects `/consulting` →
+  `/consulting/`. The cost is that old `.html` URLs 404, which was accepted
+  because none had been shared.
 
 ## Prerendering (why the React pages are not empty shells)
 
