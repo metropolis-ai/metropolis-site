@@ -13,9 +13,12 @@ the code.
   themed with **metropolis's brand tokens** (`src/brand.ts` — deep indigo, Spectral
   serif; the same identity as `projects/metropolis/src/config`'s `metropolisBrand`).
   It is **not** hand-built HTML anymore.
-- Four page entries at the repo root: `index.html` (landing),
-  `how-it-works.html`, `experts.html`, `investors.html`. Each mounts a React root from
+- Five React page entries at the repo root: `index.html` (landing),
+  `how-it-works.html`, `consulting.html`, `experts.html`, `investors.html`. Each
+  mounts a React root from
   `src/<page>/main.tsx` → `app.tsx`, wrapped in the kit's `<ThemeProvider brand>`.
+  The **public blog** is a sixth surface but is deliberately NOT React — see
+  "The two blogs" below.
   Section content is composed from kit components (`MarketingShell`,
   `MarketingHero`, `HighlightBanner`, `MarketingSection`, `FeatureGrid`,
   `CallToAction`, `GatedHub`). The kit carries zero domain copy — all copy lives
@@ -102,6 +105,42 @@ the code.
   emitted `dist`). When it does, the aliases/preset paths and these workarounds go
   away and this repo just imports built packages.
 
+## The two blogs (public and gated — do not merge them)
+
+There are two blogs, for two audiences, and the split is deliberate. See
+`docs/positioning.md` § "The two blogs" for the editorial rule; this section is
+the mechanics.
+
+- **Public blog — static HTML, for consulting demand.** Sources are committed
+  markdown at `content/blog/<slug>.md` (frontmatter: `title`, `date` as
+  `YYYY-MM-DD`, `summary`, optional `draft: true`). `scripts/build-blog.mjs`
+  renders them to `blog.html` (index) + `blog/<slug>.html` (one per post),
+  which are **git-ignored build output**, then `vite.config.ts` globs those
+  files in as extra MPA inputs so they share the site's CSS bundle. `pnpm dev`
+  and `pnpm build` run the generator first; `pnpm blog` runs it alone.
+  - **It is static HTML on purpose, not a React page.** The whole point is
+    search traffic for consulting, so each post must be a crawlable document
+    with its own title/meta/OG tags — not an empty `#root`. The built pages
+    contain zero `<script>` tags.
+  - **Theming sharp edge:** `<ThemeProvider>` injects brand tokens as inline
+    CSS variables at RUNTIME, which a React-free page never receives. The
+    generator resolves the real tokens at build time through Vite's own
+    `ssrLoadModule` (same resolver, same aliases, same `src/brand.ts`) and
+    inlines them. Do NOT replace this with a hardcoded palette — it would
+    silently drift from `src/brand.ts`.
+  - Tailwind must scan the generated files or the blog ships unstyled;
+    `tailwind.config.cjs` globs `./blog.html` and `./blog/**/*.html`.
+  - Markdown body styling is real CSS (`ARTICLE_CSS` in the generator), written
+    against the theme's CSS variables, because rendered markdown carries no
+    Tailwind classes. Same reason `DOC_CSS` exists for the gated hub.
+- **Investor blog — behind the passphrase gate.** A `Blog` group in
+  `build.cjs`'s `TREE`, encrypted exactly like every other gated doc. Posts are
+  `resource-post-<slug>.src.md` (git-ignored plaintext); add a `TREE` node
+  newest-first and re-run `node build.cjs`. A node with no `src` renders as a
+  "draft" placeholder rather than failing, which is how the section carries a
+  coming-soon row before the first post exists. Full instructions are in the
+  comment above `TREE`.
+
 ## The gated investor hub (load-bearing — preserved through the migration)
 
 - The passphrase gate is **unchanged client-side AES-256-GCM**. `build.cjs` walks a
@@ -165,8 +204,13 @@ the code.
 
 - `pnpm install` — installs deps incl. polis (git dep). See sharp edge #1 for
   keyless envs.
-- `pnpm dev` — Vite dev server (all four pages).
-- `pnpm build` — static `dist/` (what CI deploys).
+- `pnpm dev` — generates the public blog, then runs the Vite dev server (all
+  five React pages plus the generated blog pages).
+- `pnpm build` — generates the public blog, then emits static `dist/` (what CI
+  deploys). The blog generator MUST run before `vite build`: its output files
+  are Vite inputs and Tailwind content sources.
+- `pnpm blog` — regenerate the public blog pages alone (after editing
+  `content/blog/*.md`).
 - `node build.cjs` (or `pnpm encrypt`) — re-encrypt the hub into
   `public/docs.enc.js` (reads the passphrase from `.env`).
 - **The Node CLI helpers use the `.cjs` extension on purpose.** `package.json`

@@ -19,6 +19,7 @@ export function ExpertsApp(): React.JSX.Element {
         navLinks={[
           { label: "Home", href: "index.html" },
           { label: "How it works", href: "how-it-works.html", variant: "muted" },
+          { label: "Consulting", href: "consulting.html", variant: "muted" },
           {
             label: "Private materials",
             href: "investors.html",

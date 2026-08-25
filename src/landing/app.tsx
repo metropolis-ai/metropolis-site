@@ -18,9 +18,9 @@ export function LandingApp(): React.JSX.Element {
       <MarketingShell
         brandMark={<MetropolisMark />}
         navLinks={[
-          { label: "Thesis", href: "#thesis", variant: "muted" },
           { label: "How it works", href: "how-it-works.html", variant: "muted" },
-          { label: "Work with us", href: "experts.html" },
+          { label: "Consulting", href: "consulting.html", variant: "muted" },
+          { label: "Experts", href: "experts.html" },
           {
             label: "Private materials",
             href: "investors.html",
@@ -112,6 +112,19 @@ export function LandingApp(): React.JSX.Element {
           />
         </MarketingSection>
 
+        <HighlightBanner eyebrow="The lineage" tone="muted">
+          <b>An evolution of the platform-VC idea, for the AI generation.</b>{" "}
+          a16z argued in 2011 that software would eat the world, then built an
+          in-house platform of experts to give its portfolio an advantage its
+          capital alone could not. Metropolis takes both ideas a step further:
+          software that composes the company itself, and a platform of experts
+          implemented as agents operating on knowledge that compounds with
+          use.{" "}
+          <a href="how-it-works.html" className="font-semibold underline">
+            Read the full argument →
+          </a>
+        </HighlightBanner>
+
         <HighlightBanner eyebrow="The operating model" tone="brand">
           <b>The founder leads. AI-native teams execute.</b> Metropolis connects
           specialized agents, governed workflows, and institutional knowledge
@@ -128,6 +141,33 @@ export function LandingApp(): React.JSX.Element {
           <Button asChild variant="outline">
             <a href="how-it-works.html">Explore the operating model →</a>
           </Button>
+        </MarketingSection>
+
+        <MarketingSection
+          align="left"
+          eyebrow="Two ways Metropolis works"
+          title="A studio that builds its own companies—and a consulting practice that builds for others."
+          lead="The same machinery serves both. The studio is where it is proven; consulting is where it meets companies we did not build, which is the fastest way to find out where it genuinely holds up."
+        >
+          <FeatureGrid
+            minColumnWidth={300}
+            items={[
+              {
+                eyebrow: "The studio",
+                title: "Build and operate our own portfolio",
+                description:
+                  "Identify where AI changes what is worth building, then plan, build, and operate companies using shared agents, infrastructure, knowledge, and governed workflows. No portfolio company operates publicly yet.",
+                tone: "brand",
+              },
+              {
+                eyebrow: "Consulting",
+                title: "AI transformation, scalability, and custom builds →",
+                description:
+                  "Engagements with companies we did not found: re-express a function that will not scale as governed agent workflows on the platform, or have an AI-native system built directly. Open now.",
+                href: "consulting.html",
+              },
+            ]}
+          />
         </MarketingSection>
 
         <MarketingSection
@@ -198,6 +238,13 @@ export function LandingApp(): React.JSX.Element {
                 description:
                   "Follow the hierarchy, workflow, knowledge, and founder-decision systems from strategic direction to reviewed delivery.",
                 href: "how-it-works.html",
+              },
+              {
+                eyebrow: "Companies with a function that will not scale",
+                title: "Work with us →",
+                description:
+                  "AI transformation and scalability on the platform, or a custom AI-native build. Engagements are open now.",
+                href: "consulting.html",
               },
               {
                 eyebrow: "Potential investors and trusted mentors",

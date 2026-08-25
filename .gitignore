@@ -7,6 +7,10 @@ node_modules/
 .DS_Store
 # Build output — the static site is produced by `vite build` (deployed by CI).
 dist/
+# Generated public-blog pages (scripts/build-blog.mjs). The SOURCES live in
+# content/blog/*.md and ARE committed; these HTML files are build artifacts.
+/blog.html
+/blog/
 # Local collaborative review artifacts are never part of the shipped site.
 .lavish/
 # Plaintext strategy and session records remain local; only encrypted hub output ships.

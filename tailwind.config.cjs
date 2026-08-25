@@ -15,8 +15,16 @@ module.exports = {
   presets: [preset],
   content: [
     "./index.html",
+    "./how-it-works.html",
+    "./consulting.html",
     "./experts.html",
     "./investors.html",
+    // The public blog is generated static HTML (scripts/build-blog.mjs) whose
+    // utility classes exist ONLY in those files — Tailwind must scan them or the
+    // blog ships unstyled. They are generated before vite build, so they exist
+    // by the time PostCSS runs.
+    "./blog.html",
+    "./blog/**/*.html",
     "./src/**/*.{ts,tsx}",
     "./node_modules/polis/libs/ui-kit/src/**/*.{ts,tsx}",
     "./node_modules/polis/libs/marketing-site-kit/src/**/*.{ts,tsx}",

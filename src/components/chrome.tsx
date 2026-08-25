@@ -24,9 +24,15 @@ export function SiteFooter({
   return (
     <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
       <span>metropolis · one operating system, many companies</span>
-      <a href={contactHref} className="text-muted-foreground hover:text-foreground">
-        get in touch
-      </a>
+      {/* The header nav is full at four links, so the public blog lives here. */}
+      <span className="flex items-center gap-4">
+        <a href="blog.html" className="text-muted-foreground hover:text-foreground">
+          notes
+        </a>
+        <a href={contactHref} className="text-muted-foreground hover:text-foreground">
+          get in touch
+        </a>
+      </span>
     </div>
   );
 }
