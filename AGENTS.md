@@ -105,6 +105,30 @@ the code.
   emitted `dist`). When it does, the aliases/preset paths and these workarounds go
   away and this repo just imports built packages.
 
+## Extensionless URLs
+
+Pages serve at `/consulting/`, not `/consulting.html`. `scripts/clean-urls.mjs`
+runs last in the build and moves each `dist/<page>.html` to
+`dist/<page>/index.html`, leaving a redirect stub at the old path.
+
+- **Why this shape.** GitHub Pages does not strip `.html` — that is a
+  Netlify/Cloudflare feature. What it does natively is serve `<dir>/index.html`
+  for a directory and redirect `/consulting` to `/consulting/`. So emitting
+  directory indexes is the whole trick: no server config, no router.
+- **Internal links MUST be root-absolute** (`/experts/`, not `experts.html`). A
+  relative link on a page served at `/consulting/` resolves to
+  `/consulting/experts/`. `scripts/verify-links.mjs` fails the build if any
+  internal link is relative or does not resolve — it exists because this class
+  of mistake is silent: the page still builds and deploys, and only 404s for a
+  visitor.
+- **Careful with blanket find-and-replace here.** Some `"blog.html"` strings are
+  output FILE PATHS in `build-blog.mjs`, not links; rewriting those breaks the
+  build. Same for the page entries in `vite.config.ts`, which are build inputs.
+- The redirect stubs are `noindex` and carry a canonical link to the new URL.
+  Nobody was sent an `.html` link, but the site had been live for weeks and
+  search engines had indexed those paths. Remove the stubs once the old URLs
+  stop showing up.
+
 ## Prerendering (why the React pages are not empty shells)
 
 `pnpm build` runs `scripts/prerender.mjs` **after** `vite build`. It renders each
@@ -238,11 +262,12 @@ the mechanics.
   keyless envs.
 - `pnpm dev` — generates the public blog, then runs the Vite dev server (all
   five React pages plus the generated blog pages).
-- `pnpm build` — generates the public blog, emits static `dist/`, then
-  prerenders the React pages (what CI deploys). Order is load-bearing: the blog
-  generator MUST run before `vite build` (its output files are Vite inputs and
-  Tailwind content sources), and `prerender.mjs` MUST run after it (it rewrites
-  files in `dist/`).
+- `pnpm build` — the full pipeline (what CI deploys), in a load-bearing order:
+  `build-blog.mjs` (its output files are Vite inputs and Tailwind content
+  sources, so it MUST precede `vite build`) → `vite build` → `prerender.mjs`
+  (rewrites files in `dist/`) → `clean-urls.mjs` (restructures `dist/` into
+  directory indexes) → `verify-links.mjs` (fails the build on a broken or
+  relative internal link).
 - `pnpm blog` — regenerate the public blog pages alone (after editing
   `content/blog/*.md`).
 - `node build.cjs` (or `pnpm encrypt`) — re-encrypt the hub into

@@ -18,13 +18,13 @@ export function LandingApp(): React.JSX.Element {
       <MarketingShell
         brandMark={<MetropolisMark />}
         actions={<SiteNav links={[
-          { label: "How it works", href: "how-it-works.html", variant: "muted" },
-          { label: "Consulting", href: "consulting.html", variant: "muted" },
-            { label: "Notes", href: "blog.html", variant: "muted" },
-          { label: "Experts", href: "experts.html" },
+          { label: "How it works", href: "/how-it-works/", variant: "muted" },
+          { label: "Consulting", href: "/consulting/", variant: "muted" },
+            { label: "Notes", href: "/blog/", variant: "muted" },
+          { label: "Experts", href: "/experts/" },
           {
             label: "Private materials",
-            href: "investors.html",
+            href: "/investors/",
             variant: "button",
           },
         ]} />}
@@ -45,7 +45,7 @@ export function LandingApp(): React.JSX.Element {
           actions={
             <>
               <Button asChild>
-                <a href="investors.html">Private materials</a>
+                <a href="/investors/">Private materials</a>
               </Button>
               <Button asChild variant="outline">
                 <a href="#thesis">Read the thesis</a>
@@ -160,7 +160,7 @@ export function LandingApp(): React.JSX.Element {
             software that composes the company itself, and a platform of experts
             implemented as agents operating on knowledge that compounds with
             use.{" "}
-            <a href="how-it-works.html" className="font-semibold underline">
+            <a href="/how-it-works/" className="font-semibold underline">
               Read the full argument →
             </a>
           </HighlightBanner>
@@ -187,7 +187,7 @@ export function LandingApp(): React.JSX.Element {
                 title: "AI transformation, scalability, and custom builds →",
                 description:
                   "Engagements with companies we did not found: re-express a function that will not scale as governed agent workflows on the platform, or have an AI-native system built directly. Open now.",
-                href: "consulting.html",
+                href: "/consulting/",
               },
             ]}
           />
@@ -213,28 +213,28 @@ export function LandingApp(): React.JSX.Element {
                 title: "See how Metropolis works →",
                 description:
                   "Follow the hierarchy, workflow, knowledge, and founder-decision systems from strategic direction to reviewed delivery.",
-                href: "how-it-works.html",
+                href: "/how-it-works/",
               },
               {
                 eyebrow: "Companies with a function that will not scale",
                 title: "Work with us →",
                 description:
                   "AI transformation and scalability on the platform, or a custom AI-native build. Engagements are open now.",
-                href: "consulting.html",
+                href: "/consulting/",
               },
               {
                 eyebrow: "Potential investors and trusted mentors",
                 title: "Private materials →",
                 description:
                   "Read the private thesis and, as they are completed, deeper materials on the capability, knowledge, operating, and evidence systems.",
-                href: "investors.html",
+                href: "/investors/",
               },
               {
                 eyebrow: "Domain experts and future leaders",
                 title: "Share what you know →",
                 description:
                   "Challenge the thesis, introduce a domain, or explore future leadership when a real company earns it.",
-                href: "experts.html",
+                href: "/experts/",
               },
             ]}
           />

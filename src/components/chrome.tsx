@@ -7,7 +7,7 @@ import * as React from "react";
 export function MetropolisMark(): React.JSX.Element {
   return (
     <a
-      href="index.html"
+      href="/"
       className="font-heading text-lg font-bold tracking-tight text-foreground no-underline"
     >
       metropolis
@@ -113,7 +113,7 @@ export function SiteNav({ links }: { links: SiteNavLink[] }): React.JSX.Element 
 }
 
 export function SiteFooter({
-  contactHref = "experts.html",
+  contactHref = "/experts/",
 }: {
   contactHref?: string;
 }): React.JSX.Element {
@@ -122,7 +122,7 @@ export function SiteFooter({
       <span>metropolis · one operating system, many companies</span>
       {/* "notes" is also in the header nav; kept here as a secondary path. */}
       <span className="flex items-center gap-4">
-        <a href="blog.html" className="text-muted-foreground hover:text-foreground">
+        <a href="/blog/" className="text-muted-foreground hover:text-foreground">
           notes
         </a>
         <a href={contactHref} className="text-muted-foreground hover:text-foreground">

@@ -8,7 +8,7 @@
   "packageManager": "pnpm@8.8.0",
   "scripts": {
     "dev": "node scripts/build-blog.mjs && vite",
-    "build": "node scripts/build-blog.mjs && vite build && node scripts/prerender.mjs",
+    "build": "node scripts/build-blog.mjs && vite build && node scripts/prerender.mjs && node scripts/clean-urls.mjs && node scripts/verify-links.mjs",
     "blog": "node scripts/build-blog.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.json",

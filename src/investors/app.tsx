@@ -65,11 +65,11 @@ export function InvestorsApp(): React.JSX.Element {
                 header because the gate replaces the whole shell once unlocked. */}
             <SiteNav
               links={[
-                { label: "Home", href: "index.html" },
-                { label: "How it works", href: "how-it-works.html", variant: "muted" },
-                { label: "Consulting", href: "consulting.html", variant: "muted" },
-                { label: "Notes", href: "blog.html", variant: "muted" },
-                { label: "Experts", href: "experts.html" },
+                { label: "Home", href: "/" },
+                { label: "How it works", href: "/how-it-works/", variant: "muted" },
+                { label: "Consulting", href: "/consulting/", variant: "muted" },
+                { label: "Notes", href: "/blog/", variant: "muted" },
+                { label: "Experts", href: "/experts/" },
               ]}
             />
           </div>

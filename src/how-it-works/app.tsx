@@ -30,11 +30,11 @@ export function HowItWorksApp(): React.JSX.Element {
       <MarketingShell
         brandMark={<MetropolisMark />}
         actions={<SiteNav links={[
-          { label: "Home", href: "index.html" },
-          { label: "Consulting", href: "consulting.html", variant: "muted" },
-            { label: "Notes", href: "blog.html", variant: "muted" },
-          { label: "Experts", href: "experts.html" },
-          { label: "Private materials", href: "investors.html", variant: "button" },
+          { label: "Home", href: "/" },
+          { label: "Consulting", href: "/consulting/", variant: "muted" },
+            { label: "Notes", href: "/blog/", variant: "muted" },
+          { label: "Experts", href: "/experts/" },
+          { label: "Private materials", href: "/investors/", variant: "button" },
         ]} />}
         footer={<SiteFooter />}
       >
@@ -200,7 +200,7 @@ export function HowItWorksApp(): React.JSX.Element {
           lead="Metropolis is not designing an operating model in the abstract and asking a future company to trust it—it is building the studio by using the studio to build itself. Engineering is the first working team: agents plan, build, review, and deliver software under founder governance. Product and planning follow, then the remaining business functions, each leaving behind reusable responsibilities, workflows, evaluations, and knowledge. The shared business systems are being proven against the first portfolio company now, and the same machinery goes to outside companies through consulting—the fastest way to find out where it holds up against businesses Metropolis did not build."
         >
           <Button asChild variant="outline">
-            <a href="consulting.html">How consulting engagements work →</a>
+            <a href="/consulting/">How consulting engagements work →</a>
           </Button>
         </MarketingSection>
 
@@ -212,14 +212,14 @@ export function HowItWorksApp(): React.JSX.Element {
           actions={
             <>
               <Button asChild variant="secondary">
-                <a href="index.html">Return home</a>
+                <a href="/">Return home</a>
               </Button>
               <Button
                 asChild
                 variant="outline"
                 className="border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary"
               >
-                <a href="experts.html">Share your expertise</a>
+                <a href="/experts/">Share your expertise</a>
               </Button>
             </>
           }

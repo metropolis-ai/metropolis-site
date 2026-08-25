@@ -58,8 +58,11 @@ export function ContactForm({
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    // Tag which page the submission came from (mirrors the old forms.js).
-    const source = window.location.pathname.replace(/^.*\//, "") || "index.html";
+    // Tag which page the submission came from (mirrors the old forms.js). URLs
+    // are directory-style ("/consulting/"), so take the last non-empty segment
+    // — a trailing slash would otherwise make every page report the same thing.
+    const source =
+      window.location.pathname.replace(/\/+$/, "").split("/").pop() || "home";
     setBusy(true);
     setStatus({ message: "", kind: "idle" });
     try {
