@@ -13,7 +13,7 @@ import {
 } from "@metropolis-ai/marketing-site-kit";
 import { metropolisBrand } from "../brand";
 import { ContactForm } from "../components/contact-form";
-import { MetropolisMark } from "../components/chrome";
+import { MetropolisMark, SiteNav } from "../components/chrome";
 import { createMetropolisGatedHubSource } from "./gated-hub-source";
 
 /** The request-access aside beside the gate for invited private readers. */
@@ -61,20 +61,16 @@ export function InvestorsApp(): React.JSX.Element {
         <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
             <MetropolisMark />
-            <nav className="flex items-center gap-4 text-sm font-medium text-muted-foreground">
-              <a href="index.html" className="hover:text-foreground">
-                Home
-              </a>
-              <a href="how-it-works.html" className="hidden hover:text-foreground sm:inline">
-                How it works
-              </a>
-              <a href="consulting.html" className="hover:text-foreground">
-                Consulting
-              </a>
-              <a href="experts.html" className="hidden hover:text-foreground sm:inline">
-                Experts
-              </a>
-            </nav>
+            {/* Same responsive nav as the shell pages; this page hand-rolls its
+                header because the gate replaces the whole shell once unlocked. */}
+            <SiteNav
+              links={[
+                { label: "Home", href: "index.html" },
+                { label: "How it works", href: "how-it-works.html", variant: "muted" },
+                { label: "Consulting", href: "consulting.html", variant: "muted" },
+                { label: "Experts", href: "experts.html" },
+              ]}
+            />
           </div>
         </header>
       ) : null}

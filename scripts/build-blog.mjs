@@ -108,13 +108,36 @@ const navClass = (v) =>
       ? "text-sm text-muted-foreground transition-colors hover:text-foreground"
       : "text-sm font-medium text-foreground/80 transition-colors hover:text-foreground";
 
+/**
+ * The responsive header, mirroring <SiteNav> in src/components/chrome.tsx —
+ * inline links at md+, a <details> hamburger below it. It is a <details> rather
+ * than a scripted toggle precisely so THESE pages keep working: they ship zero
+ * script tags on purpose. Keep the two copies in step.
+ */
+const HAMBURGER_SVG =
+  '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+  '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+
+const dropdownLinkClass = (v) =>
+  v === "button"
+    ? "rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground"
+    : "rounded-lg px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground";
+
 const header = () => `
 <header class="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
   <div class="mx-auto w-full max-w-6xl px-6 flex h-16 items-center justify-between gap-4">
     <a href="/index.html" class="font-heading text-lg font-bold tracking-tight text-foreground no-underline">metropolis</a>
-    <nav class="flex items-center gap-4 sm:gap-6">
-      ${NAV.map((l) => `<a href="${l.href}" class="${navClass(l.variant)}">${esc(l.label)}</a>`).join("\n      ")}
-    </nav>
+    <div class="flex items-center">
+      <div class="hidden items-center gap-4 md:flex md:gap-6">
+        ${NAV.map((l) => `<a href="${l.href}" class="${navClass(l.variant)}">${esc(l.label)}</a>`).join("\n        ")}
+      </div>
+      <details class="relative md:hidden">
+        <summary aria-label="Open menu" class="flex cursor-pointer list-none items-center rounded-md p-2 text-foreground transition-colors hover:bg-muted [&amp;::-webkit-details-marker]:hidden">${HAMBURGER_SVG}</summary>
+        <div class="absolute right-0 top-full z-40 mt-2 flex w-56 flex-col gap-1 rounded-xl border border-border bg-background p-2 shadow-lg">
+          ${NAV.map((l) => `<a href="${l.href}" class="${dropdownLinkClass(l.variant)}">${esc(l.label)}</a>`).join("\n          ")}
+        </div>
+      </details>
+    </div>
   </div>
 </header>`;
 
