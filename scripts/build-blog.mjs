@@ -94,10 +94,12 @@ async function resolveBrandTheme() {
 
 /* --- chrome, mirroring MarketingShell/SiteFooter so the blog matches the site --- */
 
+// Mirrors the React pages' nav, minus a self-link (these ARE the notes pages).
 const NAV = [
   { label: "Home", href: "/index.html", variant: "link" },
   { label: "How it works", href: "/how-it-works.html", variant: "muted" },
   { label: "Consulting", href: "/consulting.html", variant: "muted" },
+  { label: "Experts", href: "/experts.html", variant: "link" },
   { label: "Private materials", href: "/investors.html", variant: "button" },
 ];
 

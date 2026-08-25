@@ -68,6 +68,7 @@ export function InvestorsApp(): React.JSX.Element {
                 { label: "Home", href: "index.html" },
                 { label: "How it works", href: "how-it-works.html", variant: "muted" },
                 { label: "Consulting", href: "consulting.html", variant: "muted" },
+                { label: "Notes", href: "blog.html", variant: "muted" },
                 { label: "Experts", href: "experts.html" },
               ]}
             />
