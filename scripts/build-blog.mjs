@@ -183,7 +183,7 @@ ${theme.fontImportUrl ? `<link rel="stylesheet" href="${esc(theme.fontImportUrl)
 <style>${ARTICLE_CSS}</style>
 </head>
 <body>
-<div data-polis-space="${esc(theme.name)}" data-layout="${esc(theme.layout)}" data-color-scheme="light" style="${esc(style)}" class="min-h-screen bg-background font-sans text-foreground antialiased flex flex-col">
+<div data-color-scheme="light" style="${esc(style)}" class="min-h-screen bg-background font-sans text-foreground antialiased flex flex-col">
 ${header()}
 <main class="flex-1">
 ${body}

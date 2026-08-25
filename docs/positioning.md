@@ -31,7 +31,15 @@ specialized agents and infrastructure for researching markets, making plans,
 building products, and operating companies.
 
 I didn't know which individual startup was worth building. And when I don't
-know something, I build a system to figure it out.
+know something, I build a system to figure it out. When I want something to
+scale, I build a system for that too — and both instincts point at the same
+place here.
+
+Those are the two halves of the origin, and copy should carry both. Uncertainty
+explains why a *system* rather than a single company; scale explains why the
+system is built to run *more than one*. Telling only the first half makes
+Metropolis sound like an exploratory exercise rather than an institution
+designed from the outset to repeat.
 
 That system became Metropolis. Instead of recreating the machinery of
 company-building around every new idea, Metropolis develops it once and
@@ -163,20 +171,37 @@ Connect the founder's AWS and Amazon FSx experience—especially founding and
 leading a team to automate geographic expansion—to the conviction that hard
 workflows can be encoded and operated as systems.
 
-### 6. Separate present evidence from future ambition
+### 6. Be accurate without apologizing
 
-Show what exists and is used inside Metropolis today. Describe portfolio-wide
-reuse, differentiated economics, investment, and acquisition as hypotheses or
-possible institutional extensions until they are real.
+Do not claim something operates when it does not. Investment, acquisition, and
+fund management are future-tense. Portfolio companies that are not live are not
+described as live.
 
-**Consulting is now an exception, because it became real (2026-08-25).**
-Metropolis takes outside engagements today: AI transformation and scalability
-work built on the platform, and custom AI-native builds. It may be described in
-the present tense. What must still be separated is *which capability* is
-proven: AI-native software delivery and the governance around it has real
-operating history; other business functions are earlier, and consulting copy
-should say so rather than implying the whole operating model is available for
-hire. Investment, acquisition, and fund management remain future-tense.
+**That is the whole rule. Do not extend it into hedging every sentence**
+(revised 2026-08-25, captain). An earlier version of this guardrail produced
+pages that apologized for themselves — "none is finished", "not yet built",
+"not claims of completed capability", and worst, meta-commentary about being
+honest such as "stated plainly rather than smoothed over". Read by an investor
+or a prospective client, that is not integrity; it reads as an absence of
+conviction, and it buries the work that has actually shipped.
+
+So:
+
+- **State near-term direction as direction.** "A hosted layer with live session
+  visibility is next" — not "the direction of travel, not yet built."
+- **Never write a sentence whose job is to advertise the honesty of another
+  sentence.** Cut those outright.
+- **One qualifier is enough.** If a section already says a thing is being
+  proven, it does not also need a closing caveat repeating that.
+- **Keep a caveat where it is load-bearing and confident.** "The machinery
+  itself is not the moat — what compounds on top of it is" stays: it is a sharp
+  claim, backed by `docs/research-base.md`, and it reads as conviction.
+
+**Consulting is present tense** (real since 2026-08-25): outside engagements,
+platform-based transformation work, and custom AI-native builds. Consulting copy
+should still be clear that software delivery and its governance carry the most
+operating history while other business functions are earlier — stated once, as a
+qualification a serious buyer wants, not as an apology.
 
 ## Page roles
 
@@ -186,8 +211,9 @@ The homepage should carry the shortest complete version of the argument—what,
 why, present proof, portfolio thesis, and ways in:
 
 1. The institutional idea.
-2. The personal origin: “when I don't know something, I build a system to
-   figure it out.”
+2. The personal origin, **both halves**: “when I don't know something, I build a
+   system to figure it out — when I want something to scale, I build a system
+   for that too.”
 3. A brief pointer to the build thesis, linking to the How It Works page for
    the reusable company-building machinery in depth.
 4. The founder's relevant operating experience.
@@ -198,12 +224,23 @@ why, present proof, portfolio thesis, and ways in:
 
 ### How It Works page
 
-This page carries the operating model in full depth: the agent hierarchy,
-governed workflows, bounded shared knowledge, capability decomposition, the
-founder's decision gates, and the sequencing of what comes next. It states
-plainly that engineering is the proven working team, product and planning are
-beginning to emerge, other business functions remain future direction, and a
-financial model waits for a real finance capability to own it.
+**Five sections, and it stays five** (set 2026-08-25 after the page reached
+twelve and began repeating itself under competing taxonomies): where this comes
+from, what it is built from, interchangeable parts, founder governance, where it
+is going. Depth here means a reader finishing it, not a longer page. Before
+adding a section, check whether the point belongs inside one of the five.
+
+"What it is built from" describes the **shared platform**, and it goes stale
+faster than anything else on the site. It covers both the agent operating system
+(knowledge, planning, execution) and the business systems portfolio companies
+inherit rather than rebuild — customer records and lifecycle, product events and
+analytics signals, payments and billing, canonical customer identity, and model
+training and serving. Before changing a capability claim here, check the board
+and the vault per `AGENTS.md`; describe components **functionally**, since
+internal codenames belong only in the gated investor hub.
+
+The first portfolio company may be referenced but is **not named publicly** until
+that is decided on its own terms.
 
 ### Consulting page
 
