@@ -32,6 +32,7 @@ export function HowItWorksApp(): React.JSX.Element {
         actions={<SiteNav links={[
           { label: "Home", href: "index.html" },
           { label: "Consulting", href: "consulting.html", variant: "muted" },
+            { label: "Notes", href: "blog.html", variant: "muted" },
           { label: "Experts", href: "experts.html" },
           { label: "Private materials", href: "investors.html", variant: "button" },
         ]} />}
