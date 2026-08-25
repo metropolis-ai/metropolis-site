@@ -120,10 +120,10 @@ export function SiteFooter({
   return (
     <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
       <span>metropolis · one operating system, many companies</span>
-      {/* "notes" is also in the header nav; kept here as a secondary path. */}
+      {/* "blog" is also in the header nav; kept here as a secondary path. */}
       <span className="flex items-center gap-4">
         <a href="/blog/" className="text-muted-foreground hover:text-foreground">
-          notes
+          blog
         </a>
         <a href={contactHref} className="text-muted-foreground hover:text-foreground">
           get in touch

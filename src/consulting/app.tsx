@@ -20,7 +20,7 @@ export function ConsultingApp(): React.JSX.Element {
         actions={<SiteNav links={[
           { label: "Home", href: "/" },
           { label: "How it works", href: "/how-it-works/", variant: "muted" },
-            { label: "Notes", href: "/blog/", variant: "muted" },
+            { label: "Blog", href: "/blog/", variant: "muted" },
           { label: "Experts", href: "/experts/" },
           {
             label: "Private materials",
