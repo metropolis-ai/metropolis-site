@@ -17,13 +17,13 @@ export function ExpertsApp(): React.JSX.Element {
       <MarketingShell
         brandMark={<MetropolisMark />}
         actions={<SiteNav links={[
-          { label: "Home", href: "index.html" },
-          { label: "How it works", href: "how-it-works.html", variant: "muted" },
-          { label: "Consulting", href: "consulting.html", variant: "muted" },
-            { label: "Notes", href: "blog.html", variant: "muted" },
+          { label: "Home", href: "/" },
+          { label: "How it works", href: "/how-it-works/", variant: "muted" },
+          { label: "Consulting", href: "/consulting/", variant: "muted" },
+            { label: "Notes", href: "/blog/", variant: "muted" },
           {
             label: "Private materials",
-            href: "investors.html",
+            href: "/investors/",
             variant: "button",
           },
         ]} />}

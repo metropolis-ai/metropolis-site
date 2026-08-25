@@ -96,11 +96,11 @@ async function resolveBrandTheme() {
 
 // Mirrors the React pages' nav, minus a self-link (these ARE the notes pages).
 const NAV = [
-  { label: "Home", href: "/index.html", variant: "link" },
-  { label: "How it works", href: "/how-it-works.html", variant: "muted" },
-  { label: "Consulting", href: "/consulting.html", variant: "muted" },
-  { label: "Experts", href: "/experts.html", variant: "link" },
-  { label: "Private materials", href: "/investors.html", variant: "button" },
+  { label: "Home", href: "/", variant: "link" },
+  { label: "How it works", href: "/how-it-works/", variant: "muted" },
+  { label: "Consulting", href: "/consulting/", variant: "muted" },
+  { label: "Experts", href: "/experts/", variant: "link" },
+  { label: "Private materials", href: "/investors/", variant: "button" },
 ];
 
 const navClass = (v) =>
@@ -128,7 +128,7 @@ const dropdownLinkClass = (v) =>
 const header = () => `
 <header class="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
   <div class="mx-auto w-full max-w-6xl px-6 flex h-16 items-center justify-between gap-4">
-    <a href="/index.html" class="font-heading text-lg font-bold tracking-tight text-foreground no-underline">metropolis</a>
+    <a href="/" class="font-heading text-lg font-bold tracking-tight text-foreground no-underline">metropolis</a>
     <div class="flex items-center">
       <div class="hidden items-center gap-4 md:flex md:gap-6">
         ${NAV.map((l) => `<a href="${l.href}" class="${navClass(l.variant)}">${esc(l.label)}</a>`).join("\n        ")}
@@ -149,8 +149,8 @@ const footer = () => `
     <div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
       <span>metropolis · one operating system, many companies</span>
       <span class="flex items-center gap-4">
-        <a href="/blog.html" class="text-muted-foreground hover:text-foreground">notes</a>
-        <a href="/consulting.html" class="text-muted-foreground hover:text-foreground">get in touch</a>
+        <a href="/blog/" class="text-muted-foreground hover:text-foreground">notes</a>
+        <a href="/consulting/" class="text-muted-foreground hover:text-foreground">get in touch</a>
       </span>
     </div>
   </div>
@@ -221,10 +221,10 @@ ${footer()}
 }
 
 function postPage(post, ctx) {
-  const canonical = `${SITE}/blog/${post.slug}.html`;
+  const canonical = `${SITE}/blog/${post.slug}/`;
   const body = `
 <article class="mx-auto w-full max-w-3xl px-6 py-16 sm:py-20">
-  <a href="/blog.html" class="text-sm text-muted-foreground transition-colors hover:text-foreground">← All posts</a>
+  <a href="/blog/" class="text-sm text-muted-foreground transition-colors hover:text-foreground">← All posts</a>
   <p class="mt-8 text-xs font-semibold uppercase tracking-[0.14em] text-primary">${esc(prettyDate(post.date))}</p>
   <h1 class="mt-3 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">${esc(post.title)}</h1>
   ${post.summary ? `<p class="mt-5 text-lg text-muted-foreground">${esc(post.summary)}</p>` : ""}
@@ -238,7 +238,7 @@ ${marked.parse(post.body)}
     <p class="text-xs font-semibold uppercase tracking-[0.14em] text-primary">Work with us</p>
     <h2 class="mt-3 font-heading text-2xl font-semibold">Have a function that will not scale?</h2>
     <p class="mx-auto mt-3 max-w-xl text-muted-foreground">Metropolis takes on AI transformation and custom build engagements. If the platform is the wrong answer for your problem, we will say so.</p>
-    <a href="/consulting.html" class="mt-6 inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90">See how consulting works</a>
+    <a href="/consulting/" class="mt-6 inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90">See how consulting works</a>
   </div>
 </section>`;
   return page({
@@ -256,7 +256,7 @@ function indexPage(posts, ctx) {
         .map(
           (p) => `
     <li class="border-t border-border py-8 first:border-t-0 first:pt-0">
-      <a href="/blog/${esc(p.slug)}.html" class="group block no-underline">
+      <a href="/blog/${esc(p.slug)}/" class="group block no-underline">
         <p class="text-xs font-semibold uppercase tracking-[0.14em] text-primary">${esc(prettyDate(p.date))}</p>
         <h2 class="mt-2 font-heading text-2xl font-semibold leading-snug tracking-tight text-foreground group-hover:text-primary sm:text-3xl">${esc(p.title)}</h2>
         ${p.summary ? `<p class="mt-3 text-muted-foreground">${esc(p.summary)}</p>` : ""}
@@ -278,7 +278,7 @@ function indexPage(posts, ctx) {
     title: "Notes from the studio — Metropolis",
     description:
       "Notes on building and operating companies with AI agents, governed workflows, and institutional knowledge—from the Metropolis studio and its consulting engagements.",
-    canonical: `${SITE}/blog.html`,
+    canonical: `${SITE}/blog/`,
     body,
     ...ctx,
   });
@@ -307,6 +307,9 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 for (const post of posts) {
   fs.writeFileSync(path.join(OUT_DIR, `${post.slug}.html`), postPage(post, ctx));
 }
+// NOTE: this is an output FILE PATH, not a link. The build emits blog.html and
+// blog/<slug>.html; scripts/clean-urls.mjs later restructures dist/ into
+// directory indexes so the URLs are /blog/ and /blog/<slug>/.
 fs.writeFileSync(path.join(root, "blog.html"), indexPage(posts, ctx));
 
 console.log(

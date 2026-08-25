@@ -18,13 +18,13 @@ export function ConsultingApp(): React.JSX.Element {
       <MarketingShell
         brandMark={<MetropolisMark />}
         actions={<SiteNav links={[
-          { label: "Home", href: "index.html" },
-          { label: "How it works", href: "how-it-works.html", variant: "muted" },
-            { label: "Notes", href: "blog.html", variant: "muted" },
-          { label: "Experts", href: "experts.html" },
+          { label: "Home", href: "/" },
+          { label: "How it works", href: "/how-it-works/", variant: "muted" },
+            { label: "Notes", href: "/blog/", variant: "muted" },
+          { label: "Experts", href: "/experts/" },
           {
             label: "Private materials",
-            href: "investors.html",
+            href: "/investors/",
             variant: "button",
           },
         ]} />}
@@ -41,7 +41,7 @@ export function ConsultingApp(): React.JSX.Element {
                 <a href="#contact">Start a conversation</a>
               </Button>
               <Button asChild variant="outline">
-                <a href="blog.html">Read how we work</a>
+                <a href="/blog/">Read how we work</a>
               </Button>
             </>
           }
