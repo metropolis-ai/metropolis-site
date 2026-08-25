@@ -13,13 +13,18 @@
  * for a directory request and redirect /consulting to /consulting/. So emitting
  * directory indexes is the whole trick; no server config and no router.
  *
- * REDIRECT STUBS. Each moved page also leaves a tiny stub at its OLD path
- * (dist/consulting.html) that redirects to the new one. The captain confirmed no
- * ".html" links were shared with anyone, but the site has been live for weeks so
- * search engines have indexed those paths, and a stub costs a few hundred bytes.
- * Each stub carries a canonical link to the new URL so the redirect consolidates
- * rather than splitting ranking. Delete them once the old URLs stop appearing in
- * logs or search results.
+ * NO REDIRECT STUBS — DELIBERATE, AND DO NOT ADD THEM BACK.
+ * The first version of this script left a meta-refresh stub at each old path
+ * (dist/consulting.html). That silently broke the most valuable URL form. Pages
+ * resolves a request for "/consulting" by looking for consulting.html BEFORE it
+ * considers the consulting/ directory, so the stub won the match and the
+ * extensionless, slash-less URL — the one people type and paste — served a page
+ * titled "Moved". Link previews in Slack, iMessage and LinkedIn unfurled as
+ * "Moved" rather than the real title.
+ * With no consulting.html present, Pages falls through to the directory and
+ * redirects /consulting -> /consulting/, which is what we want. The cost is that
+ * old ".html" URLs now 404; that was accepted because no such link was ever
+ * shared (captain, 2026-08-25) and the site is small enough to be re-crawled.
  *
  * INTERNAL LINKS MUST BE ROOT-ABSOLUTE. A page served at /consulting/ that links
  * to a relative "experts.html" would resolve to /consulting/experts.html. All
@@ -42,19 +47,6 @@ const TOP_LEVEL = [
   "blog.html",
 ];
 
-const stub = (to, title) => `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=${to}">
-<link rel="canonical" href="${to}">
-<meta name="robots" content="noindex">
-<title>${title}</title>
-</head>
-<body><p>This page moved to <a href="${to}">${to}</a>.</p></body>
-</html>
-`;
-
 let moved = 0;
 
 /** Move <dir>/<name>.html to <dir>/<name>/index.html, leaving a redirect stub. */
@@ -67,11 +59,11 @@ function toDirectoryIndex(relFile) {
 
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "index.html"), html);
-
-  const url = `/${slug}/`;
-  fs.writeFileSync(abs, stub(url, "Moved"));
+  // Remove the old path entirely: leaving anything here shadows the directory
+  // for slash-less requests. See the note above.
+  fs.rmSync(abs);
   moved++;
-  console.log(`clean-urls: ${relFile.padEnd(34)} -> ${slug}/index.html  (+stub)`);
+  console.log(`clean-urls: ${relFile.padEnd(34)} -> ${slug}/index.html`);
 }
 
 for (const file of TOP_LEVEL) toDirectoryIndex(file);
