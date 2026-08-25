@@ -56,8 +56,8 @@ export function LandingApp(): React.JSX.Element {
         <MarketingSection
           align="left"
           eyebrow="Why Metropolis"
-          title="When I don’t know something, I build a system to figure it out."
-          lead="Metropolis began while I was exploring ideas for AI-native startups. The ideas differed, but each required much of the same machinery: specialized agents and infrastructure for researching markets, making plans, building products, and operating companies. I didn’t know which individual startup was worth building, so I began building the system that could find out."
+          title="When I don’t know something, I build a system to figure it out. When I want something to scale, I build a system for that too."
+          lead="Metropolis began while I was exploring ideas for AI-native startups. The ideas differed, but each required much of the same machinery: specialized agents and infrastructure for researching markets, making plans, building products, and operating companies. I didn’t know which individual startup was worth building, so I built the system that could find out—and built it to run more than one company, because doing this once was never the point."
         >
           <FeatureGrid
             minColumnWidth={300}
@@ -156,7 +156,7 @@ export function LandingApp(): React.JSX.Element {
                 eyebrow: "The studio",
                 title: "Build and operate our own portfolio",
                 description:
-                  "Identify where AI changes what is worth building, then plan, build, and operate companies using shared agents, infrastructure, knowledge, and governed workflows. No portfolio company operates publicly yet.",
+                  "Identify where AI changes what is worth building, then plan, build, and operate companies using shared agents, infrastructure, knowledge, and governed workflows. The first portfolio company is in build now.",
                 tone: "brand",
               },
               {
@@ -174,7 +174,7 @@ export function LandingApp(): React.JSX.Element {
           align="left"
           eyebrow="One operating system · many companies"
           title="Build the company-building machinery once—then keep improving it."
-          lead="Portfolio companies remain distinct, but appropriate agents, workflows, infrastructure, evaluation methods, and operating knowledge can give each one a more capable starting point. Metropolis is testing how much of that foundation can be shared without flattening what makes each company valuable."
+          lead="Portfolio companies stay distinct, but they inherit the machinery instead of rebuilding it: agents, workflows, infrastructure, evaluation, operating knowledge, and the business systems every company needs. What is shared is the foundation—never the market, product, or private context that makes a company valuable."
         >
           <div className="mx-auto max-w-5xl">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -204,15 +204,16 @@ export function LandingApp(): React.JSX.Element {
                 The Metropolis operating system
               </p>
               <p className="mx-auto mt-2 max-w-2xl text-sm text-primary-foreground/80 sm:text-base">
-                Interchangeable business capabilities, governed workflows,
-                knowledge, evaluation, and an expanding library of reusable
-                parts.
+                Agents, governed workflows, knowledge, and evaluation—plus the
+                business systems a company needs but should not rebuild:
+                customer records and lifecycle, product events and analytics,
+                payments and billing, identity, and model training.
               </p>
             </div>
             <p className="mx-auto mt-5 max-w-3xl text-center text-sm text-muted-foreground">
-              The companies are conceptual. Shared capabilities and
-              company-private context remain distinct; cross-company reuse is
-              the thesis Metropolis is working to prove.
+              Company A, B, and C are illustrative. Everything below the line is
+              built once and inherited; each company's market, product, and
+              private context stays its own.
             </p>
           </div>
         </MarketingSection>
@@ -220,8 +221,8 @@ export function LandingApp(): React.JSX.Element {
         <MarketingSection
           align="left"
           eyebrow="Starting inside Metropolis"
-          title="The studio is the first proof environment."
-          lead="The founder currently uses AI agents and structured workflows to plan and deliver Metropolis’s software work. The broader studio operating system, portfolio-wide reuse, and differentiated economics remain the thesis—not claims of completed capability today."
+          title="The studio is its own first customer."
+          lead="Engineering is the first working team: agents plan, build, review, and deliver Metropolis’s own software under founder governance. The shared business systems are being proven against the first portfolio company now, and consulting takes the same machinery to companies Metropolis did not build."
         />
 
         <MarketingSection
@@ -268,7 +269,7 @@ export function LandingApp(): React.JSX.Element {
           tone="muted"
           eyebrow="Start a conversation"
           title="What capability or market should Metropolis understand?"
-          description="Share a perspective, problem, or domain. Your note is an input to our research—not a promise that a company already exists or will be launched."
+          description="Share a perspective, problem, or domain worth understanding. It becomes an input to our research."
           actions={
             <div id="contact">
               <ContactForm

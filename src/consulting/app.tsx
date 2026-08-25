@@ -110,11 +110,11 @@ export function ConsultingApp(): React.JSX.Element {
           title="We are the first customer."
           lead="Metropolis runs its own software delivery this way: agents plan, build, review, and deliver under founder governance, with the same knowledge discipline and decision gates we would bring to your company. The consulting practice is not a separate offering invented for clients—it is the studio's own machinery, and every engagement improves it."
         >
-          <HighlightBanner eyebrow="Stated plainly" tone="muted">
-            The capability with the most operating history behind it is
-            AI-native software delivery and the governance around it. Other
-            business functions are earlier. We will tell you which category
-            your problem falls into before you commit to anything.
+          <HighlightBanner eyebrow="Scope" tone="muted">
+            AI-native software delivery and the governance around it is where we
+            have the most operating history. Other business functions are
+            earlier. We will tell you which category your problem falls into
+            before you commit to anything.
           </HighlightBanner>
         </MarketingSection>
 
