@@ -105,6 +105,38 @@ the code.
   emitted `dist`). When it does, the aliases/preset paths and these workarounds go
   away and this repo just imports built packages.
 
+## Prerendering (why the React pages are not empty shells)
+
+`pnpm build` runs `scripts/prerender.mjs` **after** `vite build`. It renders each
+React page with `react-dom/server` and injects the HTML into the built
+`dist/<page>.html` in place of `<div id="root"></div>`, leaving the JS bundle
+alone so the page still hydrates.
+
+- **Why it exists.** Every page previously shipped as an empty SPA shell, so
+  curl, crawlers, and link-preview readers saw only `<title>` and one meta
+  description. The consulting page — the lead-generation destination — was
+  invisible to search.
+- **Why SSR and not a headless-browser snapshot.** A snapshot needs
+  puppeteer/playwright, i.e. a ~150MB Chrome download in CI on top of the
+  already-fragile private-polis install. `react-dom/server` ships with
+  `react-dom`, so this costs no new dependency. All five page components render
+  server-side unchanged — `ThemeProvider` already guards `window`, and no
+  initial markup depends on an effect.
+- **The client entries hydrate conditionally.** `src/<page>/main.tsx` calls
+  `hydrateRoot` when `#root` already has children (the built page) and
+  `createRoot` when it does not (`pnpm dev`). Do not "simplify" this back to a
+  bare `createRoot`: on a prerendered page that throws the baked markup away and
+  repaints, which the reader sees as a flash.
+- **HARD CARVE-OUT: never prerender anything behind the passphrase gate.** Only
+  the investors *landing shell* (the locked gate) is baked. This is safe by
+  construction — no passphrase exists at build time, so `unlock()` is never
+  called and `InvestorsApp` renders only its gate. `assertNoGatedLeak` in the
+  script enforces it anyway and **fails the build** rather than publishing a page
+  carrying gated markers. If you add a page, decide which side of this line it
+  is on before adding it to `PAGES`.
+- The public blog is not handled here — it is static HTML from the start and has
+  no root div to fill.
+
 ## The two blogs (public and gated — do not merge them)
 
 There are two blogs, for two audiences, and the split is deliberate. See
@@ -206,9 +238,11 @@ the mechanics.
   keyless envs.
 - `pnpm dev` — generates the public blog, then runs the Vite dev server (all
   five React pages plus the generated blog pages).
-- `pnpm build` — generates the public blog, then emits static `dist/` (what CI
-  deploys). The blog generator MUST run before `vite build`: its output files
-  are Vite inputs and Tailwind content sources.
+- `pnpm build` — generates the public blog, emits static `dist/`, then
+  prerenders the React pages (what CI deploys). Order is load-bearing: the blog
+  generator MUST run before `vite build` (its output files are Vite inputs and
+  Tailwind content sources), and `prerender.mjs` MUST run after it (it rewrites
+  files in `dist/`).
 - `pnpm blog` — regenerate the public blog pages alone (after editing
   `content/blog/*.md`).
 - `node build.cjs` (or `pnpm encrypt`) — re-encrypt the hub into
