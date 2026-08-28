@@ -28,26 +28,50 @@ agree.
 
 ---
 
-## The seed source (unverified — read this first)
+## The seed source (verified 2026-08-28)
 
-**Parker McKee, "Counter-positioning moat: how vertical AI apps can kill…"
-(LinkedIn post).** Flagged by the captain on 2026-07-31 as a strong thing to
-build a thesis off. **Status: not locatable, not verified.** LinkedIn posts
-are not indexed by web search and the post itself could not be found or read
-by URL, title search, or author search. What was confirmed:
+**Parker McKee, ["Counter-positioning moat: how vertical AI apps can kill
+incumbents"](https://www.linkedin.com/pulse/counter-positioning-moat-how-vertical-ai-apps-can-kill-parker-mckee-ppdye/)
+(LinkedIn).** Flagged by the captain on 2026-07-31. This entry previously read
+"not locatable, not verified" and carried an instruction not to cite it.
+**That block was resolved on 2026-08-28 by direct fetch of the article.** It is
+citable.
 
-- Parker McKee is a real, credible source on this topic: Partner at [Pillar
-  VC](https://www.pillar.vc/team/parker-mckee/), an active investor in
-  AI-powered apps and vertical AI, joined Pillar in 2018.
-- His public Substack (`parkermckee.substack.com`) has only two posts, neither
-  of which is this piece — the counter-positioning essay, if it exists as
-  described, is LinkedIn-only and behind no discoverable public URL.
+Author credibility, confirmed earlier and unchanged: Parker McKee is at [Pillar
+VC](https://www.pillar.vc/team/parker-mckee/), an active investor in AI-powered
+apps and vertical AI, and joined Pillar in 2018.
 
-**Do not cite this post as a source until someone with LinkedIn access pulls
-the actual URL and text.** Until then, treat "counter-positioning" as a
-framework worth using (it's well-established — see below), not as something
-McKee is on record proving. The framework itself is independently well
-sourced without him.
+**The argument.** Vertical AI application companies can outcompete the
+foundation model labs because their incentives are opposed. Labs earn revenue by
+maximizing token consumption; application companies profit by minimizing tokens
+while still delivering the outcome. Every efficiency (smaller models, caching,
+targeted fine-tuning) flows to application margin rather than lab revenue. In
+McKee's words, the lab "cannot easily follow the application company into a
+vertical, outcome-based business model without working against the economics of
+its existing volume business."
+
+**The three-part play.** (1) Win customers on product performance. (2)
+Accumulate private, non-portable customer context. (3) Convert those learnings
+into structural cost advantages. The worked example is customer service, where
+predicting likely questions and pre-caching answers cuts speculative generation
+from many responses to two while holding accuracy.
+
+**The durability test.** A durable moat needs private context that is not
+portable, structural economics favouring the challenger, and incompatibility
+with the incumbent's model. Temporary advantages are non-proprietary data (which
+eventually enters public training corpora) and features an incumbent can simply
+copy.
+
+**Relevance to Metropolis, and it cuts both ways.** It supports the
+knowledge-compaction claim directly: reading curated knowledge instead of
+re-deriving context lowers cost per answer, which is exactly McKee's
+structural-economics criterion. It also indicts any claim resting on reusable
+machinery alone, since machinery copies without self-harm. See "The
+counter-positioning frame" below, and `docs/private-thesis.md` section "Why the
+shared layer is defensible" for the worked answer.
+
+**Follow-up:** the ailexandria node `source-mckee-linkedin-counter-positioning-unverified`
+still carries the stale unverified status and should be re-landed as verified.
 
 ---
 
@@ -84,6 +108,26 @@ knowledge base. **Status: not separately sourced here.** It is widely known and
 uncontroversial, but if public copy ever makes a specific factual claim about
 how a16z's platform is staffed, sized, or performs, that claim needs its own
 verified source first. Today's copy stays at the level of the general model.
+
+**James Everingham (Guild AI), ["The AI control plane for
+agents"](https://linearb.io/dev-interrupted/podcast/james-everingham-guild-ai-control-plane-agents),
+Dev Interrupted podcast (LinearB).** Verified by direct fetch 2026-08-28. This
+is the source for "control plane" as established industry vocabulary rather
+than a Metropolis coinage. Everingham defines it as centralized infrastructure
+that lets an organization govern, audit, and scale agent workflows, set against
+what he calls "single player mode," where engineers run agents independently and
+"people just give it access to everything and suddenly there's passwords and
+security keys and malware being installed." The capabilities he names are access
+controls, auditability, per-agent cost visibility, and configurable guardrails.
+
+Relevance: it grounds the control-plane half of the thesis in an outside
+definition, and his warning that vendor-owned solutions "will probably lock you
+in and limit you more to their solutions" is independent support for the
+build-in-house argument used in the public FAQ. **Note the limit, which
+complicates rather than supports:** he expects most organizations to combine
+tooling rather than build everything internally. This source therefore backs
+owning the control plane to avoid lock-in; it does not back a general claim that
+building the whole operating layer in-house is correct for everyone.
 
 **A caution that applies to all lineage copy.** Positioning against a
 well-known thesis borrows credibility cheaply. Every lineage claim on the site
