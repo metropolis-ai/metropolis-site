@@ -43,7 +43,7 @@ const crypto = require('crypto');
 const TREE = [
   { title: 'Thesis', src: 'plan.src.html', required: true },
   { title: 'Blog', children: [
-    { title: 'First post — coming soon' },
+    { title: '2026-08-31 — polis V1', src: 'resource-post-polis-v1.src.md' },
   ]},
   /* Resource tree hidden 2026-07-07 until these docs are re-reviewed and refreshed.
      Restore by deleting the comment wrapper: the opening marker above, closing marker below.
