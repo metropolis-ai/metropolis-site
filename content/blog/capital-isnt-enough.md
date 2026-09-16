@@ -2,7 +2,7 @@
 title: Capital isn't enough
 date: 2026-09-16
 summary: Andreessen Horowitz bet that software would eat the world, and built a firm that gives startups far more than money. Put those two ideas together, and the expert network itself starts to look like software.
-draft: true
+draft: false
 ---
 
 Every venture firm offers startups money, and money on the same terms looks much the same no matter who provides it. Michael Ovitz, the Hollywood agent who advised Marc Andreessen and Ben Horowitz when they started their firm, [said it plainly](https://www.forbes.com/forbes/2012/0521/feature-midas-list-ben-horowitz-marc-andreesen-silicon-valley-vc-capital-bad-boys.html): without something more, "their money is the same as anyone else's." Andreessen Horowitz, known as a16z, was built on two ideas about what that something more should be.

@@ -2346,6 +2346,507 @@ firm." Consistent with Forbes 2012 and the New Yorker 2015 on partner pay.
 
 ---
 
+## Claim 9: The type of AI I believe in: models inside engineered systems
+
+Added 2026-09-16 for the blog post "The type of AI I believe in." The
+founder spent more than five years at AWS on Amazon FSx. The post draws on the
+main service, which scales through a control plane, a data plane, and cells.
+A separate system the founder's team built, which bootstraps the service in
+new partitions, regions, availability zones, and cells as a graph of more than
+2,000 steps aiming for zero human touches, gets only a brief mention. The
+argument: the AI worth believing in fits inside that kind of engineered
+system. Deterministic machinery decides what runs, when, and with what
+permissions and context; model calls sit in specific, bounded places with the
+relevant context supplied, which sets up even a smaller, cheaper model to
+succeed. Every source below was fetched and read on 2026-09-16 unless marked
+otherwise. Freshest evidence is listed first for anything about AI models; the
+AWS architecture sources are older by nature and say so.
+
+The short version: AWS publishes clear, quotable definitions of every
+architecture idea the post leans on. The evidence that a small model plus the
+right structure or task-specific data can match or beat a frontier model on a
+narrow task is real and fresh (2026), but it comes from narrow benchmarks,
+often from the people who built the method, and often against frontier models
+run without that same help. Lab engineering posts from Anthropic and OpenAI
+both say the environment around the model decides a great deal. The strongest
+counter is also fresh and credible: harness pieces go stale as models improve,
+and a September 2026 Berkeley and Stanford paper argues many system layers will
+be absorbed by the model. Even that paper expects curated context to endure.
+
+### A note on Amazon FSx specifically
+
+No public AWS material was found describing how Amazon FSx itself is built
+internally (its control plane, data plane, cells, or deployment pipeline).
+Searches of AWS docs, the fault isolation whitepaper's service pages, and
+re:Invent listings turned up only customer-facing behavior, for example:
+
+**AWS, ["Availability and durability: Single-AZ and Multi-AZ file
+systems"](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html),
+Amazon FSx for Windows File Server User Guide (no date shown).** "Multi-AZ file
+systems automatically fail over from the preferred file server to the standby
+file server if any of the following conditions occur: An Availability Zone
+outage occurs. The preferred file server becomes unavailable. The preferred
+file server undergoes planned maintenance." Failovers "are transparent to
+Windows applications, which resume file system operations without manual
+intervention." This describes what customers see, not internal architecture.
+
+Public copy should therefore describe the founder's FSx work in the first
+person and cite the general AWS whitepapers and Builders' Library articles
+below for the concepts. It should not say or imply that AWS has documented
+FSx's internal design, and it should not describe internal FSx details that
+AWS has not published.
+
+### Support: AWS's own plain definitions
+
+**Control plane and data plane. AWS, ["Control planes and data
+planes"](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/control-planes-and-data-planes.html),
+in *AWS Fault Isolation Boundaries*, AWS whitepaper, published 2022-11-16.**
+The clearest plain-language version. The terms "come from the world of
+networking, specifically routers. The router's data plane, which is its main
+functionality, is moving packets around based on rules. But the routing
+policies have to be created and distributed from somewhere, and that's where
+the control plane comes in." Control planes "provide the administrative APIs
+used to create, read/describe, update, delete, and list (CRUDL) resources,"
+and "tend to be complicated orchestration and aggregation systems." "The data
+plane is what provides the primary function of the service." "Data planes are
+intentionally less complicated, with fewer moving parts compared to control
+planes, which usually implement a complex system of workflows, business logic,
+and databases. This makes failure events statistically less likely to occur in
+the data plane versus the control plane."
+
+**Becky Weiss & Mike Furr, ["Static stability using Availability
+Zones"](https://aws.amazon.com/builders-library/static-stability-using-availability-zones/),
+Amazon Builders' Library (no date shown; read via the Internet Archive's 2025
+capture).** "A control plane is the machinery involved in making changes to a
+system (adding resources, deleting resources, modifying resources) and getting
+those changes propagated to wherever they need to go to take effect. A data
+plane, in contrast, is the daily business of those resources, that is, what it
+takes for them to function." (The original sets the parenthetical off with
+dashes.) "As is usually the case with data planes and control planes, the
+Amazon EC2 data plane is far simpler than its control plane." "We've found over
+the years that a system's control plane tends to have more moving parts than
+its data plane, so it's statistically more likely to become impaired for that
+reason alone. Putting those considerations all together, our best practice is
+to separate systems along the control and data plane boundary."
+
+**Static stability.** Same Builders' Library article: "In a statically stable
+design, the overall system keeps working even when a dependency becomes
+impaired." The fault isolation whitepaper's
+["Static stability"](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/static-stability.html)
+page (2022-11-16) spells it out: systems "continue to operate as normal without
+the need to make changes during the failure or unavailability of
+dependencies." "Even if the ability to create, modify, or delete resources is
+impaired, existing resources remain available." Its example: "Once an EC2
+instance has been launched, it is just as available as the physical server in
+a data center. It does not depend on any control plane APIs in order to stay
+running." And: "The most reliable recovery and mitigation mechanisms are the
+ones that require the fewest changes to achieve recovery."
+
+**Cells. AWS, ["What is a cell-based
+architecture?"](https://docs.aws.amazon.com/wellarchitected/latest/reducing-scope-of-impact-with-cell-based-architecture/what-is-a-cell-based-architecture.html),
+in *Reducing the Scope of Impact with Cell-Based Architecture*, AWS
+Well-Architected guidance, published 2023-09-20.** The concept "comes from the
+concept of a bulkhead in a ship, where vertical partition walls subdivide the
+ship's interior into self-contained, watertight compartments." "A cell-based
+architecture uses multiple isolated instances of a workload, where each
+instance is known as a cell. Each cell is independent, does not share state
+with other cells, and handles a subset of the overall workload requests." "If
+a workload uses 10 cells to service 100 requests, when a failure occurs in one
+cell, 90% of the overall requests would be unaffected by the failure." The
+cell router is "the thinnest possible layer, with the responsibility of routing
+requests to the right cell, and only that," and the control plane is
+"responsible for administration tasks, such as provisioning cells,
+de-provisioning cells, and migrating cell customers." The introduction adds:
+"For more than a decade, our service teams have used cell-based architecture to
+build more resilient and scalable services."
+
+The same guidance's ["Control plane and data
+plane"](https://docs.aws.amazon.com/wellarchitected/latest/reducing-scope-of-impact-with-cell-based-architecture/control-plane-and-data-plane.html)
+page ties the ideas together with a worked example: "imagine that you have five
+cells and the number of users starts growing. Your control plane is responsible
+for provisioning a new cell and letting the router to know where traffic needs
+to be sent to. After that, both the router and the cell will be just performing
+the work they're supposed to (data plane)."
+
+**Clare Liguori, ["Automating safe, hands-off
+deployments"](https://aws.amazon.com/builders-library/automating-safe-hands-off-deployments/),
+Amazon Builders' Library (no date in the extracted text; the live URL now
+redirects to a script-only AWS Builder Center page, so it was read via the
+Internet Archive's 2025-01-05 capture).** Opens with an interviewer at Amazon
+explaining that "most deployments weren't actively watched by anyone."
+"Automated deployments in the pipeline typically don't have a developer who
+actively watches each deployment to prod, checks the metrics, and manually
+rolls back if they see issues. These deployments are completely hands-off. The
+deployment system actively monitors an alarm to determine if it needs to
+automatically roll back a deployment." Changes roll out in "waves" of
+increasing size, first to a single box, then with "bake time" in which "the
+pipeline continues to monitor the team's high-severity aggregate alarm for any
+slow burning impact." The human judgment moves earlier: "With fully automated
+pipelines, the code review is the last manual review and approval that a code
+change receives from an engineer before being deployed to production." And
+the approach grew by accretion: "We identified deployment risks and found ways
+to mitigate those risks through new safety automation in pipelines." The scale
+figures in the article ("24 Regions or 76 Availability Zones") date from when
+it was written, not today.
+
+**Freshness note.** AWS now marks *Advanced Multi-AZ Resilience Patterns*
+["for historical reference
+only"](https://docs.aws.amazon.com/whitepapers/latest/advanced-multi-az-resilience-patterns/control-planes-and-data-planes.html),
+so cite the fault isolation whitepaper and the cell-based guidance instead. Its
+definition matches the others: "Data planes are the primary function of those
+resources, things such as the running EC2 instance, or getting items from or
+putting items into an Amazon DynamoDB table."
+
+### Support: small models succeed on bounded tasks with the right structure or data
+
+**Sanchit Satija, Aditya Bhatt, Priyanshu Jani & Dhar Rawal (Radiant Logic),
+["fastWorkflow: Closing the Performance Gap Between Small and Frontier Language
+Models for Conversational
+Agents"](https://www.alphaxiv.org/abs/2605.fastworkflow), alphaXiv,
+submitted 2026-05-19.** The closest match to the post's argument. The authors
+catalog how small models fail as agents ("natural language understanding
+failures, tool management failures, task decomposition and sequencing failures,
+agentic reasoning failures, and context management failures"), then move those
+error-prone steps into structured subsystems. "On τ-bench, GPTOSS-20B augmented
+with fastWorkflow achieves 83.47% Pass^1 on the Retail domain and 78% on
+Airline, surpassing all frontier models evaluated on τ-bench leaderboard
+including Claude Sonnet 4 (80.5% Retail, 60.0% Airline) and Claude Opus 4.1
+(82.4% Retail, 56.0% Airline), while operating at ∼22× lower inference cost.
+Even Mistral-7B-Instruct with fastWorkflow matches Claude Sonnet 4 on Airline
+at 60%." Removing the structured language-understanding pipeline caused
+"performance collapses of 58 points on Retail and 68 points on Airline." The
+conclusion is the thesis in research language: "architectural separation of
+concerns, offloading error-prone operations to structured subsystems while
+preserving LLM flexibility for planning and recovery, can close the performance
+gap between small and frontier models." **Caveats:** the authors built and are
+promoting the framework; the frontier comparison uses 2025 leaderboard entries,
+not today's models, and those models ran without the framework; one benchmark;
+the listing is on alphaXiv and a matching arXiv record was not found, so peer
+review status is unverified.
+
+**Despina Christou & Grigorios Tsoumakas, ["Sub-Billion, Super-Frontier: Small Language Models Rival
+Zero-Shot Frontier LLMs on General and Literary Relation
+Extraction"](https://arxiv.org/abs/2606.22606), arXiv, 2026-06-21.**
+No product tied to the result was found. "The best sub-billion model,
+Qwen2.5-0.5B fine-tuned on pooled general-domain data, achieves a
+general-domain positive-class micro-F1 of 0.83, versus 0.69 for GPT-5.4 and
+0.66 for Claude Sonnet 4.6 evaluated zero-shot." The authors are careful about
+what this means: "This does not imply that SLMs are intrinsically stronger;
+rather, targeted task adaptation enables 4-bit models deployable on a single
+consumer GPU to outperform general-purpose frontier systems under this
+protocol." A conventional non-generative baseline "also exceeds both frontier
+models, indicating that the gain stems from task adaptation rather than
+generative decoding." **Caveats:** one narrow task (extracting relationships
+from text); frontier models were tested zero-shot, without examples or the
+training data.
+
+**Varun Kotte, ["UCCI: Calibrated Uncertainty for Cost-Optimal LLM Cascade
+Routing"](https://arxiv.org/abs/2605.18796), arXiv, 2026-05-11.** Routing
+explained plainly: "LLM cascades and model routing promise lower inference cost
+by sending easy queries to a small model and escalating hard ones to a large
+model." On "a production named entity recognition workload of 75,000 queries
+served by 4B and 12B instruction-tuned LLMs," the method "cuts inference cost
+by 31% (95% CI: [27%, 35%]) at micro-F1 = 0.91." Results "use end-to-end
+routing on actual model outputs and measured H100 latency, not simulated
+routing." **Caveats:** single author, one workload, both models are small.
+
+**Yasmin Moslem et al., ["Cluster, Route, Escalate: Cascaded Framework for
+Cost-Aware LLM Serving"](https://arxiv.org/abs/2606.27457), arXiv,
+2026-06-25.** "Operators often default to a single model that is either
+expensive for easy queries or insufficient for hard ones." Their two-stage
+system "retains 97-99% of the strongest model's accuracy while reducing Time
+Per Output Token." **Caveat:** the abstract reports speed, not dollar cost.
+
+**Dylan Bouchard, ["Is Escalation Worth It? A Decision-Theoretic
+Characterization of LLM Cascades"](https://arxiv.org/abs/2605.06350), arXiv,
+2026-05-07.** Useful nuance for how to route, across "five benchmarks ... across
+eight models from five providers": "A lightweight pre-generation router exceeds
+the best cascade policy on four of five datasets, mainly because it avoids the
+cheap model's generation cost on queries sent directly to a larger model."
+Relevant because it favors deciding up front which model gets a task, which is
+a control-plane decision, over trying the cheap model first every time.
+
+**Polaris Jhandi, Owais Kazi, Shreyas Subramanian & Neel Sendas, ["Small
+Language Models for Efficient Agentic Tool Calling: Outperforming Large Models
+with Targeted Fine-tuning"](https://arxiv.org/abs/2512.15943), arXiv
+2025-12-17, AAAI 2026 workshop.** Search results show it listed on Amazon Science (that page was not read), so
+treat it as an interested party (AWS sells model hosting and fine-tuning). A fine-tuned 350M-parameter
+model "achieves exceptional performance with a 77.55% pass rate on ToolBench
+evaluation, significantly outperforming all baseline models including
+ChatGPT-CoT (26.00%)." **Caveat:** the ChatGPT baseline is a 2023-era result
+from the original ToolBench paper, not a current frontier model. Cite for "a
+tiny model can be trained to do one structured job," not for "beats today's
+frontier."
+
+**Foundational, older than the preferred window.** Lingjiao Chen, Matei
+Zaharia & James Zou, ["FrugalGPT"](https://arxiv.org/abs/2305.05176),
+arXiv 2023-05-09: a learned cascade "can match the performance of the best
+individual LLM (e.g. GPT-4) with up to 98% cost reduction or improve the
+accuracy over GPT-4 by 4% with the same cost." Isaac Ong et al., ["RouteLLM"](https://arxiv.org/abs/2406.18665), arXiv 2024-06-26:
+routers "significantly reduce costs, by over 2 times in certain cases, without
+compromising the quality of responses." (The abstract joins those clauses with
+dashes.) Peter Belcak et al. (NVIDIA), ["Small Language Models are the Future
+of Agentic AI"](https://arxiv.org/abs/2506.02153), arXiv 2025-06-02, a
+position paper from an interested party: agentic systems bring "a mass of
+applications in which language models perform a small number of specialized
+tasks repetitively and with little variation," for which small models are
+"sufficiently powerful, inherently more suitable, and necessarily more
+economical."
+
+**Weak, noted for completeness.** Felde et al., ["Low-energy small language
+models with retrieval-augmented generation can surpass large-model performance
+in rheumatology"](https://pubmed.ncbi.nlm.nih.gov/42180760/), *Frontiers in
+Medicine*, 2026-05-08. "SLMs combined with RAG can match or exceed the
+performance of larger LLMs for clinical decision support," but on only "ten
+standardized, anonymized rheumatology cases," the best model (Mixtral 8x7B) is
+not small by today's standards, and "clinically relevant errors persisted
+across all models." Do not cite in public copy.
+
+### Support: context and environment decide reliability
+
+**Anthropic, ["Scaling Managed Agents: Decoupling the brain from the
+hands"](https://www.anthropic.com/engineering/managed-agents), Anthropic
+Engineering, 2026-04-08.** Interested party (sells the model and the hosted
+service). Mostly a counter (below), but its security design is a control-plane
+pattern in practice: an earlier design ran generated code "in the same
+container as credentials," so "a prompt injection only had to convince Claude
+to read its own environment." Now tool calls go through "a
+dedicated proxy" that fetches credentials from a vault, and "The harness is
+never made aware of any credentials." Relevant because it shows permissions
+being decided by deterministic machinery outside the model.
+
+**Ryan Lopopolo (OpenAI), ["Harness engineering: leveraging Codex in an
+agent-first world"](https://openai.com/index/harness-engineering/), OpenAI,
+2026-02-11** (openai.com returned 403; read via the Internet Archive's 2026
+capture). Interested party (sells Codex). A team built "an internal beta of a
+software product with 0 lines of manually-written code." "Humans steer. Agents
+execute." The key line for this post: "Early progress was slower than we
+expected, not because Codex was incapable, but because the environment was
+underspecified. The agent lacked the tools, abstractions, and internal
+structure required to make progress toward high-level goals." On context: "give
+Codex a map, not a 1,000-page instruction manual." On rules: architectural
+constraints "are enforced mechanically via custom linters (Codex-generated, of
+course!) and structural tests." The "1/10th the time" estimate is OpenAI's own
+and unaudited.
+
+**Jason Starace, ["Scaffold Effects on GAIA: A Controlled
+Comparison"](https://arxiv.org/abs/2606.08529), arXiv, 2026-06-07.**
+Pre-registered, independent, single author. Three scaffolds across Claude Opus
+4.7, Sonnet 4.6, Haiku 4.5, Gemini 3.1 Pro Preview and GPT-5.5: "Scaffold
+choice alone moves measured accuracy by as much as 28 percentage points within
+a single model." The prediction that stronger models would care less about
+scaffolding "is rejected in direction": "the most capable Anthropic model gains
+the most from structured scaffolds at the harder level." "Structured scaffolds
+make fewer tool calls yet recover more often from mid-trajectory errors," and
+"the elicitation gap is not guaranteed to shrink as models improve."
+**Caveats:** one benchmark, results vary by model family, and the paper says
+so.
+
+**Anthropic, ["Effective context engineering for AI
+agents"](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents),
+Anthropic Engineering, 2025-09-29.** Interested party. Older than the
+preferred window, but the standard definition. Context engineering is "the set
+of strategies for curating and maintaining the optimal set of tokens
+(information) during LLM inference." "Good context engineering means finding
+the smallest possible set of high-signal tokens that maximize the likelihood of
+some desired outcome." On "context rot": "as the number of tokens in the
+context window increases, the model's ability to accurately recall information
+from that context decreases." Closing line: "even as capabilities scale,
+treating context as a precious, finite resource will remain central to building
+reliable, effective agents."
+
+**Anthropic, ["Building effective
+agents"](https://www.anthropic.com/engineering/building-effective-agents),
+Anthropic Engineering, first published 2024-12-19 (the live page has since
+been revised; it now names Claude Haiku 4.5 and Sonnet 4.5).** Interested
+party. The workflow/agent split maps onto the post: "Workflows are systems
+where LLMs and tools are orchestrated through predefined code paths. Agents, on
+the other hand, are systems where LLMs dynamically direct their own processes
+and tool usage." "We recommend finding the simplest solution possible, and only
+increasing complexity when needed. This might mean not building agentic systems
+at all." "Workflows offer predictability and consistency for well-defined
+tasks." Routing example: "Routing easy/common questions to smaller,
+cost-efficient models like Claude Haiku 4.5 and hard/unusual questions to more
+capable models like Claude Sonnet 4.5." Note that a model vendor recommends
+sending easy work to its cheaper model.
+
+### Support: "control plane" for AI agents is current industry vocabulary (brief)
+
+Extends the Everingham and Etezadi citations already in "Lineage sources" and
+Claim 5.
+
+**Chris Thomas, Parth Patwari, Ram Ravi, Oniel Cross, Diana
+Kearns-Manolatos & Iram Parveen, ["Building an AI control
+plane"](https://www.deloitte.com/us/en/insights/topics/technology-management/enterprise-ai-control-plane.html),
+Deloitte Insights, 2026-08-21.** Interested party (Deloitte sells this
+consulting). An enterprise control plane is "a governed, intelligent layer that
+mediates decisions across systems, determining who can act, what data can be
+accessed, how workloads execute, and how AI agents operate within defined cost,
+latency, and regulatory boundaries." With "dozens of frontier, open-source, and
+derivative models, enterprises may need to govern model selection, routing, and
+life-cycle management as an ongoing operational discipline rather than a
+one-time technical choice."
+
+**Matthew Finio & Amanda Downie, ["What is an Agent Control
+Plane?"](https://www.ibm.com/think/topics/agent-control-plane), IBM Think (no
+date shown).** Interested party. "An agent control plane is the system that
+deploys, operates, monitors and governs AI agents across an organization."
+
+**Maurits Kaptein, Vassilis-Javed Khan & Andriy Podstavnychy, ["Runtime
+Governance for AI Agents: Policies on
+Paths"](https://arxiv.org/abs/2603.16586), arXiv, 2026-03-17.** Agents
+"produce non-deterministic, path-dependent behavior that cannot be fully
+governed at design time." They "formalize compliance policies as deterministic
+functions" evaluated at run time, and argue that "prompt-level instructions
+(and 'system prompts')" only "shape the distribution over paths without
+actually evaluating them." Relevant because it argues rules belong in
+deterministic machinery around the model, not only in the prompt.
+
+**Christopher Koch & Joshua Andreas Wellbrock, ["Beyond Task Success: An
+Evidence-Synthesis Framework for Evaluating, Governing, and Orchestrating
+Agentic AI"](https://arxiv.org/abs/2604.19818), arXiv, 2026-04-18.** A review
+of 24 sources: "orchestration research positions the control plane as the
+locus of policy mediation, identity, and telemetry," and "path-dependent
+behavior cannot be governed through prompts or static permissions alone."
+Small corpus; no new experiments.
+
+Industry note: "AI control plane" is now a crowded vendor category (Snowflake,
+Fiddler, Obot and others market products under the name, seen in search
+results, not read). Use the term as vocabulary, not as proof that the pattern
+works.
+
+### Complicate / counter
+
+**Harness pieces go stale as models improve.** Anthropic, "Scaling Managed
+Agents" (2026-04-08): "Harnesses encode assumptions that go stale as models
+improve." Claude Sonnet 4.5 showed "context anxiety," so they added context
+resets; "when we used the same harness on Claude Opus 4.5, we found that the
+behavior was gone. The resets had become dead weight." Anthropic's context
+engineering post agrees: "smarter models require less prescriptive
+engineering, allowing agents to operate with more autonomy." Implication for
+the post: the durable part is the control plane (permissions, sequencing,
+state, rollback), not workarounds for a given model's quirks.
+
+**The bitter lesson for system layers.** Liana Patel, Siddharth Jha, Negar
+Arabzadeh, Carlos Guestrin, Ion Stoica & Matei Zaharia, ["What Happens When the
+Model Eats the Stack? Rethinking the Research Agenda for Data Agents to
+Withstand the Bitter Lesson"](https://arxiv.org/abs/2609.03141), arXiv,
+2026-09-02. The freshest and most credible counter (Stoica and Zaharia
+co-founded Databricks, which sells data and AI infrastructure). "As models
+continue to improve, many proposed system layers designed to compensate for
+model limitations on a given task will increasingly be subsumed by the model
+itself." But the enduring opportunity they name is "curated contextual
+information about the data environment, which we call persistent semantic
+context," and "these context layers demonstrate strong promise for improving
+data agent performance." So the paper cuts against hand-built task pipelines
+and for supplied context.
+
+**More scaffolding is not automatically more reliable.** Wael Albayaydh, Rui
+Zhao & Ivan Flechais, ["Beyond the Leaderboard: A Synthesis of Tool-Use,
+Planning, and Reasoning Failures in Large Language Model
+Agents"](https://arxiv.org/abs/2607.05775), arXiv, 2026-07-07, a synthesis of
+27 papers: "failures compound nonlinearly with task length, ... strong
+performance on individual sub-tasks does not reliably translate into
+end-to-end success, and ... additional scaffolding does not consistently
+improve reliability." At the same time, "substantial progress has been
+demonstrated in single-turn tool use, short-horizon web navigation, and
+narrowly scoped coding tasks," which fits keeping model calls narrow.
+
+**Weaker models fail at the basics.** Logan Ritchie, Sushant Mehta, Nick
+Heiner, Mason Yu & Edwin Chen; the abstract says the environment is "from Surge," a company
+that sells training environments, so an interested party,
+["The Hierarchy of Agentic Capabilities: Evaluating Frontier Models on
+Realistic RL Environments"](https://arxiv.org/abs/2601.09032), arXiv,
+2026-01-13. On 150 workplace tasks, "Even the best-performing models fail
+approximately 40% of the tasks," and "Weaker models struggle with fundamental
+tool use and planning, whereas stronger models primarily fail on tasks
+requiring contextual inference beyond explicit instructions." Supports small
+models only when the system handles tool use and planning for them, which is
+what fastWorkflow does.
+
+**The small-model wins are narrow and often unfair comparisons.** Christou and
+Tsoumakas tested frontier models zero-shot; fastWorkflow compared against 2025
+leaderboard entries run without the framework; the Amazon Science tool-calling
+result used a 2023 ChatGPT baseline. None shows a small model beating a
+frontier model given the same context and structure. A small model also needs
+task-specific data or engineering to get there, which is itself a cost.
+
+**Model vendors recommend small models too, but sell them.** Anthropic's
+routing advice points to its own cheaper model; NVIDIA's position paper
+favors models that run on its hardware; Amazon Science sells fine-tuning
+through AWS.
+
+**Not found or not verified:**
+
+- Public AWS material on Amazon FSx's internal architecture or deployment
+  pipeline (see the note above).
+- The publication dates of the two Builders' Library articles (not shown in
+  the text read).
+- Terminus-4B (Microsoft Research,
+  [arXiv 2605.03195](https://arxiv.org/abs/2605.03195), 2026-05-04), which
+  reports a fine-tuned 4B subagent that "often even exceeds" frontier models
+  at terminal execution: not cited, because its arXiv comment says "The
+  current article involves some product IP issues and needs to be withdrawn and
+  re-approved."
+- A widely repeated claim that a study of "33 agent scaffolds across more than
+  70 model configurations" shows orchestration design matters more than the
+  model: seen in a search summary, source not located or read.
+- Trade-blog cost claims (for example, a summarization workload at "$7.20
+  versus $58 per day"): seen in search results only, no traceable method.
+
+### What this evidence supports in public copy, and what it does not
+
+Supported:
+
+- "AWS separates most services into a control plane, which makes changes, and
+  a data plane, which does the everyday work" (AWS Fault Isolation Boundaries).
+- "At AWS, the control plane is the part that adds, removes, and changes
+  resources. The data plane is the daily business of those resources" (Builders'
+  Library, paraphrasing Weiss and Furr).
+- "AWS keeps the data plane deliberately simpler, because fewer moving parts
+  fail less often" (AWS).
+- "Static stability means the system keeps working even when something it
+  depends on breaks. A running server keeps running even if the system that
+  launched it goes down" (AWS).
+- "A cell is a complete, independent copy of the service serving a slice of
+  customers, like a watertight compartment in a ship. If one fails, the others
+  keep working" (AWS cell-based architecture guidance).
+- "Amazon deploys most changes with no one watching; the pipeline watches the
+  alarms and rolls back on its own" (Liguori, Builders' Library).
+- "A 20-billion-parameter open model wrapped in the right structure beat
+  2025's frontier models on a customer-service benchmark at about a
+  twenty-second of the cost" (fastWorkflow, attributed to its authors, with
+  the 2025 qualifier).
+- "A half-billion-parameter model trained for one task beat GPT-5.4 and Claude
+  Sonnet 4.6 used without examples at that task" (Christou and Tsoumakas,
+  2026), with the authors' own caveat that the win comes from adaptation, not
+  size.
+- "Sending easy requests to a small model and hard ones to a large model cuts
+  cost without losing much quality" (UCCI, Cluster Route Escalate, FrugalGPT).
+- "The way you structure the work around a model can move its accuracy by as
+  much as 28 points" (Starace, 2026, one benchmark).
+- "OpenAI's own team found that its coding agent was slowed less by the model
+  than by an environment that was underspecified" (OpenAI, 2026, attributed).
+- "Even researchers who expect models to absorb most of the engineering around
+  them expect curated context to matter" (Patel et al., 2026).
+
+Not supported:
+
+- That AWS has published how Amazon FSx is built internally, or any internal
+  FSx detail not in public AWS docs.
+- That small models are generally as good as frontier models, or beat them
+  when both get the same context and structure.
+- That a control plane or scaffolding always makes agents more reliable
+  (Albayaydh et al. find it does not consistently).
+- That orchestration will stay necessary in its current form as models
+  improve; the fresh counter-evidence says parts of it go stale.
+- A general cost multiple for small versus frontier models (the 22x and 31%
+  figures are specific to one framework and one workload).
+- That "AI control plane" is a settled standard; it is a young vendor
+  category.
+
+---
+
 ## Sources not used, and why
 
 Several sources found during this research were deliberately excluded to keep

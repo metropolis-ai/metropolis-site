@@ -2,7 +2,7 @@
 title: AI isn't a genie
 date: 2026-09-16
 summary: If you think AI has been oversold, you're right. An LLM is a language tool, and it delivers when it is used for the right job with the right system around it.
-draft: true
+draft: false
 ---
 
 In a [Gallup survey](https://news.gallup.com/poll/712751/americans-cool-toward.aspx) this May, 39% of Americans said AI does more harm than good, up from 31%. Only 27% trust businesses to use it responsibly.
