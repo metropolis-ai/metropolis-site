@@ -19,6 +19,8 @@ export interface ContactField {
   textarea?: boolean;
   /** Span the full width of a 2-column grid. */
   full?: boolean;
+  /** Render as a dropdown with these choices; `label` becomes the empty prompt. */
+  options?: string[];
 }
 
 export interface ContactFormProps {
@@ -106,6 +108,27 @@ export function ContactForm({
     >
       {fields.map((f) => {
         const span = !twoColumn || f.full ? "sm:col-span-2" : "";
+        if (f.options) {
+          return (
+            <select
+              key={f.name}
+              name={f.name}
+              required={f.required}
+              aria-label={f.label}
+              defaultValue=""
+              className={cn(fieldClass, span)}
+            >
+              <option value="" disabled>
+                {f.label}
+              </option>
+              {f.options.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+          );
+        }
         return f.textarea ? (
           <textarea
             key={f.name}
