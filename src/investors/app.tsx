@@ -66,7 +66,6 @@ export function InvestorsApp(): React.JSX.Element {
             <SiteNav
               links={[
                 { label: "Home", href: "/" },
-                { label: "How it works", href: "/how-it-works/", variant: "muted" },
                 { label: "Consulting", href: "/consulting/", variant: "muted" },
                 { label: "Blog", href: "/blog/", variant: "muted" },
                 { label: "Experts", href: "/experts/" },

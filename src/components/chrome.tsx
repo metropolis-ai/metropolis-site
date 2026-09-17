@@ -119,7 +119,7 @@ export function SiteFooter({
 }): React.JSX.Element {
   return (
     <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
-      <span>metropolis · one operating system, many companies</span>
+      <span>metropolis · doing the hard work once, for a portfolio of companies</span>
       {/* "blog" is also in the header nav; kept here as a secondary path. */}
       <span className="flex items-center gap-4">
         <a href="/blog/" className="text-muted-foreground hover:text-foreground">
