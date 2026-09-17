@@ -39,9 +39,10 @@ export function LandingApp(): React.JSX.Element {
               Underneath is everything it takes to run a real business. We built
               that part. It’s called polis. It’s a compounding platform: it builds
               itself to serve Metropolis, and we reuse its building blocks for our
-              portfolio companies, which can ask for more. We use them to help build
-              yours, too. And we partner with the investors and
-              franchise networks behind them. You bring the market. We bring
+              portfolio companies, which can ask for more. Bring us a hard problem, and
+              we’ll work it with you: through one of our companies, a custom build,
+              or advice. And we partner with the investors and franchise networks
+              behind companies like yours. You bring the market. We bring
               everything else.
             </>
           }
