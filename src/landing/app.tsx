@@ -30,19 +30,14 @@ export function LandingApp(): React.JSX.Element {
       >
         <MarketingHero
           align="left"
-          eyebrow="AI-native venture studio"
+          eyebrow="Powered by polis"
           title="Doing the hard work once, for a portfolio of companies."
           subtitle={
             <>
-              A model. Some tools. A chat window. But that’s just the tip.
-              Underneath is everything it takes to run a real business. We built
-              that part. It’s called polis. It’s a compounding platform: it builds
-              itself to serve Metropolis, and we reuse its building blocks for our
-              portfolio companies, which can ask for more. Bring us a hard problem, and
-              we’ll work it with you: through one of our companies, a custom build,
-              or advice. And we partner with the investors and franchise networks
-              behind companies like yours. You bring the market. We bring
-              everything else.
+              A model, some tools, and a chat window are just the tip. Metropolis
+              is an AI-native venture studio that builds everything underneath
+              once, for our own companies and for yours. You bring the market. We
+              bring everything else.
             </>
           }
           actions={
@@ -59,6 +54,17 @@ export function LandingApp(): React.JSX.Element {
 
         <section className="border-b">
           <figure className="mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
+            <div className="mb-6 max-w-3xl">
+              <h2 className="font-heading text-2xl font-semibold tracking-tight md:text-3xl">
+                polis, our compounding platform
+              </h2>
+              <p className="mt-3 text-lg leading-relaxed text-muted-foreground">
+                polis builds itself to serve Metropolis, and our portfolio
+                companies reuse its building blocks and can ask for more. What
+                one company needs gets built once, and every company after it
+                inherits the work.
+              </p>
+            </div>
             <a
               href="/agent-iceberg.jpg"
               className="block overflow-hidden rounded-2xl border border-border shadow-lg"
