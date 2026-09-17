@@ -236,8 +236,10 @@ faster than anything else on the site. It covers both the agent operating system
 inherit rather than rebuild — customer records and lifecycle, product events and
 analytics signals, payments and billing, canonical customer identity, and model
 training and serving. Before changing a capability claim here, check the board
-and the vault per `AGENTS.md`; describe components **functionally**, since
-internal codenames belong only in the gated investor hub.
+and the vault per `AGENTS.md`; describe components **functionally**. The
+platform itself may be named publicly as polis (decided 2026-09-16), but it is
+never offered as a product. Other internal codenames belong only in the gated
+investor hub.
 
 The first portfolio company may be referenced but is **not named publicly** until
 that is decided on its own terms.

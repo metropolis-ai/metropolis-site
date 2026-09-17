@@ -35,11 +35,14 @@ the code.
   skill) for the work item's real status. Public copy should state plainly
   what is shipped vs. still the direction of travel — see
   `docs/positioning.md`'s "Separate present evidence from future ambition."
-  Internal component codenames (e.g. the workflow engine, the knowledge vault)
-  are named explicitly only in the gated investor hub's `resource-*.src.*`
-  docs (`build.cjs`'s `TREE`); public pages describe them functionally instead
-  (e.g. "knowledge," "planning," "execution"), matching every existing page's
-  convention.
+  **polis is the platform's public name** (decided 2026-09-16): public pages
+  may name it, e.g. the homepage hero and iceberg image. polis is never
+  offered as a product; customers get portfolio products, maintained custom
+  builds, or consulting. Other internal component codenames (e.g. the workflow
+  engine, the knowledge vault, the model-training system) are still named
+  explicitly only in the gated investor hub's `resource-*.src.*` docs
+  (`build.cjs`'s `TREE`); public pages describe those functionally (e.g.
+  "knowledge," "planning," "execution").
 - **Grounding external/market claims.** For claims about the outside world
   the thesis argues from (moats, vertical AI economics, the studio model,
   build-vs-buy) — as opposed to claims about what Metropolis itself has
