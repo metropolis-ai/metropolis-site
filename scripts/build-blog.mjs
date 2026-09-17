@@ -97,7 +97,6 @@ async function resolveBrandTheme() {
 // Mirrors the React pages' nav, minus a self-link (these ARE the notes pages).
 const NAV = [
   { label: "Home", href: "/", variant: "link" },
-  { label: "How it works", href: "/how-it-works/", variant: "muted" },
   { label: "Consulting", href: "/consulting/", variant: "muted" },
   { label: "Experts", href: "/experts/", variant: "link" },
   { label: "Private materials", href: "/investors/", variant: "button" },
@@ -147,7 +146,7 @@ const footer = () => `
 <footer class="border-t py-8 text-sm text-muted-foreground">
   <div class="mx-auto w-full max-w-6xl px-6">
     <div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
-      <span>metropolis · one operating system, many companies</span>
+      <span>metropolis · doing the hard work once, for a portfolio of companies</span>
       <span class="flex items-center gap-4">
         <a href="/blog/" class="text-muted-foreground hover:text-foreground">blog</a>
         <a href="/consulting/" class="text-muted-foreground hover:text-foreground">get in touch</a>
