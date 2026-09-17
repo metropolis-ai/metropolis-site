@@ -242,7 +242,7 @@ ${marked.parse(post.body)}
   </div>
 </section>`;
   return page({
-    title: `${post.title} — Metropolis`,
+    title: `${post.title} | Metropolis`,
     description: post.summary || post.title,
     canonical,
     body,
@@ -270,14 +270,14 @@ function indexPage(posts, ctx) {
 <div class="mx-auto w-full max-w-3xl px-6 py-16 sm:py-20">
   <p class="text-xs font-semibold uppercase tracking-[0.14em] text-primary">Blog</p>
   <h1 class="mt-3 font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">What we are building, and what we are learning.</h1>
-  <p class="mt-5 text-lg text-muted-foreground">Metropolis builds companies using agents, governed workflows, and institutional knowledge—and takes on outside engagements doing the same. These are notes on how that actually works in practice.</p>
+  <p class="mt-5 text-lg text-muted-foreground">Metropolis builds companies using agents, governed workflows, and institutional knowledge, and takes on outside engagements doing the same. These are notes on how that actually works in practice.</p>
   <ul class="mt-14">${list}
   </ul>
 </div>`;
   return page({
-    title: "Blog — Metropolis",
+    title: "Blog | Metropolis",
     description:
-      "How Metropolis builds and operates companies with AI agents, governed workflows, and institutional knowledge—written from the studio and its consulting engagements.",
+      "How Metropolis builds and operates companies with AI agents, governed workflows, and institutional knowledge, written from the studio and its consulting engagements.",
     canonical: `${SITE}/blog/`,
     body,
     ...ctx,
