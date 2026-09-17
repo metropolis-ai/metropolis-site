@@ -32,7 +32,7 @@ export function LandingApp(): React.JSX.Element {
         <MarketingHero
           align="left"
           eyebrow="AI-native venture studio"
-          title="Every AI company looks simple from the outside."
+          title="Doing the hard work once, for a portfolio of companies."
           subtitle={
             <>
               A model. Some tools. A chat window. But that’s just the tip.
