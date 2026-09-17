@@ -138,7 +138,7 @@ export function LandingApp(): React.JSX.Element {
               {
                 title: "The studio is the first customer →",
                 description:
-                  "Metropolis builds its own software with the same agent workflows it brings to other companies.",
+                  "Metropolis is the first company built on polis. What it needs gets built once, and every company after it inherits that work.",
                 href: "/blog/the-studio-is-the-first-customer/",
               },
             ]}
