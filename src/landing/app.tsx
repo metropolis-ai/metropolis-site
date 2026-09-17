@@ -73,8 +73,14 @@ export function LandingApp(): React.JSX.Element {
               />
             </a>
             <figcaption className="mt-3 text-center text-sm text-muted-foreground">
-              Inspired by Sierra’s agent iceberg. Open the image to read every
-              label.
+              Inspired by{" "}
+              <a
+                href="https://sierra.ai/blog/the-challenge-with-rolling-your-own-agent"
+                className="underline hover:text-foreground"
+              >
+                Sierra’s agent iceberg
+              </a>
+              . Open the image to read every label.
             </figcaption>
           </figure>
         </section>
