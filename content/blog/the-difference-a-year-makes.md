@@ -2,7 +2,7 @@
 title: The difference a year makes
 date: 2026-09-17
 summary: A year ago, I was leading a team of engineers at AWS. Today I do the same job with AI agents doing the work, and it scales in a way that team never could.
-draft: true
+draft: false
 ---
 
 A year ago, I was leading a team at AWS. I had spent more than five years on Amazon FSx, and by then I was a mid-level engineer acting in a senior role, with a team that grew to 12 engineers. I partnered with a software development manager, and I could turn to a principal engineer, a technical product manager, and an escalation path when something was beyond us.
