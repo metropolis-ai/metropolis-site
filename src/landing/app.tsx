@@ -141,6 +141,12 @@ export function LandingApp(): React.JSX.Element {
                 href: "/blog/capital-isnt-enough/",
               },
               {
+                title: "The difference a year makes →",
+                description:
+                  "A year ago I was leading a team of engineers at AWS. Today I do the same job with AI agents doing the work, and it scales in a way that team never could.",
+                href: "/blog/the-difference-a-year-makes/",
+              },
+              {
                 title: "The studio is the first customer →",
                 description:
                   "Metropolis is the first company built on polis. What it needs gets built once, and every company after it inherits that work.",
