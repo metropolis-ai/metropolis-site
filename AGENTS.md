@@ -192,6 +192,12 @@ the mechanics.
     `ssrLoadModule` (same resolver, same aliases, same `src/brand.ts`) and
     inlines them. Do NOT replace this with a hardcoded palette — it would
     silently drift from `src/brand.ts`.
+  - The homepage's "From the blog" cards are NOT hand-written: the generator
+    also writes 3 posts' slug/title/summary (any marked `featured: true` in
+    frontmatter, then the newest others) to
+    `src/landing/latest-posts.json` (git-ignored), which `src/landing/app.tsx`
+    imports. Publishing a post updates the homepage; the card blurb is the
+    post's `summary`. Run `pnpm blog` before `pnpm typecheck` on a fresh clone.
   - Tailwind must scan the generated files or the blog ships unstyled;
     `tailwind.config.cjs` globs `./blog.html` and `./blog/**/*.html`.
   - Markdown body styling is real CSS (`ARTICLE_CSS` in the generator), written

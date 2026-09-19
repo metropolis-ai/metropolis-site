@@ -11,6 +11,7 @@ dist/
 # content/blog/*.md and ARE committed; these HTML files are build artifacts.
 /blog.html
 /blog/
+/src/landing/latest-posts.json
 # Local collaborative review artifacts are never part of the shipped site.
 .lavish/
 # Plaintext strategy and session records remain local; only encrypted hub output ships.
