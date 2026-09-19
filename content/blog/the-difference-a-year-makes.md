@@ -2,6 +2,7 @@
 title: The difference a year makes
 date: 2026-09-17
 summary: A year ago, I was leading a team of engineers at AWS. Today I do the same job with AI agents doing the work, and it scales in a way that team never could.
+featured: true
 draft: false
 ---
 

@@ -2,6 +2,7 @@
 title: AI isn't a genie
 date: 2026-09-16
 summary: If you think AI has been oversold, you're right. An LLM is a language tool, and it delivers when it is used for the right job with the right system around it.
+featured: true
 draft: false
 ---
 

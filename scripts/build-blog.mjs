@@ -64,7 +64,7 @@ function parsePost(raw, slug) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(meta.date)) {
     throw new Error(`content/blog/${slug}.md has date "${meta.date}"; expected YYYY-MM-DD`);
   }
-  return { ...meta, slug, body, draft: meta.draft === "true" };
+  return { ...meta, slug, body, draft: meta.draft === "true", featured: meta.featured === "true" };
 }
 
 /** Human-readable date without touching Date parsing rules. */
@@ -310,6 +310,24 @@ for (const post of posts) {
 // blog/<slug>.html; scripts/clean-urls.mjs later restructures dist/ into
 // directory indexes so the URLs are /blog/ and /blog/<slug>/.
 fs.writeFileSync(path.join(root, "blog.html"), indexPage(posts, ctx));
+
+// The homepage's "From the blog" cards: posts marked `featured: true` first,
+// then the newest other posts until there are HOMEPAGE_POST_COUNT, shown newest
+// first. Publishing a post updates the homepage without touching
+// src/landing/app.tsx. The landing page imports this file, so it too must exist
+// before `vite build`/`tsc` (git-ignored build output, like blog.html).
+const HOMEPAGE_POST_COUNT = 3;
+const homepagePosts = [...posts.filter((p) => p.featured), ...posts.filter((p) => !p.featured)]
+  .slice(0, HOMEPAGE_POST_COUNT)
+  .sort((a, b) => posts.indexOf(a) - posts.indexOf(b));
+fs.writeFileSync(
+  path.join(root, "src/landing/latest-posts.json"),
+  JSON.stringify(
+    homepagePosts.map(({ slug, title, summary }) => ({ slug, title, summary })),
+    null,
+    2,
+  ) + "\n",
+);
 
 console.log(
   `blog: generated blog.html + ${posts.length} post page(s)` +
