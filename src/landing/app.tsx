@@ -38,8 +38,8 @@ export function LandingApp(): React.JSX.Element {
             <>
               A model, some tools, and a chat window are just the tip. Metropolis
               is an AI-native venture studio that builds everything underneath
-              once, for our own companies and for yours. You bring the market. We
-              bring everything else.
+              once. Our first company is Metropolis Consulting: technical
+              leadership for startups, built and run on polis.
             </>
           }
           actions={
@@ -61,10 +61,11 @@ export function LandingApp(): React.JSX.Element {
                 polis, our compounding platform
               </h2>
               <p className="mt-3 text-lg leading-relaxed text-muted-foreground">
-                polis builds itself to serve Metropolis, and our portfolio
-                companies reuse its building blocks and can ask for more. What
-                one company needs gets built once, and every company after it
-                inherits the work.
+                Metropolis builds polis to plan, build, and launch companies. Our
+                consulting practice and our venture studio both run on it, and
+                everything they do feeds back in, so polis gets better with every
+                engagement and every company. What one company needs gets built
+                once, and every company after it inherits the work.
               </p>
             </div>
             <a
@@ -104,21 +105,21 @@ export function LandingApp(): React.JSX.Element {
                 eyebrow: "Venture capital and private equity",
                 title: "Investors",
                 description:
-                  "Your portfolio companies get products from our portfolio, custom builds, or consulting. And our studio builds companies in positions nobody has taken yet, companies you'd want to back.",
+                  "Your portfolio companies get technical leadership from Metropolis Consulting today. As the problems they share become clear, our studio builds companies to solve them, companies you'd want to back.",
                 href: "#contact",
               },
               {
                 eyebrow: "Franchise systems",
                 title: "Franchise networks",
                 description:
-                  "We solve a problem alongside a few of your locations. Then one of our portfolio companies brings that product to every franchisee.",
+                  "We solve a problem alongside a few of your locations. When every franchisee shares it, we build the product that brings the fix to all of them.",
                 href: "#contact",
               },
               {
                 eyebrow: "Startups and businesses",
                 title: "Companies and founders",
                 description:
-                  "Need something built? If one of our portfolio companies already sells it, we'll point you there. If not, we'll build it and keep it maintained. Bring an idea and the expertise behind it, and you can start an AI-native company without hiring a team first. We'll build it with you or for you, whichever fits.",
+                  "Looking to supplement your technical leadership? Metropolis Consulting works inside your system as a fractional CTO with a platform behind it: plan and build, architecture and security reviews, and visibility into what your AI costs. We can hand it all over, or keep it running for you.",
                 href: "/consulting/",
                 tone: "soft",
               },

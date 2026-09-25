@@ -4,6 +4,8 @@ date: 2026-08-25
 summary: Metropolis is the first company built on polis. What it needs gets built once, and every company after it inherits that work.
 ---
 
+*Update, September 2026: the sequel to this post is [Why we start with consulting](/blog/why-consulting-first/), about Metropolis Consulting, the first company running on polis for other people.*
+
 Every company we build will run on polis, the platform underneath Metropolis.
 The first company to run on it is Metropolis itself.
 
