@@ -23,6 +23,44 @@ remains the frame and the proof environment — but consulting is a present-tens
 activity, not a hypothetical extension, and it is the fastest available test of
 whether the machinery holds up against companies Metropolis did not build.
 
+## Metropolis Consulting, the first company
+
+Decided 2026-09-24 (captain). **Metropolis Consulting is the first Metropolis
+company built and run on polis**, and public copy should say so plainly rather
+than treating consulting as a side activity of the studio.
+
+**Who builds what.** Metropolis, the holding company, builds polis to plan,
+build, and launch companies. Metropolis Consulting and the venture studio are
+both built on polis and run on it; neither builds polis. What they do feeds
+polis's self-improvement loop, so it gets better with every engagement and
+every company. Write it that way: "Metropolis builds polis," never "consulting
+builds polis." The site is the holding company's site; consulting is the main
+way in today. The venture studio is paused (decided 2026-09-24) until consulting
+has identified a market and a position in it: the studio needs the knowledge of
+markets and problems that consulting builds, and consulting's revenue funds
+bootstrapping it. It is the first
+vertical, chosen the way every later one will be: where the founder's strengths
+and the platform's overlap. The founder knows the fractional CTO job best, and
+polis already automates the software development lifecycle.
+
+- **Who it serves:** seed and Series A teams looking to supplement their
+  technical leadership. The offer is a fractional CTO for a bounded engagement,
+  with polis behind them. "Like airCFO, for your technology" is the shorthand.
+- **What it sells:** the products polis produces, never polis itself. Today
+  that is plan, build and operate; architecture and security reviews; and AI
+  spend visibility. Software delivery carries the most operating history; say
+  so once.
+- **The strategy in one line:** land with the fractional CTO, expand into
+  adjacent customers on the same parts, and extract every capability into polis
+  for the companies that come next. Consulting is the first company, not the
+  last.
+- **Not on the public site:** pilot terms, prices and rates. Those are a private
+  offer made to VCs and their introductions.
+- **The AI builders:** acknowledge Lovable, Base44 and Perplexity as good places
+  to start an idea; Metropolis Consulting is for when a company wants to own and
+  grow what it has built. Do not claim they all lock customers in; Lovable
+  exports its code.
+
 ## The origin
 
 Metropolis began while I was exploring ideas for AI-native startups. The ideas
@@ -241,14 +279,15 @@ platform itself may be named publicly as polis (decided 2026-09-16), but it is
 never offered as a product. Other internal codenames belong only in the gated
 investor hub.
 
-The first portfolio company may be referenced but is **not named publicly** until
-that is decided on its own terms.
+Metropolis Consulting is the first company and is named publicly (decided
+2026-09-24). Future portfolio companies are not named until each is decided on
+its own terms.
 
 ### Consulting page
 
-The consulting page describes present-tense outside engagements: running a
-customer's function on the platform as governed agent workflows, or building a
-custom AI-native system. It should stay honest about which capabilities have
+The consulting page is Metropolis Consulting's front door: a fractional CTO
+for seed and Series A teams, with polis behind them, selling plan, build and
+operate; architecture and security reviews; and AI spend visibility. It should stay honest about which capabilities have
 operating history behind them (software delivery and its governance) versus
 which are earlier, state that the customer keeps ownership and their private
 context stays bounded, and never imply Metropolis is a general-purpose
