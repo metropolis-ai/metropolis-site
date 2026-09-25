@@ -15,9 +15,9 @@ A venture studio builds companies around problems, and we can't choose those pro
 
 I think of a company as four things: its people, what it knows, the work it does, and the resources it creates and manages for customers. polis is modeled around those four. As a solo founder, I wanted a first company where all four were already mine, and for me that is technical leadership.
 
-I spent more than five years at AWS, where I worked on Amazon FSx and founded a team that turned up to 18 months of repeated human work per region into an automated system. I have also built products at startups and mentored founders on building systems that scale. If I weren't building Metropolis, I would probably be a fractional CTO.
+I spent more than five years at AWS, where I worked on [Amazon FSx](https://aws.amazon.com/fsx/) and founded a team that turned up to 18 months of repeated human work per region into an automated system. I have also built products at startups and mentored founders on building systems that scale. If I weren't building Metropolis, I would probably be a fractional CTO.
 
-So the first company running on polis is Metropolis Consulting, which gives startups technical leadership with a platform behind it. airCFO does this for a startup's finances. We do it for its technology.
+So the first company running on polis is Metropolis Consulting, which gives startups technical leadership with a platform behind it. [airCFO](https://aircfo.com/) does this for a startup's finances. We do it for its technology.
 
 ## Who we work with, and what we learn
 
@@ -39,7 +39,7 @@ This matters more as more code gets written by AI. Veracode's [2026 report on AI
 
 ## Start with a tool, then come to us
 
-Tools like Lovable, Base44, and Perplexity are a good way to try an idea quickly and cheaply, and I would tell most founders to start there. You drive them yourself, and they are built for starting new apps on their own stack.
+Tools like [Lovable](https://lovable.dev/), [Base44](https://base44.com/), and [Perplexity](https://www.perplexity.ai/) are a good way to try an idea quickly and cheaply, and I would tell most founders to start there. You drive them yourself, and they are built for starting new apps on their own stack.
 
 Metropolis Consulting is for later, when a company wants to own and grow what it has built. We work inside the system you already have, in your own repository, and a person is accountable for the result. When we finish, we hand everything over or keep running it for you.
 
