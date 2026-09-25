@@ -1,4 +1,10 @@
-# metropolis-site
+# metropolis-site (moved)
+
+> **This repository is archived.** The Metropolis marketing site (gometropolis.ai)
+> now lives in the polis monorepo at
+> [`consumers/metropolis/marketing-site`](https://github.com/metropolis-ai/polis/tree/main/consumers/metropolis/marketing-site),
+> with this repository's full history, and deploys to GitHub Pages from there.
+> Make all changes in polis.
 
 The company-level marketing site for **metropolis** — an AI-native venture studio
 built as an operating system. Its job is narrow: pitch **investors and mentors**
